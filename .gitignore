@@ -6,3 +6,4 @@
 *.ogg
 *.apkg
 .env
+Session.vim
