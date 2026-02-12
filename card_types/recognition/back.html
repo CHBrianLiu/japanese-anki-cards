@@ -1,0 +1,21 @@
+<div class="vocab">{{Word}}</div>
+<div class="reading">{{furigana:Reading}}</div>
+<div class="pitch">{{Pitch}}</div>
+
+<hr id="answer">
+
+<div id="full-context" class="context-box"></div>
+
+{{#Hint}}
+<div class="hint">Hint: {{Hint}}</div>
+{{/Hint}}
+
+<script>
+  (function() {
+    var sentence = `{{Sentence}}`;
+    var target = `{{TargetWord}}`;
+    // Replace [] with the target word highlighted
+    var highlighted = sentence.replace('[]', '<span class="highlight">' + target + '</span>');
+    document.getElementById('full-context').innerHTML = '<strong>Context:</strong><br>' + highlighted;
+  })();
+</script>

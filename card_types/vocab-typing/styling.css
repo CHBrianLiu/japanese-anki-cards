@@ -1,0 +1,52 @@
+.card {
+  font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 22px;
+  text-align: center;
+  color: #2c3e50;
+  background-color: #ffffff;
+}
+
+.vocab { font-size: 3.5rem; font-weight: bold; margin-bottom: 5px; color: #000; }
+.reading { font-size: 1.5rem; color: #666; margin-bottom: 5px; }
+.pitch { font-size: 1.1rem; color: #e74c3c; margin-bottom: 20px; font-weight: bold; }
+
+.context-box {
+  background: #f8f9fa;
+  border-left: 5px solid #3498db;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  text-align: left;
+  display: inline-block;
+  width: 85%;
+  line-height: 1.8;
+}
+
+.cloze-placeholder {
+  color: #d35400;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.highlight {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.hint-box {
+  margin: 10px;
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+/* Typing Box Customization */
+input#typeans { 
+  font-size: 1.5rem; 
+  text-align: center; 
+  padding: 10px; 
+  width: 80%; 
+  margin-top: 20px;
+}
+code#typeans { font-size: 1.8rem; }
+.typeGood { background-color: #2ecc71 !important; color: white; }
+.typeBad { background-color: #e74c3c !important; color: white; }

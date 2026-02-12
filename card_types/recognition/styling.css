@@ -1,0 +1,36 @@
+.card {
+  font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 22px;
+  text-align: center;
+  color: #2c3e50;
+  background-color: #ffffff;
+}
+
+/* Typography */
+.vocab { font-size: 3.5rem; font-weight: bold; margin-bottom: 5px; color: #000; }
+.reading { font-size: 1.5rem; color: #666; margin-bottom: 5px; }
+.pitch { font-size: 1.1rem; color: #e74c3c; margin-bottom: 20px; font-weight: bold; }
+
+/* The Context Box */
+.context-box {
+  background: #f8f9fa;
+  border-left: 5px solid #3498db;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  text-align: left;
+  display: inline-block;
+  width: 85%;
+  line-height: 1.8;
+}
+
+.highlight {
+  color: #2980b9;
+  font-weight: bold;
+}
+
+.hint {
+  font-style: italic;
+  color: #7f8c8d;
+  margin-top: 10px;
+}

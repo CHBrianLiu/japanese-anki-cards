@@ -1,0 +1,18 @@
+<div class="context-box">
+  <strong>Type the correct form:</strong><br>
+  <div id="cloze-front"></div>
+</div>
+
+<div class="hint-box">
+  Meaning: {{Hint}}
+</div>
+
+{{type:TargetWord}}
+
+<script>
+  (function() {
+    var sentence = `{{Sentence}}`;
+    // Replace [] with a placeholder
+    document.getElementById('cloze-front').innerHTML = sentence.replace('[]', '<span class="cloze-placeholder">____</span>');
+  })();
+</script>

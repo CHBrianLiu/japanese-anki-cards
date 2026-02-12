@@ -1,0 +1,8 @@
+.DS_Store
+*.mp3
+*.png
+*.jpg
+*.wav
+*.ogg
+*.apkg
+.env

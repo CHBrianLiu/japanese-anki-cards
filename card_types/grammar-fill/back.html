@@ -1,0 +1,27 @@
+<!-- Displays the grammar point name for reinforcement -->
+<div class="grammar-point-name">{{GrammarPoint}}</div>
+
+<!-- Placeholder for the full Japanese sentence with the answer revealed -->
+<div class="sentence-box" id="grammar-back"></div>
+
+<div class="meaning-box">
+    {{Meaning}}
+</div>
+
+<hr id="answer">
+
+<!-- Detail section for usage notes, conjugation rules, or extra context -->
+<div class="explanation-container">
+    <div class="explanation-title">Notes</div>
+    <div class="explanation-text">{{Explanation}}</div>
+</div>
+
+<script>
+  (function() {
+    // Replaces the [] placeholder with the actual answer, applying a highlight style
+    var sentence = `{{Sentence}}`;
+    var answer = `{{Answer}}`;
+    var display = sentence.replace('[]', '<span class="answer-highlight">' + answer + '</span>');
+    document.getElementById('grammar-back').innerHTML = display;
+  })();
+</script>
