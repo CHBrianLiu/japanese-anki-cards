@@ -29,8 +29,9 @@ You're responsible for helping the user learn Japanese with Anki in various aspe
 ### Note type template
 
 - Each note type is a markdown file in `note_types/`.
-- The note type file should contain the instruction for users to set up the note type in Anki.
 - The note type file should state what card types would be generated in this note.
+- The note type file should contain the best practices to fill each field.
+- The note type file should contain the high quality sample entries (at least five).
 - You should follow DRY (do not repeat yourself) principle.
     - Avoid duplication as much as possible.
     - Generate as many cards as possible per note.
