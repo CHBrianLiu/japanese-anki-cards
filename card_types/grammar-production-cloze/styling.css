@@ -1,0 +1,77 @@
+.card {
+  font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 22px;
+  text-align: center;
+  color: #2c3e50;
+  background-color: #ffffff;
+}
+
+/* Cloze Styling */
+.cloze {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.cloze-sentence {
+  font-size: 2.5rem;
+  margin: 30px 10px;
+  line-height: 1.5;
+}
+
+/* Typography */
+.meaning {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin: 20px;
+}
+
+.hint {
+  font-style: italic;
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.grammar-point {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2980b9;
+  margin: 20px;
+}
+
+.grammar-point .label {
+  font-size: 1rem;
+  color: #7f8c8d;
+  font-weight: normal;
+}
+
+#answer-line {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 20px 0;
+}
+
+/* Note Styling */
+.note-box {
+  background: #fff9db;
+  border-left: 5px solid #fcc419;
+  padding: 15px;
+  margin: 20px auto;
+  text-align: left;
+  width: 85%;
+  border-radius: 4px;
+}
+
+.note-label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #868e96;
+  margin-bottom: 5px;
+}
+
+.note-content {
+  font-size: 1rem;
+  color: #495057;
+  line-height: 1.6;
+}
