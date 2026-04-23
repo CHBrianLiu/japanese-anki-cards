@@ -1,0 +1,124 @@
+/* ============================================================
+   Production Card — Japanese_Mined_Vocab
+   ============================================================ */
+
+.card {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background-color: #fafafa;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+/* --- Sentence --- */
+.sentence {
+  font-size: 1.45rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* On the front, <b> content is replaced with ＿＿＿ by JS.
+   On the back, the original bold text is shown in blue. */
+.sentence b {
+  color: #1a6ebd;
+  font-weight: 700;
+}
+
+/* --- Hint --- */
+.hint-label {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.75rem;
+}
+
+.hint {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
+/* --- Divider --- */
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1.1rem 0;
+}
+
+/* --- Vocabulary line --- */
+.vocab-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.target-word {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.reading {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* --- Collapsible blocks --- */
+.extra-blocks {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.collapsible {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.collapsible summary {
+  cursor: pointer;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  user-select: none;
+  list-style: none;
+}
+
+.collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible summary::before {
+  content: "▶  ";
+  font-size: 0.7rem;
+  color: #999;
+  display: inline-block;
+}
+
+.collapsible[open] summary::before {
+  content: "▼  ";
+  color: #555;
+}
+
+.collapsible-content {
+  padding: 0.55rem 0.85rem 0.7rem;
+  font-size: 0.95rem;
+  color: #333;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
+}

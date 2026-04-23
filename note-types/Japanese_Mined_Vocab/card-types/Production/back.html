@@ -1,0 +1,28 @@
+<div class="card-front">
+  <div class="sentence" id="prod-sentence-back">{{Sentence}}</div>
+  <div class="hint-label">Hint:</div>
+  <div class="hint">{{Meaning}}</div>
+</div>
+
+<hr class="divider">
+
+<div class="card-back">
+  <div class="vocab-line">
+    <span class="target-word">{{TargetWord}}</span>
+    <span class="reading">({{Reading}})</span>
+  </div>
+
+  <div class="extra-blocks">
+    <details class="collapsible">
+      <summary>Translation</summary>
+      <div class="collapsible-content">{{SentenceTranslation}}</div>
+    </details>
+
+    {{#Notes}}
+    <details class="collapsible">
+      <summary>Notes</summary>
+      <div class="collapsible-content">{{Notes}}</div>
+    </details>
+    {{/Notes}}
+  </div>
+</div>
