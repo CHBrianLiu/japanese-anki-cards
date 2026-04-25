@@ -8,3 +8,4 @@
 .env
 Session.vim
 tools/.venv/
+*.pyc
