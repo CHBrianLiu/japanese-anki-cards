@@ -378,11 +378,12 @@ class TestEntryToRow(unittest.TestCase):
         self.assertEqual(row, ["001", "hello", ""])
 
     def test_block_scalar_trailing_newline_stripped(self):
-        """YAML block scalars (|) produce a trailing newline that must be stripped."""
+        """YAML block scalars (|) produce a trailing newline that must be stripped, not converted to <br>."""
         row = m.entry_to_row(
             {"ID": "001", "Word": "hello\n", "Notes": None}, self._fields()
         )
         self.assertEqual(row[1], "hello")
+        self.assertNotIn("<br>", row[1])
 
     def test_html_tags_preserved(self):
         row = m.entry_to_row(
@@ -394,6 +395,28 @@ class TestEntryToRow(unittest.TestCase):
         """Any non-string YAML value that passes validation is safely stringified."""
         row = m.entry_to_row({"ID": "001", "Word": 42, "Notes": None}, self._fields())
         self.assertEqual(row[1], "42")
+
+    def test_multiline_value_converted_to_br(self):
+        """Multi-line field values (from YAML block scalars) should convert \\n to <br>."""
+        row = m.entry_to_row(
+            {"ID": "001", "Word": "line one\nline two", "Notes": None}, self._fields()
+        )
+        self.assertEqual(row[1], "line one<br>line two")
+
+    def test_multiline_with_crlf_converted_to_br(self):
+        """Line breaks with CRLF (\\r\\n) should also be converted to <br>."""
+        row = m.entry_to_row(
+            {"ID": "001", "Word": "line one\r\nline two", "Notes": None}, self._fields()
+        )
+        self.assertEqual(row[1], "line one<br>line two")
+
+    def test_block_scalar_trailing_newline_no_br_appended(self):
+        """Trailing newlines (from YAML block scalars) should be stripped, not converted to <br>."""
+        row = m.entry_to_row(
+            {"ID": "001", "Word": "hello\n", "Notes": None}, self._fields()
+        )
+        self.assertEqual(row[1], "hello")
+        self.assertNotIn("<br>", row[1])
 
 
 # ---------------------------------------------------------------------------

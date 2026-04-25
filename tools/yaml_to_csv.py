@@ -198,7 +198,10 @@ def entry_to_row(entry: dict, fields: list) -> list:
         else:
             # Always stringify and strip trailing whitespace/newlines.
             # Stripping handles YAML block scalars (|) which append a newline.
-            row.append(str(value).strip())
+            cell = str(value).strip()
+            # Convert internal newlines to <br> tags for HTML rendering in Anki.
+            cell = cell.replace("\r\n", "\n").replace("\n", "<br>")
+            row.append(cell)
     return row
 
 
