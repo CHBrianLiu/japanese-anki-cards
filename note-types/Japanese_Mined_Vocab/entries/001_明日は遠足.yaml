@@ -1,0 +1,17 @@
+notetype: Japanese_Mined_Vocab
+deck: Japanese::Todoku::明日は遠足
+entries:
+  - VocabID: "001_0001"
+    TargetWord: 始まる
+    Reading: はじまる
+    Meaning: to begin; to start
+    Sentence: もう一時間めは<b>始まっています</b>。
+    SentenceTranslation: The first period has already started.
+    Notes: Intransitive verb. Transitive pair is 始める (to start something).
+  - VocabID: "001_0002"
+    TargetWord: 起こす
+    Reading: おこす
+    Meaning: shake someone awake
+    Sentence: お母さんが<b>起こしてくれなかった</b>んです。
+    SentenceTranslation: Because my mother didn't wake me up.
+    Notes:
