@@ -7,3 +7,4 @@
 *.apkg
 .env
 Session.vim
+tools/.venv/
