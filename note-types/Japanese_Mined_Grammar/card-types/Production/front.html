@@ -1,0 +1,16 @@
+<div class="card-front">
+  <div class="sentence" id="prod-sentence">{{Sentence}}</div>
+  <div class="hint-label">Hint:</div>
+  <div class="hint">{{Meaning_Hint}}</div>
+</div>
+
+<script>
+(function () {
+  var el = document.getElementById("prod-sentence");
+  if (!el) return;
+  var bolds = el.querySelectorAll("b");
+  bolds.forEach(function (b) {
+    b.textContent = "＿＿＿";
+  });
+})();
+</script>

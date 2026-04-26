@@ -1,0 +1,35 @@
+<div class="card-front">
+  <div class="sentence">{{Sentence}}</div>
+</div>
+
+<hr class="divider">
+
+<div class="card-back">
+  <div class="answer-panel">
+    <div class="primary-answer">{{GrammarPoint}}</div>
+
+    <div class="info-row">
+      <span class="info-label">Meaning</span>
+      <span class="info-value">{{Meaning_Hint}}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Formation</span>
+      <span class="info-value">{{Formation}}</span>
+    </div>
+  </div>
+
+  <div class="extra-blocks">
+    <details class="collapsible">
+      <summary>Translation</summary>
+      <div class="collapsible-content">{{SentenceTranslation}}</div>
+    </details>
+
+    {{#Notes}}
+    <details class="collapsible">
+      <summary>Notes</summary>
+      <div class="collapsible-content">{{Notes}}</div>
+    </details>
+    {{/Notes}}
+  </div>
+</div>

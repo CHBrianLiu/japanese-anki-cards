@@ -1,0 +1,11 @@
+notetype: Japanese_Mined_Grammar
+deck: Japanese::Grammar
+entries:
+  - GrammarID: "001_0001"
+    GrammarPoint: と
+    Meaning_Hint: Upon doing A, B happens / When A, B
+    Formation: Verb (Dictionary Form) + と
+    Sentence: 教室に<b>入ると</b>先生がレオ君に言いました。
+    SentenceTranslation: Upon entering the classroom, the teacher spoke to Leo-kun.
+    Notes: |
+      The bolded span includes both the required preceding form and the grammar point so the Production Card Type tests formation, not only particle recall.
