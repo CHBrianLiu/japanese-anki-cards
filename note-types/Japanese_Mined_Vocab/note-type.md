@@ -16,9 +16,9 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 
 **User-defined unique identifier in the first field (`VocabID`) using a namespaced index.**
 
-- Each CSV entry file must be prefixed with a 3-digit index (e.g., `001_SourceTitle.csv`).
+- Each entry YAML file must be prefixed with a 3-digit index (e.g., `001_明日は遠足.yaml`).
 - Each Note must have a stable ID following the format `{FileIndex}_{Sequence}` (e.g., `001_0001`, `001_0152`).
-- When importing via CSV with "Update existing notes where first field matches", Anki will match on `VocabID` to update existing Notes rather than creating duplicates.
+- When importing the generated CSV with "Update existing notes where first field matches", Anki will match on `VocabID` to update existing Notes rather than creating duplicates.
 - Never leave `VocabID` empty. Never reuse or reassign an ID once created.
 
 ---
@@ -27,7 +27,7 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 
 | # | Field Name            | Purpose                                                                                     |
 |---|-----------------------|---------------------------------------------------------------------------------------------|
-| 1 | `VocabID`             | Unique stable identifier for idempotent CSV imports (e.g., `001_0152`).                     |
+| 1 | `VocabID`             | Unique stable identifier for idempotent imports (e.g., `001_0152`).                         |
 | 2 | `TargetWord`          | Dictionary form of the vocabulary word (e.g., `始まる`).                                   |
 | 3 | `Reading`             | Kana reading or furigana (e.g., `はじまる`).                                                |
 | 4 | `Meaning`             | Definition in the learner's native language (e.g., `to begin; to start`).                  |
@@ -35,6 +35,7 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 | 6 | `SentenceTranslation` | Full translation of the mined sentence into the learner's native language.                  |
 | 7 | `Notes`               | Grammar nuances, kanji breakdowns, transitive/intransitive pairs, usage notes, etc.        |
 | 8 | `Audio`               | Native pronunciation audio file reference (e.g., `[sound:jp_0152.mp3]`). Optional.        |
+| 9 | `Tags`                | Optional Anki tags for organization, workflow markers, or deletion tagging such as `REPO_DELETE`. |
 
 ---
 
@@ -47,7 +48,11 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 
 ## Data Entry Rules
 
+- Entry content is authored in `entries/*.yaml`. The sibling `entries-config.yaml` defines the canonical Field order used when generating the import CSV.
 - The conjugated form of the target word in `Sentence` must always be wrapped in `<b>...</b>`.
 - `Audio` is optional. Leave the field empty if no audio is available; templates use conditional rendering `{{#Audio}}...{{/Audio}}`.
+- `Tags` is optional. Use it for Anki tags and repository workflow markers.
 - Do not reuse `VocabID` values. Increment sequentially using the file's namespace (e.g., `001_0001`, `001_0002`).
-- To delete a Note: add the tag `REPO_DELETE` to its tags column, re-import the CSV into Anki, search for `tag:REPO_DELETE` in Anki and manually delete those notes, then remove the row from the CSV.
+- `VocabID` values must be quoted strings in YAML, for example `VocabID: "001_0001"`.
+- After editing an entry YAML file, regenerate the corresponding CSV with `python tools/yaml_to_csv.py --file note-types/Japanese_Mined_Vocab/entries/<file>.yaml` or regenerate all CSVs with `python tools/yaml_to_csv.py`.
+- To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` Field in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.

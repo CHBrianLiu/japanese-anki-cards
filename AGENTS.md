@@ -22,7 +22,9 @@ The repository follows a nested structure where Card Types and Note Entries belo
   {NoteTypeName}/
     note-type.md             ← Schema and ID strategy definition
     /entries/
-      {NoteTypeName}.csv     ← Note entries for import
+      entries-config.yaml    ← Canonical field list for this Note Type's entry files
+      {deck-name}.yaml       ← Human-edited Note entry source file
+      {deck-name}.csv        ← Generated Anki import file (do not hand-edit)
     /card-types/
       {CardTypeName}/
         front.html           ← Front template
@@ -44,8 +46,12 @@ Every Note Type must have a `note-type.md` document that serves as the source of
 - **Design Document:** Each Card Type requires a `design.md` explaining the learning intention, field mappings (e.g., `{{FieldName}}`), and any conditional logic (e.g., `{{#FieldName}}` / `{{^FieldName}}`).
 
 ## 5. Note Entries & Idempotent Import Workflow
-Entries are stored as UTF-8 CSV files designed for repeatable imports.
-- **File Headers:** Every CSV must include Anki file headers mapping to the Note Type's ID strategy:
+Entries are authored as UTF-8 YAML files and converted into generated CSV files for repeatable imports.
+- **YAML Source of Truth:** Human edits belong in `entries/*.yaml`. Generated `entries/*.csv` files are import artifacts and must not be hand-edited.
+- **Per-Directory Config:** Every `entries/` directory must contain an `entries-config.yaml` that defines the canonical field list, field order, required fields, and the Note Type name for all entry YAML files in that directory.
+- **Conversion Workflow:** Whenever an entry YAML file changes, regenerate its CSV with `python tools/yaml_to_csv.py` or `python tools/yaml_to_csv.py --file path/to/file.yaml`.
+- **Python Environment Workflow:** Before running repository Python tooling, first look for an existing virtual environment in the project root or `tools/` directory and use it if present. If no virtual environment exists in either location, stop and ask the user to prepare the environment instead of attempting a system-wide package install.
+- **File Headers:** Every generated CSV must include Anki file headers mapping to the Note Type's ID strategy:
   ```text
   #notetype:YourNoteTypeName
   #deck:YourDeckName
@@ -53,17 +59,23 @@ Entries are stored as UTF-8 CSV files designed for repeatable imports.
   #html:true
   #tags column:5
   ```
-- **Repeatable Imports:** Import must always be treated as an "Update existing notes" operation. You must structure the CSV to respect the ID Strategy defined in `note-type.md`.
+- **Field Order:** The field order in `entries-config.yaml` determines the generated CSV column order. The first field is always the stable ID field used for idempotent imports and must never be empty.
+- **Tags Field:** If `entries-config.yaml` includes a `Tags` Field, its 1-based position determines the generated `#tags column:<N>` header.
+- **Repeatable Imports:** Import the generated CSV via Anki's **File -> Import** using **Update existing notes where first field matches**. You must structure the YAML and generated CSV to respect the ID Strategy defined in `note-type.md`.
+- **YAML ID Quoting:** The first Field in each entry must be a quoted YAML string such as `VocabID: "001_0001"`. Unquoted IDs like `001_0001` may be parsed as numbers and are invalid.
 - **Deletion Workflow (Tagging Workaround):** 
-  - Anki's text import does not delete notes when rows are removed from a CSV.
-  - To delete a note, **do not delete the row** from the CSV immediately.
-  - Instead, add a deletion tag (e.g., `REPO_DELETE`) to the note's tags column.
-  - Inform the user to import the CSV, search for `tag:REPO_DELETE` in Anki to manually delete the notes, and only *afterward* can the row be safely purged from the repository.
+  - Anki's text import does not delete Notes when rows are removed from a generated CSV.
+  - To delete a Note, do not remove the YAML entry immediately.
+  - Instead, add a deletion tag such as `REPO_DELETE` to the entry's `Tags` Field in YAML.
+  - Regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, and manually delete the matching Notes in Anki.
+  - Only after that cleanup is complete may the YAML entry be removed from the repository, followed by regenerating the CSV again.
 
 ## 6. Active Validation & Linting
 To minimize errors, you must actively validate the consistency of the repository whenever creating or modifying files:
-1. **Field Validation:** Ensure every field referenced in a Card Type's `front.html` or `back.html` (e.g., `{{Concept}}`) is explicitly declared in the parent `note-type.md`.
-2. **CSV Column Alignment:** Verify that the number of columns and their implicit order in the `.csv` files exactly match the Field list defined in `note-type.md`. 
-3. **ID Strategy Compliance:** If the `note-type.md` mandates a first-field custom ID, ensure the first column of the CSV is never empty and contains stable identifiers. If it mandates a GUID, ensure the `#guid column` header is present.
-4. **Error Reporting:** If the user requests a change that breaks this consistency (e.g., adding data to a CSV for a field that doesn't exist in the Note Type), you must block the action, explain the discrepancy, and ask how to proceed.
-
+1. **Card Type Field Validation:** Ensure every Field referenced in a Card Type's `front.html` or `back.html` (e.g., `{{Concept}}`) is explicitly declared in the parent `note-type.md`.
+2. **Entry Config Validation:** Ensure every Field used in an entry YAML file is declared in the sibling `entries-config.yaml`, and that the `entries-config.yaml` field order matches the parent `note-type.md` schema.
+3. **Generated CSV Alignment:** Verify that the number of columns and their order in generated `.csv` files exactly match the Field list defined in `entries-config.yaml`.
+4. **ID Strategy Compliance:** If the `note-type.md` mandates a first-field custom ID, ensure the first configured Field is never empty and contains stable identifiers in every YAML entry. The ID value must remain a quoted string in YAML. If it mandates a GUID, ensure the generated CSV includes the required `#guid column` header.
+5. **Entry File Validation:** Ensure each entry YAML file declares the correct `notetype`, includes a `deck`, includes at least one entry under `entries`, and satisfies all `required: true` Field constraints from `entries-config.yaml`.
+6. **Workflow Compliance:** After modifying any entry YAML file, regenerate the corresponding CSV. Do not manually edit generated CSV files unless the user explicitly asks for repository repair work on the generated artifact itself.
+7. **Error Reporting:** If the user requests a change that breaks this consistency, such as adding data for a Field that is not declared in `entries-config.yaml` or `note-type.md`, you must block the action, explain the discrepancy, and ask how to proceed.
