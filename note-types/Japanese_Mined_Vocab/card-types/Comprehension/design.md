@@ -32,7 +32,6 @@ The front is intentionally minimal — the sentence alone is the stimulus.
 | Dictionary form | `{{TargetWord}}` | The base/dictionary form of the word. |
 | Reading | `{{Reading}}` | Kana reading shown in parentheses next to the word. |
 | Meaning | `{{Meaning}}` | Native-language definition on the same vocabulary line. |
-| Audio | `{{Audio}}` | Conditional: `{{#Audio}}...{{/Audio}}`. Only rendered if the field is non-empty. Placed directly after the vocabulary line. |
 | Translation (collapsible) | `{{SentenceTranslation}}` | Native `<details>`/`<summary>` block. Collapsed by default. |
 | Notes (collapsible) | `{{Notes}}` | Conditional: `{{#Notes}}...{{/Notes}}`. Only shown if the field is non-empty. Native `<details>`/`<summary>` block. Collapsed by default. |
 
@@ -40,7 +39,6 @@ The front is intentionally minimal — the sentence alone is the stimulus.
 
 ## Conditional Logic
 
-- `{{#Audio}}...{{/Audio}}` — The audio block is only rendered if `Audio` is non-empty.
 - `{{#Notes}}...{{/Notes}}` — The Notes collapsible is only rendered if `Notes` is non-empty.
 - `{{SentenceTranslation}}` is always shown (not conditional), as a translation is expected for every note.
 

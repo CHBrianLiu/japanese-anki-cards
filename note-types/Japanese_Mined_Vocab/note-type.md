@@ -34,8 +34,7 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 | 5 | `Sentence`            | The mined Japanese sentence. The conjugated target word must be wrapped in `<b>` tags (e.g., `もう一時間めが<b>始まっています</b>。`). |
 | 6 | `SentenceTranslation` | Full translation of the mined sentence into the learner's native language.                  |
 | 7 | `Notes`               | Grammar nuances, kanji breakdowns, transitive/intransitive pairs, usage notes, etc.        |
-| 8 | `Audio`               | Native pronunciation audio file reference (e.g., `[sound:jp_0152.mp3]`). Optional.        |
-| 9 | `Tags`                | Optional Anki tags for organization, workflow markers, or deletion tagging such as `REPO_DELETE`. |
+| 8 | `Tags`                | Optional Anki tags for organization, workflow markers, or deletion tagging such as `REPO_DELETE`. |
 
 ---
 
@@ -50,7 +49,6 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 
 - Entry content is authored in `entries/*.yaml`. The sibling `entries-config.yaml` defines the canonical Field order used when generating the import CSV.
 - The conjugated form of the target word in `Sentence` must always be wrapped in `<b>...</b>`.
-- `Audio` is optional. Leave the field empty if no audio is available; templates use conditional rendering `{{#Audio}}...{{/Audio}}`.
 - `Tags` is optional. Use it for Anki tags and repository workflow markers.
 - Do not reuse `VocabID` values. Increment sequentially using the file's namespace (e.g., `001_0001`, `001_0002`).
 - `VocabID` values must be quoted strings in YAML, for example `VocabID: "001_0001"`.

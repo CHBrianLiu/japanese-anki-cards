@@ -804,10 +804,10 @@ class TestRealRepositoryFiles(unittest.TestCase):
         self.assertIn("#deck:Japanese::Todoku::明日は遠足", content)
         self.assertIn("#separator:Comma", content)
         self.assertIn("#html:true", content)
-        self.assertIn("#tags column:9", content)
+        self.assertIn("#tags column:8", content)
         self.assertIn(
             "#columns:VocabID,TargetWord,Reading,Meaning,Sentence,"
-            "SentenceTranslation,Notes,Audio,Tags",
+            "SentenceTranslation,Notes,Tags",
             content,
         )
 

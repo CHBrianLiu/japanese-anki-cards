@@ -21,7 +21,5 @@ fields:
     required: true
   - name: Notes
     required: false
-  - name: Audio
-    required: false
   - name: Tags
     required: false

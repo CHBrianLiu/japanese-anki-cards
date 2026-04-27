@@ -91,8 +91,6 @@ fields:
     required: true
   - name: Notes
     required: false
-  - name: Audio
-    required: false
   - name: Tags
     required: false
 ```
@@ -117,7 +115,6 @@ entries:
     Sentence: もう一時間めは<b>始まっています</b>。
     SentenceTranslation: The first period has already started.
     Notes: Intransitive verb. Transitive pair is 始める (to start something).
-    Audio:
     Tags:
 ```
 
@@ -165,8 +162,8 @@ with Anki import directive headers followed by one row per entry:
 #deck:Japanese::Todoku::明日は遠足
 #separator:Comma
 #html:true
-#tags column:9
-#columns:VocabID,TargetWord,Reading,Meaning,Sentence,SentenceTranslation,Notes,Audio,Tags
+#tags column:8
+#columns:VocabID,TargetWord,Reading,Meaning,Sentence,SentenceTranslation,Notes,Tags
 001_0001,始まる,はじまる,...
 ```
 

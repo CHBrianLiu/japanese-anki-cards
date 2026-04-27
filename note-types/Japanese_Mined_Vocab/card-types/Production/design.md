@@ -61,7 +61,6 @@ Test whether the learner can actively recall the correct Japanese vocabulary wor
 
 - `{{#Notes}}...{{/Notes}}` — The Notes collapsible is only rendered if `Notes` is non-empty.
 - `{{SentenceTranslation}}` is always shown (not conditional).
-- No `{{#Audio}}` block on this card type — audio is only on the Comprehension back.
 
 ---
 

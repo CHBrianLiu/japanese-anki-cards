@@ -2,7 +2,7 @@
 #deck:Japanese::Todoku::明日は遠足
 #separator:Comma
 #html:true
-#tags column:9
-#columns:VocabID,TargetWord,Reading,Meaning,Sentence,SentenceTranslation,Notes,Audio,Tags
-001_0001,始まる,はじまる,to begin; to start,もう一時間めは<b>始まっています</b>。,The first period has already started.,Intransitive verb. Transitive pair is 始める (to start something).,,
-001_0002,起こす,おこす,shake someone awake,お母さんが<b>起こしてくれなかった</b>んです。,Because my mother didn't wake me up.,Intransitive verb. Transitive pair is 起きる.<br>僕はいつも十時に起きます。,,
+#tags column:8
+#columns:VocabID,TargetWord,Reading,Meaning,Sentence,SentenceTranslation,Notes,Tags
+001_0001,始まる,はじまる,to begin; to start,もう一時間めは<b>始まっています</b>。,The first period has already started.,Intransitive verb. Transitive pair is 始める (to start something).,
+001_0002,起こす,おこす,shake someone awake,お母さんが<b>起こしてくれなかった</b>んです。,Because my mother didn't wake me up.,Intransitive verb. Transitive pair is 起きる.<br>僕はいつも十時に起きます。,
