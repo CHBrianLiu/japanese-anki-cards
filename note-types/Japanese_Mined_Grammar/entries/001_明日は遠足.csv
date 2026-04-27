@@ -1,7 +1,9 @@
 #notetype:Japanese_Mined_Grammar
-#deck:Japanese::Grammar
+#deck:Japanese::Todoku::明日は遠足
 #separator:Comma
 #html:true
 #tags column:8
 #columns:GrammarID,GrammarPoint,Meaning_Hint,Formation,Sentence,SentenceTranslation,Notes,Tags
-001_0001,と,"Upon doing A, B happens / When A, B",Verb (Dictionary Form) + と,教室に<b>入ると</b>先生がレオ君に言いました。,"Upon entering the classroom, the teacher spoke to Leo-kun.","The bolded span includes both the required preceding form and the grammar point so the Production Card Type tests formation, not only particle recall.",
+001_0001,と,"Upon doing A, B happens / When A, B",Verb (Dictionary Form) + と,教室に<b>入ると</b>先生がレオ君に言いました。,"Upon entering the classroom, the teacher spoke to Leo-kun.",,
+001_0002,てくれる,Someone does something for me/us,Verb (て-form) + くれる,お母さんが<b>起こしてくれなかった</b>んです。,Because my mother didn't wake me up.,"In the negative past, 〜てくれなかった means someone did not do something for me/us.",
+001_0003,なさい,Command telling someone to do something,Verb stem + なさい,学校へ<b>来なさい</b>。,Come to school.,A firm but less blunt command form often used by parents or teachers.,
