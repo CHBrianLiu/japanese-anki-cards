@@ -79,3 +79,11 @@ To minimize errors, you must actively validate the consistency of the repository
 5. **Entry File Validation:** Ensure each entry YAML file declares the correct `notetype`, includes a `deck`, includes at least one entry under `entries`, and satisfies all `required: true` Field constraints from `entries-config.yaml`.
 6. **Workflow Compliance:** After modifying any entry YAML file, regenerate the corresponding CSV. Do not manually edit generated CSV files unless the user explicitly asks for repository repair work on the generated artifact itself.
 7. **Error Reporting:** If the user requests a change that breaks this consistency, such as adding data for a Field that is not declared in `entries-config.yaml` or `note-type.md`, you must block the action, explain the discrepancy, and ask how to proceed.
+
+## 7. OpenCode Agent Boundaries
+- The `japanese-tutor` agent is analysis-only. It may analyze Japanese sentences or words, identify one or more mine-worthy vocabulary or grammar targets, explain them for an N4 learner, and report ambiguities.
+- The `japanese-tutor` agent must not edit repository files, choose entry YAML files, assign IDs, regenerate CSV files, or finalize repository Field values.
+- The `mining` agent is the only agent that may turn mined material into repository Notes. It owns Note Type selection for repository storage, file selection, ID assignment, YAML edits, CSV regeneration, and repository validation.
+- If analysis finds both a vocabulary target and a grammar target in the same material, the primary agent must ask the user which target to mine. Do not mine both by default.
+- `japanese-tutor` may recommend multiple mine-worthy targets from a single sentence, but those recommendations are analysis only until `mining` performs the repository workflow.
+- Deck placement may depend on the specific entry YAML file and source material, not only on the parent Note Type documentation. Do not assume Deck routing from `note-type.md` alone when selecting an entry file.
