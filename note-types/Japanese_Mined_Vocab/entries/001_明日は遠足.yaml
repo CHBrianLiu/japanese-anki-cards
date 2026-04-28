@@ -17,3 +17,163 @@ entries:
     Notes: |
       Intransitive verb. Transitive pair is 起きる.
       僕はいつも十時に起きます。
+  - VocabID: "001_0003"
+    TargetWord: 出る
+    Reading: でる
+    Meaning: to leave; to depart
+    Sentence: バスは八時に<b>出ます</b>よ
+    SentenceTranslation: The bus leaves at eight.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0004"
+    TargetWord: いつものよう
+    Reading: いつものよう
+    Meaning: as usual; like always
+    Sentence: <b>いつものよう</b>にゲームもできるよ。
+    SentenceTranslation: You can play games too, just like always.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0005"
+    TargetWord: 泣く
+    Reading: なく
+    Meaning: to cry
+    Sentence: レオ君は<b>泣き</b>ながら走りました。
+    SentenceTranslation: Leo-kun ran while crying.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0006"
+    TargetWord: 走る
+    Reading: はしる
+    Meaning: to run
+    Sentence: レオ君は泣きながら<b>走りました</b>。
+    SentenceTranslation: Leo-kun ran while crying.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0007"
+    TargetWord: びっくりする
+    Reading: びっくりする
+    Meaning: to be startled; to be surprised
+    Sentence: レオ君は<b>びっくりして</b>起きました
+    SentenceTranslation: Leo-kun woke up startled.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0008"
+    TargetWord: よく
+    Reading: よく
+    Meaning: carefully; closely
+    Sentence: どんな動物がいるか、<b>よく</b>見て下さい。
+    SentenceTranslation: Please look carefully at what kinds of animals there are.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0009"
+    TargetWord: 集まる
+    Reading: あつまる
+    Meaning: to gather; to assemble
+    Sentence: 十二時半に、ここに<b>集まって</b>下さい
+    SentenceTranslation: Please gather here at 12:30.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0010"
+    TargetWord: 猿
+    Reading: さる
+    Meaning: monkey
+    Sentence: たくさんの<b>猿</b>が鬼ごっこをしていました
+    SentenceTranslation: A lot of monkeys were playing tag.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0011"
+    TargetWord: 鬼ごっこ
+    Reading: おにごっこ
+    Meaning: tag
+    Sentence: たくさんの猿が<b>鬼ごっこ</b>をしていました
+    SentenceTranslation: A lot of monkeys were playing tag.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0012"
+    TargetWord: 登る
+    Reading: のぼる
+    Meaning: to climb
+    Sentence: 猿が木を<b>登って</b>、こっちを見ていました
+    SentenceTranslation: A monkey climbed a tree and was looking this way.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0013"
+    TargetWord: 答える
+    Reading: こたえる
+    Meaning: to answer; to reply
+    Sentence: 僕、まだ行きたくないよと<b>答えました</b>
+    SentenceTranslation: 'He answered, "I still don''t want to go."'
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0014"
+    TargetWord: 困る
+    Reading: こまる
+    Meaning: to be troubled; to be at a loss
+    Sentence: 「お弁当を一緒に食べて、おにごっこをして...。」と<b>困って</b>言いました
+    SentenceTranslation: 'Looking troubled, he said, "Let''s eat our lunches together and play tag..."'
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0015"
+    TargetWord: 組
+    Reading: くみ
+    Meaning: class; group
+    Sentence: 二<b>組</b>のバスは一時に出発しました
+    SentenceTranslation: Class 2's bus departed at one o'clock.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0016"
+    TargetWord: 待つ
+    Reading: まつ
+    Meaning: to wait
+    Sentence: 一組のみんなはレオ君を<b>待ちました</b>。
+    SentenceTranslation: Everyone in Class 1 waited for Leo-kun.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0017"
+    TargetWord: わからなくなる
+    Reading: わからなくなる
+    Meaning: to stop knowing the way; to get lost
+    Sentence: トイレに行って道が<b>わからなくなって</b>...
+    SentenceTranslation: I went to the bathroom and then I couldn't find my way back...
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0018"
+    TargetWord: もっと
+    Reading: もっと
+    Meaning: earlier; more
+    Sentence: トイレは<b>もっと</b>早く行って下さい。
+    SentenceTranslation: Please go to the bathroom earlier.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0019"
+    TargetWord: いっぱい
+    Reading: いっぱい
+    Meaning: a lot; a great deal
+    Sentence: 早く起きて動物園の中を<b>いっぱい</b>歩いてとても疲れました
+    SentenceTranslation: I got up early, walked a lot around the zoo, and got very tired.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0020"
+    TargetWord: 疲れる
+    Reading: つかれる
+    Meaning: to get tired
+    Sentence: 早く起きて動物園の中をいっぱい歩いてとても<b>疲れました</b>
+    SentenceTranslation: I got up early, walked a lot around the zoo, and got very tired.
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0021"
+    TargetWord: 置く
+    Reading: おく
+    Meaning: to put; to place
+    Sentence: テレビの横に<b>置こう</b>ね
+    SentenceTranslation: Let's put it next to the TV, okay?
+    Notes: ""
+    Tags: ""
+  - VocabID: "001_0022"
+    TargetWord: 何だか
+    Reading: なんだか
+    Meaning: somehow; for some reason
+    Sentence: <b>何だか</b>とても嬉しくなりました
+    SentenceTranslation: Somehow, I became very happy.
+    Notes: ""
+    Tags: ""

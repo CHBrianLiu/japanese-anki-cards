@@ -22,3 +22,34 @@ entries:
     Sentence: 学校へ<b>来なさい</b>。
     SentenceTranslation: Come to school.
     Notes: A firm but less blunt command form often used by parents or teachers.
+  - GrammarID: "001_0004"
+    GrammarPoint: なければなりません
+    Meaning_Hint: Leo-kun must get up early
+    Formation: Verb (ない-stem) + ければなりません
+    Sentence: レオ君は早く寝て、早く<b>起きなければなりません</b>
+    SentenceTranslation: Leo-kun has to go to bed early and get up early.
+    Notes: ""
+  - GrammarID: "001_0005"
+    GrammarPoint: ながら
+    Meaning_Hint: Leo-kun runs while crying
+    Formation: Verb stem + ながら
+    Sentence: レオ君は<b>泣きながら</b>走りました。
+    SentenceTranslation: Leo-kun ran while crying.
+    Notes: ""
+    Tags: ""
+  - GrammarID: "001_0006"
+    GrammarPoint: たり
+    Meaning_Hint: They did things like singing songs and doing an animal quiz on the bus
+    Formation: Verb (past tense) + り, Verb (past tense) + りする
+    Sentence: バスの中で<b>歌を歌ったり、動物クイズをしたりしました</b>
+    SentenceTranslation: On the bus, they did things like sing songs and do an animal quiz.
+    Notes: ""
+    Tags: ""
+  - GrammarID: "001_0007"
+    GrammarPoint: 〜なくなる
+    Meaning_Hint: After going to the bathroom, he ended up not knowing the way
+    Formation: Verb (ない-form) + なくなる
+    Sentence: トイレに行って道が<b>わからなくなって</b>...
+    SentenceTranslation: I went to the bathroom and then I couldn't find my way back...
+    Notes: ""
+    Tags: ""
