@@ -7,35 +7,45 @@ entries:
     Formation: Verb (Dictionary Form) + と
     Sentence: 教室に<b>入ると</b>先生がレオ君に言いました。
     SentenceTranslation: Upon entering the classroom, the teacher spoke to Leo-kun.
-    Notes: ""
+    Notes: >-
+      As soon as A happens, B follows. This と is used for a natural, immediate
+      result, not for the speaker's intention or invitation.
   - GrammarID: "001_0002"
     GrammarPoint: てくれる
     Meaning_Hint: Someone does something for me/us
     Formation: Verb (て-form) + くれる
     Sentence: お母さんが<b>起こしてくれなかった</b>んです。
     SentenceTranslation: Because my mother didn't wake me up.
-    Notes: In the negative past, 〜てくれなかった means someone did not do something for me/us.
+    Notes: >-
+      〜てくれる means someone does something for me/us. In the negative past,
+      〜てくれなかった means that helpful action did not happen.
   - GrammarID: "001_0003"
     GrammarPoint: なさい
     Meaning_Hint: Command telling someone to do something
     Formation: Verb stem + なさい
     Sentence: 学校へ<b>来なさい</b>。
     SentenceTranslation: Come to school.
-    Notes: A firm but less blunt command form often used by parents or teachers.
+    Notes: >-
+      A firm instruction form often used by parents or teachers. It is softer
+      than a blunt imperative, but still strong.
   - GrammarID: "001_0004"
     GrammarPoint: なければなりません
     Meaning_Hint: Leo-kun must get up early
     Formation: Verb (ない-stem) + ければなりません
     Sentence: レオ君は早く寝て、早く<b>起きなければなりません</b>
     SentenceTranslation: Leo-kun has to go to bed early and get up early.
-    Notes: ""
+    Notes: >-
+      This pattern means must / have to do something. It is a standard polite
+      way to express obligation or necessity.
   - GrammarID: "001_0005"
     GrammarPoint: ながら
     Meaning_Hint: Leo-kun runs while crying
     Formation: Verb stem + ながら
     Sentence: レオ君は<b>泣きながら</b>走りました。
     SentenceTranslation: Leo-kun ran while crying.
-    Notes: ""
+    Notes: >-
+      This means two actions happen at the same time. The action before ながら
+      is usually the background action.
     Tags: ""
   - GrammarID: "001_0006"
     GrammarPoint: たり
@@ -43,7 +53,9 @@ entries:
     Formation: Verb (past tense) + り, Verb (past tense) + りする
     Sentence: バスの中で<b>歌を歌ったり、動物クイズをしたりしました</b>
     SentenceTranslation: On the bus, they did things like sing songs and do an animal quiz.
-    Notes: ""
+    Notes: >-
+      Use 〜たり to list examples of actions, not a complete list. It suggests
+      other things may have happened too.
     Tags: ""
   - GrammarID: "001_0007"
     GrammarPoint: 〜なくなる
@@ -51,5 +63,7 @@ entries:
     Formation: Verb (ない-form) + なくなる
     Sentence: トイレに行って道が<b>わからなくなって</b>...
     SentenceTranslation: I went to the bathroom and then I couldn't find my way back...
-    Notes: ""
+    Notes: >-
+      This means to become unable to do something or to no longer be in a
+      state. Here it means the speaker got lost or stopped knowing the way.
     Tags: ""

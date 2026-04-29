@@ -4,10 +4,10 @@
 #html:true
 #tags column:8
 #columns:GrammarID,GrammarPoint,Meaning_Hint,Formation,Sentence,SentenceTranslation,Notes,Tags
-001_0001,と,"Upon doing A, B happens / When A, B",Verb (Dictionary Form) + と,教室に<b>入ると</b>先生がレオ君に言いました。,"Upon entering the classroom, the teacher spoke to Leo-kun.",,
-001_0002,てくれる,Someone does something for me/us,Verb (て-form) + くれる,お母さんが<b>起こしてくれなかった</b>んです。,Because my mother didn't wake me up.,"In the negative past, 〜てくれなかった means someone did not do something for me/us.",
-001_0003,なさい,Command telling someone to do something,Verb stem + なさい,学校へ<b>来なさい</b>。,Come to school.,A firm but less blunt command form often used by parents or teachers.,
-001_0004,なければなりません,Leo-kun must get up early,Verb (ない-stem) + ければなりません,レオ君は早く寝て、早く<b>起きなければなりません</b>,Leo-kun has to go to bed early and get up early.,,
-001_0005,ながら,Leo-kun runs while crying,Verb stem + ながら,レオ君は<b>泣きながら</b>走りました。,Leo-kun ran while crying.,,
-001_0006,たり,They did things like singing songs and doing an animal quiz on the bus,"Verb (past tense) + り, Verb (past tense) + りする",バスの中で<b>歌を歌ったり、動物クイズをしたりしました</b>,"On the bus, they did things like sing songs and do an animal quiz.",,
-001_0007,〜なくなる,"After going to the bathroom, he ended up not knowing the way",Verb (ない-form) + なくなる,トイレに行って道が<b>わからなくなって</b>...,I went to the bathroom and then I couldn't find my way back...,,
+001_0001,と,"Upon doing A, B happens / When A, B",Verb (Dictionary Form) + と,教室に<b>入ると</b>先生がレオ君に言いました。,"Upon entering the classroom, the teacher spoke to Leo-kun.","As soon as A happens, B follows. This と is used for a natural, immediate result, not for the speaker's intention or invitation.",
+001_0002,てくれる,Someone does something for me/us,Verb (て-form) + くれる,お母さんが<b>起こしてくれなかった</b>んです。,Because my mother didn't wake me up.,"〜てくれる means someone does something for me/us. In the negative past, 〜てくれなかった means that helpful action did not happen.",
+001_0003,なさい,Command telling someone to do something,Verb stem + なさい,学校へ<b>来なさい</b>。,Come to school.,"A firm instruction form often used by parents or teachers. It is softer than a blunt imperative, but still strong.",
+001_0004,なければなりません,Leo-kun must get up early,Verb (ない-stem) + ければなりません,レオ君は早く寝て、早く<b>起きなければなりません</b>,Leo-kun has to go to bed early and get up early.,This pattern means must / have to do something. It is a standard polite way to express obligation or necessity.,
+001_0005,ながら,Leo-kun runs while crying,Verb stem + ながら,レオ君は<b>泣きながら</b>走りました。,Leo-kun ran while crying.,This means two actions happen at the same time. The action before ながら is usually the background action.,
+001_0006,たり,They did things like singing songs and doing an animal quiz on the bus,"Verb (past tense) + り, Verb (past tense) + りする",バスの中で<b>歌を歌ったり、動物クイズをしたりしました</b>,"On the bus, they did things like sing songs and do an animal quiz.","Use 〜たり to list examples of actions, not a complete list. It suggests other things may have happened too.",
+001_0007,〜なくなる,"After going to the bathroom, he ended up not knowing the way",Verb (ない-form) + なくなる,トイレに行って道が<b>わからなくなって</b>...,I went to the bathroom and then I couldn't find my way back...,This means to become unable to do something or to no longer be in a state. Here it means the speaker got lost or stopped knowing the way.,
