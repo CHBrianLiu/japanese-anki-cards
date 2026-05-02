@@ -1,0 +1,54 @@
+notetype: Japanese_Mined_Grammar
+deck: Japanese::Todoku::お母さんヘンシン
+entries:
+  - GrammarID: "002_0001"
+    GrammarPoint: の
+    Meaning_Hint: Seeking explanation or confirmation that Mom is the one at fault
+    Formation: Plain form + の
+    Sentence: えっ、お母さんが<b>悪いの</b>。
+    SentenceTranslation: Huh, is Mom the one at fault?
+    Notes: >-
+      Sentence-final の adds an explanatory or confirming tone. Here it sounds
+      like the speaker is reacting with surprise and asking for confirmation.
+    Tags: ""
+  - GrammarID: "002_0002"
+    GrammarPoint: ていたら
+    Meaning_Hint: While I was doing various things, I ended up becoming late
+    Formation: Verb (て-form) + いたら
+    Sentence: 今日は子供を迎えに行ったり、買い物をしたり、色々<b>やっていたら</b>遅くなりました。
+    SentenceTranslation: Today I went to pick up the children, did some shopping, and did various other things, so I ended up being late.
+    Notes: >-
+      Here ていたら gives a when/while I was doing that, it turned out... nuance.
+      It links an ongoing situation or sequence of actions to the result that followed.
+    Tags: ""
+  - GrammarID: "002_0003"
+    GrammarPoint: と
+    Meaning_Hint: If you keep being late, you will not become good at Japanese
+    Formation: Verb (plain form) + と
+    Sentence: いつも<b>遅刻していると</b>、日本語が上手になりませんよ。
+    SentenceTranslation: If you're always late, you won't get better at Japanese.
+    Notes: >-
+      Here と expresses a natural or expected result. It presents being late as
+      leading to the consequence that your Japanese will not improve.
+    Tags: ""
+  - GrammarID: "002_0004"
+    GrammarPoint: って
+    Meaning_Hint: 'Quoting what the teacher said: “You came early this morning.”'
+    Formation: Quoted phrase + って
+    Sentence: 「お母さん、今日ね、<b>『朝早くきたね。』って</b>先生に褒められたよ」
+    SentenceTranslation: '"Mom, today, the teacher praised me, saying, ''You came early this morning.''"'
+    Notes: >-
+      Here って is the casual quotative form of と, used to mark the content of
+      what the teacher said before 褒められた.
+    Tags: ""
+  - GrammarID: "002_0005"
+    GrammarPoint: 〜に〜られる
+    Meaning_Hint: Being praised by the teacher
+    Formation: Noun + に + Verb (passive)
+    Sentence: 「お母さん、今日ね、『朝早くきたね。』って<b>先生に褒められた</b>よ」
+    SentenceTranslation: '"Mom, today, the teacher praised me, saying, ''You came early this morning.''"'
+    Notes: >-
+      This is the passive pattern where the person doing the action is marked
+      with に. Here, the speaker receives the action of being praised from the
+      teacher.
+    Tags: ""

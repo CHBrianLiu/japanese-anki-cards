@@ -1,0 +1,149 @@
+notetype: Japanese_Mined_Vocab
+deck: Japanese::Todoku::お母さんヘンシン
+entries:
+  - VocabID: "002_0001"
+    TargetWord: 夫
+    Reading: おっと
+    Meaning: husband
+    Sentence: マリアさんは、<b>夫</b>と小学生のレオ君と幼稚園のララさんの四人家族です。
+    SentenceTranslation: Maria-san is a family of four with her husband, Leo-kun in elementary school, and Lala-san in kindergarten.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0002"
+    TargetWord: 幼稚園
+    Reading: ようちえん
+    Meaning: kindergarten
+    Sentence: マリアさんは、夫と小学生のレオ君と<b>幼稚園</b>のララさんの四人家族です。
+    SentenceTranslation: Maria-san is a family of four with her husband, Leo-kun in elementary school, and Lala-san in kindergarten.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0003"
+    TargetWord: 悪い
+    Reading: わるい
+    Meaning: bad; at fault
+    Sentence: えっ、お母さんが<b>悪い</b>の。
+    SentenceTranslation: Huh, is Mom the one at fault?
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0004"
+    TargetWord: 気にする
+    Reading: きにする
+    Meaning: to mind; to worry about
+    Sentence: 時間を<b>気にしない</b>家族でした
+    SentenceTranslation: They were a family that did not worry about time.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0005"
+    TargetWord: 置き場
+    Reading: おきば
+    Meaning: place for putting something; drop-off area
+    Sentence: マリアさんは、九時にゴミ<b>置き場</b>に行きました
+    SentenceTranslation: Maria-san went to the garbage drop-off area at nine o'clock.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0006"
+    TargetWord: すると
+    Reading: すると
+    Meaning: then; after that
+    Sentence: <b>すると</b>、隣の奥さんが「あら、マリアさん。ゴミは八時半までよ」と言いました。
+    SentenceTranslation: Then the woman next door said, "Oh, Maria-san. The garbage is only until 8:30."
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0007"
+    TargetWord: 奥さん
+    Reading: おくさん
+    Meaning: wife; married woman; madam
+    Sentence: すると、隣の<b>奥さん</b>が「あら、マリアさん。ゴミは八時半までよ」と言いました。
+    SentenceTranslation: Then the woman next door said, "Oh, Maria-san. The garbage is only until 8:30."
+    Notes: In this sentence, 奥さん refers to the neighboring married woman, not the speaker's own wife.
+    Tags: ""
+  - VocabID: "002_0008"
+    TargetWord: パートで働く
+    Reading: パートではたらく
+    Meaning: to work part-time
+    Sentence: マリアさんは、<b>パートで働いています</b>。
+    SentenceTranslation: Maria-san works part-time.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0009"
+    TargetWord: 着替える
+    Reading: きがえる
+    Meaning: to change clothes
+    Sentence: 「マリアさん、<b>着替える</b>時間はあるの。」と言いました。
+    SentenceTranslation: '"Maria-san, do you have time to change clothes?" she said.'
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0010"
+    TargetWord: 迎える
+    Reading: むかえる
+    Meaning: to go pick up; to fetch; to meet
+    Sentence: 今日は子供を<b>迎え</b>に行ったり、買い物をしたり、色々やっていたら遅くなりました。
+    SentenceTranslation: Today I went to pick up the children, did some shopping, and did various other things, so I ended up being late.
+    Notes: In this pattern, 迎えに行く means to go pick someone up.
+    Tags: ""
+  - VocabID: "002_0011"
+    TargetWord: バーゲンセール
+    Reading: バーゲンセール
+    Meaning: bargain sale
+    Sentence: 次の日曜日、マリアさんはデパートの<b>バーゲンセール</b>に行きました。
+    SentenceTranslation: The following Sunday, Maria-san went to the department store's bargain sale.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0012"
+    TargetWord: 時間に遅れる
+    Reading: じかんにおくれる
+    Meaning: to be late; to be late for the proper time
+    Sentence: <b>時間に遅れる</b>といいことがないんだ
+    SentenceTranslation: When you're late, nothing good comes of it.
+    Notes: >-
+      This phrase means being late for the expected time or schedule, not
+      physically arriving behind something.
+    Tags: ""
+  - VocabID: "002_0013"
+    TargetWord: 気が付く
+    Reading: きがつく
+    Meaning: to realize; to notice
+    Sentence: マリアさんは、時間を守ることが大切だと<b>気がつきました</b>。
+    SentenceTranslation: Maria-san realized that keeping to time is important.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0014"
+    TargetWord: 慌てる
+    Reading: あわてる
+    Meaning: to panic; to get flustered
+    Sentence: レオ君は、<b>慌てないで</b>学校に出かけました
+    SentenceTranslation: Leo-kun left for school without panicking.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0015"
+    TargetWord: 出かける
+    Reading: でかける
+    Meaning: to go out; to leave for
+    Sentence: レオ君は、慌てないで学校に<b>出かけました</b>
+    SentenceTranslation: Leo-kun left for school without panicking.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0016"
+    TargetWord: 褒める
+    Reading: ほめる
+    Meaning: to praise
+    Sentence: 「お母さん、今日ね、『朝早くきたね。』って先生に<b>褒められた</b>よ」
+    SentenceTranslation: '"Mom, today, the teacher praised me, saying, ''You came early this morning.''"'
+    Notes: This sentence uses the passive form 褒められた, meaning the speaker was praised by the teacher.
+    Tags: ""
+  - VocabID: "002_0017"
+    TargetWord: このごろ
+    Reading: このごろ
+    Meaning: these days; recently
+    Sentence: マリアさんは、<b>このごろ</b>九時五十分に会社へ着きます。
+    SentenceTranslation: These days, Maria-san arrives at the company at 9:50.
+    Notes: ""
+    Tags: ""
+  - VocabID: "002_0018"
+    TargetWord: ニコニコする
+    Reading: にこにこする
+    Meaning: to smile; to grin cheerfully
+    Sentence: 課長が<b>ニコニコして</b>言いました
+    SentenceTranslation: The section chief said it with a cheerful smile.
+    Notes: ""
+    Tags: ""
