@@ -1,0 +1,201 @@
+notetype: Japanese_Mined_Vocab
+deck: Japanese::Todoku::温泉の町別府
+entries:
+  - VocabID: "003_0001"
+    TargetWord: 昔
+    Reading: むかし
+    Meaning: long ago; in the past
+    Sentence: 別府の温泉は<b>昔</b>から、別府に住んでいる人や旅行客に愛されて来ました。
+    SentenceTranslation: Beppu's hot springs have long been loved by the people who live in Beppu and by travelers.
+    Notes: 昔から = since long ago; for a long time.
+    Tags: ""
+  - VocabID: "003_0002"
+    TargetWord: 建てる
+    Reading: たてる
+    Meaning: to build; to construct
+    Sentence: 今の建物は1938年に<b>建てられました</b>。
+    SentenceTranslation: The current building was built in 1938.
+    Notes: "Passive past form: 建てられました = was built."
+    Tags: ""
+  - VocabID: "003_0003"
+    TargetWord: 量
+    Reading: りょう
+    Meaning: amount; quantity
+    Sentence: 別府の温泉は、<b>量</b>も種類も多くて、日本一と言われています。
+    SentenceTranslation: Beppu's hot springs are said to be the best in Japan both in quantity and in variety.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0004"
+    TargetWord: 種類
+    Reading: しゅるい
+    Meaning: kind; type; variety
+    Sentence: 別府の温泉は、量も<b>種類</b>も多くて、日本一と言われています。
+    SentenceTranslation: Beppu's hot springs are said to be the best in Japan both in quantity and in variety.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0005"
+    TargetWord: と言われている
+    Reading: といわれている
+    Meaning: is said to; is reputed to
+    Sentence: 別府の温泉は、量も種類も多くて、日本一<b>と言われています</b>。
+    SentenceTranslation: Beppu's hot springs are said to be the best in Japan because they are abundant and varied.
+    Notes: Polite present form of the common reported-expression chunk と言われている.
+    Tags: ""
+  - VocabID: "003_0006"
+    TargetWord: 水着
+    Reading: みずぎ
+    Meaning: swimsuit; bathing suit
+    Sentence: 海を見ながら、<b>水着</b>で入れます。
+    SentenceTranslation: You can get in wearing a swimsuit while looking out at the sea.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0007"
+    TargetWord: タイプ
+    Reading: タイプ
+    Meaning: type; kind
+    Sentence: 別府には色々な<b>タイプ</b>の温泉があります。
+    SentenceTranslation: In Beppu, there are many different kinds of hot springs.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0008"
+    TargetWord: 泥
+    Reading: どろ
+    Meaning: mud
+    Sentence: <b>泥</b>の温泉です。
+    SentenceTranslation: It's a muddy hot spring.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0009"
+    TargetWord: 肌
+    Reading: はだ
+    Meaning: skin; complexion
+    Sentence: 泥に入ると、<b>肌</b>が綺麗になります。
+    SentenceTranslation: When you soak in the mud bath, your skin becomes beautiful.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0010"
+    TargetWord: 砂
+    Reading: すな
+    Meaning: sand
+    Sentence: これは砂湯です。<b>砂</b>の温泉です。
+    SentenceTranslation: This is a sand bath. It's a hot spring made of sand.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0011"
+    TargetWord: 体
+    Reading: からだ
+    Meaning: body
+    Sentence: 砂は少し重いですが、<b>体</b>がとても暖かくなって、気持ちがいいです。
+    SentenceTranslation: The sand is a little heavy, but your body gets very warm, and it feels great.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0012"
+    TargetWord: 熱
+    Reading: ねつ
+    Meaning: heat
+    Sentence: 温泉の<b>熱</b>で体を温めます。
+    SentenceTranslation: The heat from the hot spring warms the body.
+    Notes: ""
+    Tags: ""
+  - VocabID: "003_0013"
+    TargetWord: 草
+    Reading: くさ
+    Meaning: grass; plant; herb
+    Sentence: 鉄輪むし湯では、服を着たまま、薬の<b>草</b>、薬草の上に寝ます。
+    SentenceTranslation: At Kannawa Steam Bath, you lie down on top of medicinal grass—medicinal herbs—while still wearing your clothes.
+    Notes: Here, 草 refers to herbs/plants rather than lawn grass.
+    Tags: ""
+  - VocabID: "003_0014"
+    TargetWord: 薬草
+    Reading: やくそう
+    Meaning: medicinal herb; medicinal plant
+    Sentence: 鉄輪むし湯では、服を着たまま、薬の草、<b>薬草</b>の上に寝ます。
+    SentenceTranslation: At Kannawa Steam Bath, you lie down on top of medicinal herbs while still wearing your clothes.
+    Notes: 薬の草 in the sentence restates 薬草 in simpler words.
+    Tags: ""
+  - VocabID: "003_0015"
+    TargetWord: 湯気
+    Reading: ゆげ
+    Meaning: steam; vapor
+    Sentence: 薬草の下から温泉の温かい<b>湯気</b>が出てきます。
+    SentenceTranslation: Warm steam from the hot spring comes up from beneath the medicinal herbs.
+    Notes: Refers to visible steam rising from the hot spring.
+    Tags: ""
+  - VocabID: "003_0016"
+    TargetWord: 出てくる
+    Reading: でてくる
+    Meaning: to come out; to emerge; to come up
+    Sentence: 薬草の下から温泉の温かい湯気が<b>出てきます</b>。
+    SentenceTranslation: Warm steam from the hot spring comes up from beneath the medicinal herbs.
+    Notes: |-
+      出る = something goes out
+      出てくる = something comes out toward the speaker / comes out into view
+      てくる is also used to show the change of the state. for example: 太陽が雲の間から出て来ました。
+    Tags: ""
+  - VocabID: "003_0017"
+    TargetWord: お喋りする
+    Reading: おしゃべりする
+    Meaning: to chat; to talk
+    Sentence: 足湯に入りながら<b>おしゃべりする</b>のも楽しいです。
+    SentenceTranslation: It's also fun to chat while soaking your feet in a footbath.
+    Notes: Sentence uses the hiragana spelling おしゃべりする.
+    Tags: ""
+  - VocabID: "003_0018"
+    TargetWord: 入れる
+    Reading: いれる
+    Meaning: to put in; to place into
+    Sentence: 手だけ温泉の中に<b>入れます</b>。
+    SentenceTranslation: You can put just your hands into the hot spring.
+    Notes: Transitive counterpart of 入る; here 手を入れる = put one's hands in.
+    Tags: ""
+  - VocabID: "003_0019"
+    TargetWord: 茶色い
+    Reading: ちゃいろい
+    Meaning: brown; brown-colored
+    Sentence: 少し<b>茶色い</b>温泉、白い温泉、青い温泉。
+    SentenceTranslation: There are slightly brown hot springs, white hot springs, and blue hot springs.
+    Notes: い-adjective meaning brown-colored.
+    Tags: ""
+  - VocabID: "003_0020"
+    TargetWord: 病気
+    Reading: びょうき
+    Meaning: illness; disease
+    Sentence: 温泉は色々な<b>病気</b>を治すと言われています。
+    SentenceTranslation: Hot springs are said to cure all kinds of illnesses.
+    Notes: 色々な病気 = all kinds of illnesses.
+    Tags: ""
+  - VocabID: "003_0021"
+    TargetWord: 治す
+    Reading: なおす
+    Meaning: to cure; to heal
+    Sentence: 温泉は色々な病気を<b>治す</b>と言われています。
+    SentenceTranslation: Hot springs are said to cure all kinds of illnesses.
+    Notes: Transitive verb; compare 治る = to get better.
+    Tags: ""
+  - VocabID: "003_0022"
+    TargetWord: ストレス
+    Reading: ストレス
+    Meaning: stress
+    Sentence: 温泉は<b>ストレス</b>も解消してくれます。
+    SentenceTranslation: Hot springs help relieve stress too.
+    Notes: Common katakana loanword for mental or emotional stress.
+    Tags: ""
+  - VocabID: "003_0023"
+    TargetWord: 解消する
+    Reading: かいしょうする
+    Meaning: to relieve; to eliminate
+    Sentence: 温泉はストレスも<b>解消して</b>くれます。
+    SentenceTranslation: Hot springs help relieve stress too.
+    Notes: Often used for resolving or relieving things like stress, shortages, or dissatisfaction.
+    Tags: ""
+  - VocabID: "003_0024"
+    TargetWord: 知り合った人
+    Reading: しりあったひと
+    Meaning: a person you met; someone you became acquainted with
+    Sentence: 心も体も綺麗にして、温泉で<b>知り合った人</b>とお喋りするのも楽しいかもしれません。
+    SentenceTranslation: It might also be fun to clean both your mind and body, then chat with people you met at the hot spring.
+    Notes: |-
+      知 (し) り合 (あ) う = to get to know each other
+      知 (し) り合 (あ) った = got acquainted / met
+      知 (し) り合 (あ) った人 (ひと) = a person you met / a person you became acquainted with
+    Tags: ""

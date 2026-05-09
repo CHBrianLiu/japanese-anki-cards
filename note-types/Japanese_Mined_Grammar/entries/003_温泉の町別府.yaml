@@ -1,0 +1,66 @@
+notetype: Japanese_Mined_Grammar
+deck: Japanese::Todoku::温泉の町別府
+entries:
+  - GrammarID: "003_0001"
+    GrammarPoint: や
+    Meaning_Hint: Used to name representative groups who have loved Beppu's hot springs
+    Formation: Noun + や + Noun
+    Sentence: 別府の温泉は昔から、別府に住んでいる<b>人や旅行客</b>に愛されて来ました。
+    SentenceTranslation: Since long ago, Beppu's hot springs have been loved by people living in Beppu and by tourists.
+    Notes: >-
+      や gives examples in a non-exhaustive list, so these are representative groups rather than a complete list.
+    Tags: ""
+  - GrammarID: "003_0002"
+    GrammarPoint: 〜に〜される
+    Meaning_Hint: Shows who has loved Beppu's hot springs by marking them as the passive agent
+    Formation: Noun + に + Passive Verb
+    Sentence: 別府の温泉は昔から、別府に住んでいる<b>人や旅行客に愛されて</b>来ました。
+    SentenceTranslation: Since long ago, Beppu's hot springs have been loved by people living in Beppu and by tourists.
+    Notes: >-
+      The people who love the hot springs are marked with に in this passive expression.
+    Tags: ""
+  - GrammarID: "003_0003"
+    GrammarPoint: 〜て来ました
+    Meaning_Hint: Indicates that being loved has continued from the past up to the present
+    Formation: Verbて + 来ました
+    Sentence: 別府の温泉は昔から、別府に住んでいる人や旅行客に<b>愛されて来ました</b>。
+    SentenceTranslation: Since long ago, Beppu's hot springs have been loved by people living in Beppu and by tourists.
+    Notes: >-
+      〜てくる here shows a state that has continued up to now.
+    Tags: ""
+  - GrammarID: "003_0004"
+    GrammarPoint: ので
+    Meaning_Hint: Because it is located up on the mountainside, the town of Beppu can be seen from there
+    Formation: Clause (plain) + ので
+    Sentence: 山の上の方に<b>あるので</b>、別府の町が見えます。
+    SentenceTranslation: Because it is up on the mountainside, you can see the town of Beppu.
+    Notes: >-
+      ので gives an explanatory reason and sounds a bit softer than から.
+    Tags: ""
+  - GrammarID: "003_0005"
+    GrammarPoint: たまま
+    Meaning_Hint: You do the next action without changing the state of still wearing your clothes
+    Formation: Verbた + まま
+    Sentence: 鉄輪むし湯では、服を<b>着たまま</b>、薬の草、薬草の上に寝ます。
+    SentenceTranslation: At Kannawa Steam Bath, you lie down on top of medicinal herbs while still wearing your clothes.
+    Notes: >-
+      例をもう一つ：靴をはいたまま入らないでください。
+    Tags: ""
+  - GrammarID: "003_0006"
+    GrammarPoint: だけ
+    Meaning_Hint: The action applies only to the feet, not the whole body
+    Formation: Noun + だけ
+    Sentence: 足湯は、服を着たまま、<b>足だけ</b>温泉に入ります。
+    SentenceTranslation: In a footbath, you enter the hot spring with only your feet, while still wearing your clothes.
+    Notes: >-
+      だけ limits the action to the feet.
+    Tags: ""
+  - GrammarID: "003_0007"
+    GrammarPoint: てみる
+    Meaning_Hint: Invites someone to try going to Beppu's hot springs and see how it is
+    Formation: Verbて + みる
+    Sentence: 別府の温泉に<b>行ってみませんか</b>。
+    SentenceTranslation: Would you like to try going to Beppu's hot springs?
+    Notes: >-
+      Here, 〜てみる appears as the polite invitation 〜てみませんか.
+    Tags: ""
