@@ -33,7 +33,7 @@ entries:
     Tags: ""
   - GrammarID: "002_0004"
     GrammarPoint: って
-    Meaning_Hint: 'Quoting what the teacher said: “You came early this morning.”'
+    Meaning_Hint: "Quoting what the teacher said: “You came early this morning.”"
     Formation: Quoted phrase + って
     Sentence: 「お母さん、今日ね、<b>『朝早くきたね。』って</b>先生に褒められたよ」
     SentenceTranslation: '"Mom, today, the teacher praised me, saying, ''You came early this morning.''"'
@@ -48,7 +48,12 @@ entries:
     Sentence: 「お母さん、今日ね、『朝早くきたね。』って<b>先生に褒められた</b>よ」
     SentenceTranslation: '"Mom, today, the teacher praised me, saying, ''You came early this morning.''"'
     Notes: >-
-      This is the passive pattern where the person doing the action is marked
-      with に. Here, the speaker receives the action of being praised from the
-      teacher.
+      褒められた is the past passive form of 褒める. Passive conjugation rule:
+      Group 1 (う-verbs): change the final sound to the あ-row and add れる
+      (書く→書かれる, 読む→読まれる, 話す→話される). Group 2 (る-verbs):
+      remove る and add られる (ほめる→ほめられる, しかる→しかられる,
+      食べる→食べられる). Group 3 irregular: する→される, くる→こられる.
+      Here 褒める is a Group 2 verb, so 褒める→褒められる, then past
+      tense gives 褒められた. In this sentence, 先生に marks who did the
+      praising.
     Tags: ""
