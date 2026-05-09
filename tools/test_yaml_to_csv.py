@@ -801,7 +801,7 @@ class TestRealRepositoryFiles(unittest.TestCase):
 
         # Anki directive headers
         self.assertIn("#notetype:Japanese_Mined_Vocab", content)
-        self.assertIn("#deck:Japanese::Todoku::明日は遠足", content)
+        self.assertIn("#deck:Japanese::Tadoku::明日は遠足", content)
         self.assertIn("#separator:Comma", content)
         self.assertIn("#html:true", content)
         self.assertIn("#tags column:8", content)

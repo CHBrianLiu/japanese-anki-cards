@@ -1,5 +1,5 @@
 notetype: Japanese_Mined_Vocab
-deck: Japanese::Todoku::明日は遠足
+deck: Japanese::Tadoku::明日は遠足
 entries:
   - VocabID: "001_0001"
     TargetWord: 始まる

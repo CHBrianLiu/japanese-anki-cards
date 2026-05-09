@@ -105,7 +105,7 @@ no `Tags` field, the directive is omitted.
 
 ```yaml
 notetype: Japanese_Mined_Vocab          # must match entries-config.yaml
-deck: Japanese::Todoku::明日は遠足       # target deck for this file
+deck: Japanese::Tadoku::明日は遠足       # target deck for this file
 
 entries:
   - VocabID: 001_0001
@@ -159,7 +159,7 @@ with Anki import directive headers followed by one row per entry:
 
 ```
 #notetype:Japanese_Mined_Vocab
-#deck:Japanese::Todoku::明日は遠足
+#deck:Japanese::Tadoku::明日は遠足
 #separator:Comma
 #html:true
 #tags column:8

@@ -1,5 +1,5 @@
 notetype: Japanese_Mined_Grammar
-deck: Japanese::Todoku::明日は遠足
+deck: Japanese::Tadoku::明日は遠足
 entries:
   - GrammarID: "001_0001"
     GrammarPoint: と
