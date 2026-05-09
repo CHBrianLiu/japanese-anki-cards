@@ -19,6 +19,7 @@ See tools/README.md for full documentation.
 import argparse
 import csv
 import io
+import os
 import sys
 from pathlib import Path
 
@@ -244,12 +245,34 @@ def build_csv(data: dict, fields: list) -> str:
     return buf.getvalue()
 
 
+def create_root_csv_symlink(repo_root: Path, csv_path: Path, notetype: str) -> Path:
+    """Create or refresh the root-level symlink for a generated CSV file."""
+    root_entries_dir = repo_root / ENTRIES_DIR_NAME
+    root_entries_dir.mkdir(exist_ok=True)
+
+    safe_notetype = notetype.replace("/", "_")
+    link_path = root_entries_dir / f"{safe_notetype}__{csv_path.name}"
+    target = Path(os.path.relpath(csv_path, start=root_entries_dir))
+
+    if link_path.is_symlink():
+        if link_path.readlink() == target:
+            return link_path
+        link_path.unlink()
+    elif link_path.exists():
+        raise ValueError(
+            f"Cannot create symlink '{link_path}': a non-symlink file already exists."
+        )
+
+    link_path.symlink_to(target)
+    return link_path
+
+
 # ---------------------------------------------------------------------------
 # File conversion
 # ---------------------------------------------------------------------------
 
 
-def convert_file(yaml_path: Path) -> None:
+def convert_file(yaml_path: Path, repo_root: Path) -> None:
     """Convert a single YAML entry file to its CSV counterpart."""
     entries_dir = yaml_path.parent
 
@@ -271,14 +294,17 @@ def convert_file(yaml_path: Path) -> None:
 
     entries = data.get("entries")
     validate_entries(entries, fields, yaml_path)
+    assert isinstance(entries, list)
 
     csv_content = build_csv(data, fields)
 
     csv_path = yaml_path.with_suffix(".csv")
     csv_path.write_text(csv_content, encoding="utf-8")
+    link_path = create_root_csv_symlink(repo_root, csv_path, config["notetype"])
 
     print(
         f"Converted {len(entries)} entr{'y' if len(entries) == 1 else 'ies'} -> {csv_path}"
+        f" (symlink: {link_path})"
     )
 
 
@@ -325,7 +351,7 @@ def main() -> None:
         if not target.is_absolute():
             target = Path.cwd() / target
         try:
-            convert_file(target)
+            convert_file(target, repo_root)
         except (ValueError, FileNotFoundError) as exc:
             sys.exit(f"Error: {exc}")
     else:
@@ -338,7 +364,7 @@ def main() -> None:
         failure = 0
         for yaml_path in yaml_files:
             try:
-                convert_file(yaml_path)
+                convert_file(yaml_path, repo_root)
                 success += 1
             except (ValueError, FileNotFoundError) as exc:
                 print(f"Error: {exc}", file=sys.stderr)

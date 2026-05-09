@@ -517,19 +517,21 @@ class TestBuildCsv(unittest.TestCase):
 
 
 class TestConvertFile(unittest.TestCase):
-    def _setup(self, tmp_path: Path, entry_content: str, fields=None):
-        """Write config + entry YAML, return the entry path."""
+    def _setup(self, repo_root: Path, entry_content: str, fields=None):
+        """Write config + entry YAML, return the entry path and entries dir."""
         if fields is None:
             fields = DEFAULT_FIELDS
-        write_config(tmp_path, fields)
-        return write_entry(tmp_path, entry_content)
+        entries_dir = repo_root / "note-types" / "TestType" / "entries"
+        entries_dir.mkdir(parents=True, exist_ok=True)
+        write_config(entries_dir, fields)
+        return write_entry(entries_dir, entry_content), entries_dir
 
     def test_happy_path_produces_correct_csv(self):
         import tempfile
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
             """\
             notetype: TestType
             deck: TestDeck::Sub
@@ -542,7 +544,7 @@ class TestConvertFile(unittest.TestCase):
                 Tags: grammar
         """,
         )
-        m.convert_file(p)
+        m.convert_file(p, repo_root)
         csv_path = p.with_suffix(".csv")
         self.assertTrue(csv_path.exists())
         content = csv_path.read_text(encoding="utf-8")
@@ -555,9 +557,9 @@ class TestConvertFile(unittest.TestCase):
     def test_csv_written_next_to_yaml(self):
         import tempfile
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, entries_dir = self._setup(
+            repo_root,
             """\
             notetype: TestType
             deck: TestDeck
@@ -568,20 +570,43 @@ class TestConvertFile(unittest.TestCase):
                 Meaning: hello
         """,
         )
-        m.convert_file(p)
+        m.convert_file(p, repo_root)
         self.assertTrue(p.with_suffix(".csv").exists())
-        # No stray files created elsewhere
+        # The generated CSV stays next to the YAML source.
         self.assertEqual(
-            sorted(f.name for f in tmp.iterdir()),
+            sorted(f.name for f in entries_dir.iterdir()),
             sorted(["entries-config.yaml", "deck.yaml", "deck.csv"]),
         )
+
+    def test_root_symlink_created_with_notetype_prefix(self):
+        import tempfile
+
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
+            """\
+            notetype: TestType
+            deck: TestDeck
+            entries:
+              - ID: "001"
+                Word: hello
+                Reading: hello
+                Meaning: hello
+        """,
+        )
+
+        m.convert_file(p, repo_root)
+
+        link_path = repo_root / "entries" / "TestType__deck.csv"
+        self.assertTrue(link_path.is_symlink())
+        self.assertEqual(link_path.resolve(), p.with_suffix(".csv").resolve())
 
     def test_notetype_mismatch_aborts(self):
         import tempfile
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
             """\
             notetype: WrongType
             deck: TestDeck
@@ -593,16 +618,16 @@ class TestConvertFile(unittest.TestCase):
         """,
         )
         with self.assertRaises(ValueError) as ctx:
-            m.convert_file(p)
+            m.convert_file(p, repo_root)
         self.assertIn("WrongType", str(ctx.exception))
         self.assertIn("TestType", str(ctx.exception))
 
     def test_missing_deck_key_aborts(self):
         import tempfile
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
             """\
             notetype: TestType
             entries:
@@ -613,17 +638,19 @@ class TestConvertFile(unittest.TestCase):
         """,
         )
         with self.assertRaises(ValueError) as ctx:
-            m.convert_file(p)
+            m.convert_file(p, repo_root)
         self.assertIn("deck", str(ctx.exception))
 
     def test_legacy_hybrid_yaml_converts_correctly(self):
         """The existing 001_明日は遠足.yaml format (comment headers + YAML) must work."""
         import tempfile
 
-        tmp = Path(tempfile.mkdtemp())
-        write_config(tmp, DEFAULT_FIELDS)
+        repo_root = Path(tempfile.mkdtemp())
+        entries_dir = repo_root / "note-types" / "TestType" / "entries"
+        entries_dir.mkdir(parents=True)
+        write_config(entries_dir, DEFAULT_FIELDS)
         p = write_entry(
-            tmp,
+            entries_dir,
             """\
             #notetype:TestType
             #deck:TestDeck
@@ -640,7 +667,7 @@ class TestConvertFile(unittest.TestCase):
                 Meaning: hello
         """,
         )
-        m.convert_file(p)
+        m.convert_file(p, repo_root)
         content = p.with_suffix(".csv").read_text(encoding="utf-8")
         self.assertIn("#notetype:TestType", content)
         self.assertIn("001,hello,hello,hello,,", content)
@@ -649,9 +676,9 @@ class TestConvertFile(unittest.TestCase):
         import tempfile, io
         from contextlib import redirect_stdout
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
             """\
             notetype: TestType
             deck: TestDeck
@@ -664,16 +691,16 @@ class TestConvertFile(unittest.TestCase):
         )
         buf = io.StringIO()
         with redirect_stdout(buf):
-            m.convert_file(p)
+            m.convert_file(p, repo_root)
         self.assertIn("1 entry", buf.getvalue())
 
     def test_multiple_entries_produce_plural_output_message(self):
         import tempfile, io
         from contextlib import redirect_stdout
 
-        tmp = Path(tempfile.mkdtemp())
-        p = self._setup(
-            tmp,
+        repo_root = Path(tempfile.mkdtemp())
+        p, _ = self._setup(
+            repo_root,
             """\
             notetype: TestType
             deck: TestDeck
@@ -690,7 +717,7 @@ class TestConvertFile(unittest.TestCase):
         )
         buf = io.StringIO()
         with redirect_stdout(buf):
-            m.convert_file(p)
+            m.convert_file(p, repo_root)
         self.assertIn("2 entries", buf.getvalue())
 
 
@@ -775,7 +802,7 @@ class TestRealRepositoryFiles(unittest.TestCase):
 
         buf = io.StringIO()
         with redirect_stdout(buf):
-            m.convert_file(yaml_path)
+            m.convert_file(yaml_path, self.REPO_ROOT)
         self.assertIn("entries", buf.getvalue())
 
     def test_generated_csv_matches_expected_content(self):
@@ -794,7 +821,7 @@ class TestRealRepositoryFiles(unittest.TestCase):
         from contextlib import redirect_stdout
 
         with redirect_stdout(io.StringIO()):
-            m.convert_file(yaml_path)
+            m.convert_file(yaml_path, repo)
 
         csv_path = yaml_path.with_suffix(".csv")
         content = csv_path.read_text(encoding="utf-8")
