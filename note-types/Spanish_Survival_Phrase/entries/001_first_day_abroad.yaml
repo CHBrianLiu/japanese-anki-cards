@@ -1,0 +1,73 @@
+notetype: Spanish_Survival_Phrase
+deck: Spanish::Travel::Survival
+entries:
+  - PhraseID: "001_0001"
+    EnglishPrompt: I would like ..., please.
+    Situation: ordering politely
+    SpanishPhrase: Quisiera..., por favor.
+    Audio: "[sound:spanish_survival_phrase__001_0001__audio.mp3]"
+    Notes: Softer and more natural than `Quiero...` for cafes, restaurants, bakeries, and shops. Replace `...` with the item or request, for example `Quisiera un café, por favor.`
+    Tags: spanish_survival youtube first_day_abroad polite_request ordering
+  - PhraseID: "001_0002"
+    EnglishPrompt: May I?
+    Situation: Getting the permission
+    SpanishPhrase: ¿Puedo?
+    Audio: "[sound:spanish_survival_phrase__001_0002__audio.mp3]"
+    Notes: Point what you want to do and say the phrase to ask for the permission.
+    Tags: spanish_survival youtube first_day_abroad movement crowded_places
+  - PhraseID: "001_0003"
+    EnglishPrompt: Okay, that's fine.
+    Situation: accepting information
+    SpanishPhrase: Está bien.
+    Audio: "[sound:spanish_survival_phrase__001_0003__audio.mp3]"
+    Notes: Natural acknowledgment when you understand or accept what someone just told you.
+    Tags: spanish_survival youtube first_day_abroad acknowledgment
+  - PhraseID: "001_0004"
+    EnglishPrompt: I don't need it, thank you.
+    Situation: refusing an offer
+    SpanishPhrase: No necesito, gracias.
+    Audio: "[sound:spanish_survival_phrase__001_0004__audio.mp3]"
+    Notes: Useful for declining a bag, receipt, dessert, taxi, or another offer politely.
+    Tags: spanish_survival youtube first_day_abroad refusal shopping
+  - PhraseID: "001_0005"
+    EnglishPrompt: Thank you too.
+    Situation: formal service interaction
+    SpanishPhrase: Gracias a usted.
+    Audio: "[sound:spanish_survival_phrase__001_0005__audio.mp3]"
+    Notes: Polite reply when staff, a cashier, or a driver thanks you first. The video highlights this as more respectful than defaulting to `de nada` in formal service situations.
+    Tags: spanish_survival youtube first_day_abroad formal_politeness service
+  - PhraseID: "001_0006"
+    EnglishPrompt: That's right.
+    Situation: agreeing naturally
+    SpanishPhrase: Así es.
+    Audio: "[sound:spanish_survival_phrase__001_0006__audio.mp3]"
+    Notes: Natural way to confirm or agree without relying only on `sí`.
+    Tags: spanish_survival youtube first_day_abroad agreement
+  - PhraseID: "001_0007"
+    EnglishPrompt: Okay, ready.
+    Situation: confirming a plan
+    SpanishPhrase: Listo.
+    Audio: "[sound:spanish_survival_phrase__001_0007__audio.mp3]"
+    Notes: Depending on context, this can mean `ready`, `done`, or `okay`.
+    Tags: spanish_survival youtube first_day_abroad readiness
+  - PhraseID: "001_0008"
+    EnglishPrompt: I'm learning Spanish.
+    Situation: setting expectations
+    SpanishPhrase: Estoy aprendiendo español.
+    Audio: "[sound:spanish_survival_phrase__001_0008__audio.mp3]"
+    Notes: Useful for letting people know you want to keep speaking Spanish even if you are still a beginner.
+    Tags: spanish_survival youtube first_day_abroad learner_phrase
+  - PhraseID: "001_0009"
+    EnglishPrompt: No worries.
+    Situation: responding to an apology
+    SpanishPhrase: No pasa nada.
+    Audio: "[sound:spanish_survival_phrase__001_0009__audio.mp3]"
+    Notes: Warm response to a small mistake, apology, or minor inconvenience.
+    Tags: spanish_survival youtube first_day_abroad reassurance
+  - PhraseID: "001_0010"
+    EnglishPrompt: See you later.
+    Situation: leaving naturally
+    SpanishPhrase: Hasta luego.
+    Audio: "[sound:spanish_survival_phrase__001_0010__audio.mp3]"
+    Notes: Natural goodbye for cafes, stores, taxis, and other everyday interactions.
+    Tags: spanish_survival youtube first_day_abroad goodbye

@@ -18,6 +18,7 @@ This repository stores Anki card designs, note schemas, and note entries. As an 
 The repository follows a nested structure where Card Types and Note Entries belong to their parent Note Type. You must maintain this exact hierarchy:
 
 ```text
+/media/                    ← Shared flat media namespace aligned with Anki's media folder
 /note-types/
   {NoteTypeName}/
     note-type.md             ← Schema and ID strategy definition
@@ -48,6 +49,16 @@ Every Note Type must have a `note-type.md` document that serves as the source of
 ## 5. Note Entries & Idempotent Import Workflow
 Entries are authored as UTF-8 YAML files and converted into generated CSV files for repeatable imports.
 - **YAML Source of Truth:** Human edits belong in `entries/*.yaml`. Generated `entries/*.csv` files are import artifacts and must not be hand-edited.
+- **Shared Media Directory:** Repository-managed audio and image assets belong in the project-root `media/` directory. This directory is a shared flat namespace intended to mirror Anki's media folder.
+- **Anki Media References:** When a Field references media, store only the basename that Anki expects, such as `[sound:spanish_survival_phrase__001_0001__audio.mp3]` or `<img src="japanese_mined_vocab__003_0007__image_01.jpg">`. Do not include the `media/` path inside Field values.
+- **Media Naming Convention:** Name every media file using the pattern `{notetype-slug}__{note-id}__{role}[__{index}].{ext}`.
+  - `notetype-slug` is the parent Note Type name converted to lowercase ASCII with underscores, for example `spanish_survival_phrase`.
+  - `note-id` is the stable first Field value from the Note, for example `001_0001`.
+  - `role` is a short lowercase descriptor such as `audio`, `image`, `source`, or `diagram`.
+  - `index` is optional and should be a zero-padded sequence such as `01`, `02` when a Note uses multiple files of the same role.
+  - Use only lowercase ASCII letters, digits, underscores, hyphens, and periods in media filenames. Do not use spaces or additional punctuation.
+  - Examples: `spanish_survival_phrase__001_0001__audio.mp3`, `spanish_survival_phrase__001_0001__image_01.jpg`, `japanese_mined_vocab__003_0007__audio.mp3`.
+- **Media Stability Rule:** Media filenames are part of the repository's stable references. Do not rename or replace a media file in a way that changes its meaning without also updating every Field that references it.
 - **Per-Directory Config:** Every `entries/` directory must contain an `entries-config.yaml` that defines the canonical field list, field order, required fields, and the Note Type name for all entry YAML files in that directory.
 - **Conversion Workflow:** Whenever an entry YAML file changes, regenerate its CSV with `python tools/yaml_to_csv.py` or `python tools/yaml_to_csv.py --file path/to/file.yaml`.
 - **Python Environment Workflow:** Before running repository Python tooling, first look for an existing virtual environment in the project root or `tools/` directory and use it if present. If no virtual environment exists in either location, stop and ask the user to prepare the environment instead of attempting a system-wide package install.

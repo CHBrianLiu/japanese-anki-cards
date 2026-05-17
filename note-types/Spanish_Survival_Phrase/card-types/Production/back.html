@@ -1,0 +1,25 @@
+<div class="card-front">
+  <div class="prompt">{{EnglishPrompt}}</div>
+  <div class="situation">{{Situation}}</div>
+</div>
+
+<hr class="divider">
+
+<div class="card-back">
+  <div class="answer-label">Spanish</div>
+  <div class="answer">{{SpanishPhrase}}</div>
+
+  {{#Audio}}
+  <div class="audio-block">
+    <div class="audio-label">Audio</div>
+    <div class="audio-player">{{Audio}}</div>
+  </div>
+  {{/Audio}}
+
+  {{#Notes}}
+  <details class="collapsible">
+    <summary>Notes</summary>
+    <div class="collapsible-content">{{Notes}}</div>
+  </details>
+  {{/Notes}}
+</div>

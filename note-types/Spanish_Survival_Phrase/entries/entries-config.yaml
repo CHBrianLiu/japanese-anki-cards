@@ -1,0 +1,23 @@
+notetype: Spanish_Survival_Phrase
+
+# Canonical field definitions for all entry YAML files in this directory.
+# - Order here determines CSV column order.
+# - The first field is always the ID field used for idempotent imports;
+#   it must never be empty in any entry.
+# - required: true  -> tool aborts if any entry is missing this field or has it empty.
+# - required: false -> tool allows empty/absent values; outputs an empty CSV column.
+fields:
+  - name: PhraseID
+    required: true
+  - name: EnglishPrompt
+    required: true
+  - name: Situation
+    required: true
+  - name: SpanishPhrase
+    required: true
+  - name: Audio
+    required: false
+  - name: Notes
+    required: false
+  - name: Tags
+    required: false

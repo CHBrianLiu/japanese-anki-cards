@@ -1,0 +1,143 @@
+/* ============================================================
+   Production Card - Spanish_Survival_Phrase
+   ============================================================ */
+
+.card {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #1f2933;
+  background: linear-gradient(180deg, #fff8ef 0%, #fffdf8 100%);
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 1.75rem;
+}
+
+.card-front,
+.card-back {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.prompt {
+  font-size: 1.65rem;
+  line-height: 1.35;
+  font-weight: 700;
+  text-align: center;
+  color: #18212b;
+}
+
+.situation {
+  align-self: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #0f6b6f;
+  background: #dff7f3;
+}
+
+.speak-reminder {
+  text-align: center;
+  font-size: 0.92rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eadfd2;
+  margin: 1.15rem 0;
+}
+
+.answer-label,
+.audio-label {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a16207;
+}
+
+.answer {
+  text-align: center;
+  font-size: 1.9rem;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #b63f2b;
+}
+
+.audio-block {
+  margin-top: 0.2rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid #f1d5b8;
+  border-radius: 12px;
+  background: #fff4e6;
+}
+
+.audio-player {
+  margin-top: 0.45rem;
+  text-align: center;
+}
+
+.audio-player a,
+.audio-player .replaybutton,
+.audio-player .soundLink {
+  color: #0f6b6f;
+}
+
+.collapsible {
+  margin-top: 0.1rem;
+  border: 1px solid #eadfd2;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.collapsible summary {
+  cursor: pointer;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #4b5563;
+  list-style: none;
+  user-select: none;
+}
+
+.collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible summary::before {
+  content: "> ";
+  color: #9ca3af;
+}
+
+.collapsible[open] summary::before {
+  content: "v ";
+  color: #6b7280;
+}
+
+.collapsible-content {
+  padding: 0.1rem 0.85rem 0.85rem;
+  border-top: 1px solid #f3ebe2;
+  color: #374151;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.2rem 0.95rem 1.4rem;
+  }
+
+  .prompt {
+    font-size: 1.4rem;
+  }
+
+  .answer {
+    font-size: 1.65rem;
+  }
+}

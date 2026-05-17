@@ -1,0 +1,16 @@
+#notetype:Spanish_Survival_Phrase
+#deck:Spanish::Travel::Survival
+#separator:Comma
+#html:true
+#tags column:7
+#columns:PhraseID,EnglishPrompt,Situation,SpanishPhrase,Audio,Notes,Tags
+001_0001,"I would like ..., please.",ordering politely,"Quisiera..., por favor.",[sound:spanish_survival_phrase__001_0001__audio.mp3],"Softer and more natural than `Quiero...` for cafes, restaurants, bakeries, and shops. Replace `...` with the item or request, for example `Quisiera un café, por favor.`",spanish_survival youtube first_day_abroad polite_request ordering
+001_0002,May I?,Getting the permission,¿Puedo?,[sound:spanish_survival_phrase__001_0002__audio.mp3],Point what you want to do and say the phrase to ask for the permission.,spanish_survival youtube first_day_abroad movement crowded_places
+001_0003,"Okay, that's fine.",accepting information,Está bien.,[sound:spanish_survival_phrase__001_0003__audio.mp3],Natural acknowledgment when you understand or accept what someone just told you.,spanish_survival youtube first_day_abroad acknowledgment
+001_0004,"I don't need it, thank you.",refusing an offer,"No necesito, gracias.",[sound:spanish_survival_phrase__001_0004__audio.mp3],"Useful for declining a bag, receipt, dessert, taxi, or another offer politely.",spanish_survival youtube first_day_abroad refusal shopping
+001_0005,Thank you too.,formal service interaction,Gracias a usted.,[sound:spanish_survival_phrase__001_0005__audio.mp3],"Polite reply when staff, a cashier, or a driver thanks you first. The video highlights this as more respectful than defaulting to `de nada` in formal service situations.",spanish_survival youtube first_day_abroad formal_politeness service
+001_0006,That's right.,agreeing naturally,Así es.,[sound:spanish_survival_phrase__001_0006__audio.mp3],Natural way to confirm or agree without relying only on `sí`.,spanish_survival youtube first_day_abroad agreement
+001_0007,"Okay, ready.",confirming a plan,Listo.,[sound:spanish_survival_phrase__001_0007__audio.mp3],"Depending on context, this can mean `ready`, `done`, or `okay`.",spanish_survival youtube first_day_abroad readiness
+001_0008,I'm learning Spanish.,setting expectations,Estoy aprendiendo español.,[sound:spanish_survival_phrase__001_0008__audio.mp3],Useful for letting people know you want to keep speaking Spanish even if you are still a beginner.,spanish_survival youtube first_day_abroad learner_phrase
+001_0009,No worries.,responding to an apology,No pasa nada.,[sound:spanish_survival_phrase__001_0009__audio.mp3],"Warm response to a small mistake, apology, or minor inconvenience.",spanish_survival youtube first_day_abroad reassurance
+001_0010,See you later.,leaving naturally,Hasta luego.,[sound:spanish_survival_phrase__001_0010__audio.mp3],"Natural goodbye for cafes, stores, taxis, and other everyday interactions.",spanish_survival youtube first_day_abroad goodbye
