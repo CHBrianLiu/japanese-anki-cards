@@ -1,0 +1,16 @@
+#notetype:Japanese_Mined_Vocab
+#deck:Japanese::Tadoku::夜の図書館
+#separator:Comma
+#html:true
+#tags column:8
+#columns:VocabID,TargetWord,Reading,Meaning,Sentence,SentenceTranslation,Notes,Tags
+004_0001,ある夜,あるよる,a certain night; one night,<b>ある夜</b>、仕事をしていると、カウンターから声が聞こえました。,"One night, while I was working, I heard a voice from the counter.",Common opener for stories. ある (a certain) + 夜 (night).<br>Similar to ある日 (a certain day).,
+004_0002,声,こえ,voice,ある夜、仕事をしていると、カウンターから<b>声</b>が聞こえました。,"One night, while I was working, I heard a voice from the counter.",Often written in kana. Different from 音 (おと) which means sound or noise in general.,
+004_0003,聞こえる,きこえる,to be heard; to be audible,ある夜、仕事をしていると、カウンターから声が<b>聞こえました</b>。,"One night, while I was working, I heard a voice from the counter.","Intransitive potential verb of 聞く. You do not actively ""listen""; the sound reaches your ears passively. Conjugation: 聞こえる → 聞こえます → 聞こえました.",
+004_0004,変だな,へんだな,How strange; That's odd,<b>変だな</b>。,How strange.,Casual expression. 変 (strange) + だ (copula) + な (sentence-ending particle expressing mild emotion).<br>Used when something feels off or unexpected.,
+004_0005,返す,かえす,to return something (to its owner/place),誰かが<b>返した</b>本かな？手続きをしよう。,I wonder if this is a book that someone returned. Let's do the procedure.,Transitive verb. The thing being returned is marked with を.<br>Intransitive pair is 返る (かえる) for something returning on its own.<br>Also used for returning a favor: お礼を返す.,
+004_0006,手続き,てつづき,procedure; formalities; paperwork,誰かが返した本かな？<b>手続き</b>をしよう。,I wonder if this is a book that someone returned. Let's do the procedure.,"Often used for administrative or bureaucratic procedures,<br>e.g. 出国手続き (departure procedures), 入学手続き (enrollment procedures).",
+004_0007,パソコンの電源を入れる,ぱそこのでんげんをいれる,to turn on the computer,山田さんは<b>パソコンの電源を入れました</b>。,Yamada-san turned on the computer.,"This phrase specifically means to turn on a computer or electronic device by switching on its power supply (電源). While 山田さんはパソコンを点けました is also used, it is slightly less natural / less common than this phrasing. スイッチを入れる is also a common phrase.",
+004_0008,他の人,ほかのひと,another person; other people,そして、<b>他の人</b>に話しました。,"And then, I told another person.","他 means ""other"" or ""another"". 他の (ほかの) is used as a modifying phrase before nouns.",
+004_0009,亡くなる,なくなる,to pass away; to die (polite/euphemistic),息子の太郎は、三か月前に<b>亡くなった</b>んです。交通事故でした。,My son Taro passed away three months ago. It was a traffic accident.,Polite euphemism for dying. More respectful than 死ぬ. Often used when speaking about the death of someone else's family member or in formal contexts.,
+004_0010,交通事故,こうつうじこ,traffic accident,息子の太郎は、三か月前に亡くなったんです。<b>交通事故</b>でした。,My son Taro passed away three months ago. It was a traffic accident.,"交通 (こうつう) means traffic/transportation, and 事故 (じこ) means accident. Can be shortened to 事故 in casual speech.",

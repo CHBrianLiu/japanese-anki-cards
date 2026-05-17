@@ -1,0 +1,99 @@
+notetype: Japanese_Mined_Vocab
+deck: Japanese::Tadoku::夜の図書館
+entries:
+  - VocabID: "004_0001"
+    TargetWord: ある夜
+    Reading: あるよる
+    Meaning: a certain night; one night
+    Sentence: <b>ある夜</b>、仕事をしていると、カウンターから声が聞こえました。
+    SentenceTranslation: One night, while I was working, I heard a voice from the counter.
+    Notes: |
+      Common opener for stories. ある (a certain) + 夜 (night).
+      Similar to ある日 (a certain day).
+    Tags: ""
+  - VocabID: "004_0002"
+    TargetWord: 声
+    Reading: こえ
+    Meaning: voice
+    Sentence: ある夜、仕事をしていると、カウンターから<b>声</b>が聞こえました。
+    SentenceTranslation: One night, while I was working, I heard a voice from the counter.
+    Notes: |
+      Often written in kana. Different from 音 (おと) which means sound or noise in general.
+    Tags: ""
+  - VocabID: "004_0003"
+    TargetWord: 聞こえる
+    Reading: きこえる
+    Meaning: to be heard; to be audible
+    Sentence: ある夜、仕事をしていると、カウンターから声が<b>聞こえました</b>。
+    SentenceTranslation: One night, while I was working, I heard a voice from the counter.
+    Notes: |
+      Intransitive potential verb of 聞く. You do not actively "listen"; the sound reaches your ears passively. Conjugation: 聞こえる → 聞こえます → 聞こえました.
+    Tags: ""
+  - VocabID: "004_0004"
+    TargetWord: 変だな
+    Reading: へんだな
+    Meaning: "How strange; That's odd"
+    Sentence: "<b>変だな</b>。"
+    SentenceTranslation: "How strange."
+    Notes: |
+      Casual expression. 変 (strange) + だ (copula) + な (sentence-ending particle expressing mild emotion).
+      Used when something feels off or unexpected.
+    Tags: ""
+  - VocabID: "004_0005"
+    TargetWord: 返す
+    Reading: かえす
+    Meaning: to return something (to its owner/place)
+    Sentence: 誰かが<b>返した</b>本かな？手続きをしよう。
+    SentenceTranslation: I wonder if this is a book that someone returned. Let's do the procedure.
+    Notes: |
+      Transitive verb. The thing being returned is marked with を.
+      Intransitive pair is 返る (かえる) for something returning on its own.
+      Also used for returning a favor: お礼を返す.
+    Tags: ""
+  - VocabID: "004_0006"
+    TargetWord: 手続き
+    Reading: てつづき
+    Meaning: procedure; formalities; paperwork
+    Sentence: 誰かが返した本かな？<b>手続き</b>をしよう。
+    SentenceTranslation: I wonder if this is a book that someone returned. Let's do the procedure.
+    Notes: |
+      Often used for administrative or bureaucratic procedures,
+      e.g. 出国手続き (departure procedures), 入学手続き (enrollment procedures).
+    Tags: ""
+  - VocabID: "004_0007"
+    TargetWord: パソコンの電源を入れる
+    Reading: ぱそこのでんげんをいれる
+    Meaning: to turn on the computer
+    Sentence: 山田さんは<b>パソコンの電源を入れました</b>。
+    SentenceTranslation: Yamada-san turned on the computer.
+    Notes: >-
+      This phrase specifically means to turn on a computer or electronic device by switching on its power supply (電源). While 山田さんはパソコンを点けました is also used, it is slightly less natural / less common than this phrasing.
+      スイッチを入れる is also a common phrase.
+    Tags: ""
+  - VocabID: "004_0008"
+    TargetWord: 他の人
+    Reading: ほかのひと
+    Meaning: another person; other people
+    Sentence: そして、<b>他の人</b>に話しました。
+    SentenceTranslation: And then, I told another person.
+    Notes: |
+      他 means "other" or "another". 他の (ほかの) is used as a modifying phrase before nouns.
+    Tags: ""
+  - VocabID: "004_0009"
+    TargetWord: 亡くなる
+    Reading: なくなる
+    Meaning: to pass away; to die (polite/euphemistic)
+    Sentence: 息子の太郎は、三か月前に<b>亡くなった</b>んです。交通事故でした。
+    SentenceTranslation: My son Taro passed away three months ago. It was a traffic accident.
+    Notes: |
+      Polite euphemism for dying. More respectful than 死ぬ. Often used when speaking about the death of someone else's family member or in formal contexts.
+    Tags: ""
+  - VocabID: "004_0010"
+    TargetWord: 交通事故
+    Reading: こうつうじこ
+    Meaning: traffic accident
+    Sentence: 息子の太郎は、三か月前に亡くなったんです。<b>交通事故</b>でした。
+    SentenceTranslation: My son Taro passed away three months ago. It was a traffic accident.
+    Notes: |
+      交通 (こうつう) means traffic/transportation, and 事故 (じこ) means accident. Can be shortened to 事故 in casual speech.
+    Tags: ""

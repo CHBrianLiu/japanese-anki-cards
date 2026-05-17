@@ -1,0 +1,7 @@
+#notetype:Japanese_Mined_Grammar
+#deck:Japanese::Tadoku::夜の図書館
+#separator:Comma
+#html:true
+#tags column:8
+#columns:GrammarID,GrammarPoint,Meaning_Hint,Formation,Sentence,SentenceTranslation,Notes,Tags
+004_0001,可能形（過去形）,Was finally able to return (something),Godan verb: change final す → せた,やっと<b>返せた</b>。,I was finally able to return it.,"Potential form (Ability). This form describes that you have the ability to do the action, or the action is possible.<br><br>For Godan verbs, the potential form conjugates like an ichidan verb (〜える / 〜れる), thus its past tense is formed by dropping the ending る and adding た.<br><br>Example: 返す → 返せる (potential) → 返せた (potential past tense).",

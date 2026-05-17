@@ -1,0 +1,16 @@
+notetype: Japanese_Mined_Grammar
+deck: Japanese::Tadoku::夜の図書館
+entries:
+  - GrammarID: "004_0001"
+    GrammarPoint: 可能形（過去形）
+    Meaning_Hint: Was finally able to return (something)
+    Formation: "Godan verb: change final す → せた"
+    Sentence: やっと<b>返せた</b>。
+    SentenceTranslation: I was finally able to return it.
+    Notes: |
+      Potential form (Ability). This form describes that you have the ability to do the action, or the action is possible.
+
+      For Godan verbs, the potential form conjugates like an ichidan verb (〜える / 〜れる), thus its past tense is formed by dropping the ending る and adding た.
+
+      Example: 返す → 返せる (potential) → 返せた (potential past tense).
+    Tags: ""
