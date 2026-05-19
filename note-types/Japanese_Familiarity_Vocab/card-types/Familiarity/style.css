@@ -1,0 +1,153 @@
+/* ============================================================
+   Familiarity Card — Japanese_Familiarity_Vocab
+   ============================================================ */
+
+.card {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background-color: #fcfcfc;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+/* --- Display word (front and back) --- */
+.display-word {
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 700;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+/* --- Divider --- */
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1.1rem 0;
+}
+
+/* --- Reading --- */
+.reading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 0.35rem;
+}
+
+/* --- Meaning --- */
+.meaning {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #333;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Badges --- */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #0f6b6f;
+  background: #dff7f3;
+}
+
+.badge-source {
+  color: #a16207;
+  background: #fff4e6;
+}
+
+/* --- Example --- */
+.example-block {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.example-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 0.3rem;
+}
+
+.example-content {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+}
+
+/* --- Collapsible blocks --- */
+.collapsible {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.collapsible summary {
+  cursor: pointer;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  user-select: none;
+  list-style: none;
+}
+
+.collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible summary::before {
+  content: "▶  ";
+  font-size: 0.7rem;
+  color: #999;
+  display: inline-block;
+}
+
+.collapsible[open] summary::before {
+  content: "▼  ";
+  color: #555;
+}
+
+.collapsible-content {
+  padding: 0.55rem 0.85rem 0.7rem;
+  font-size: 0.95rem;
+  color: #333;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
+}
+
+/* --- Mobile adjustments --- */
+@media (max-width: 480px) {
+  .card {
+    padding: 1.2rem 0.95rem;
+  }
+
+  .display-word {
+    font-size: 1.7rem;
+  }
+
+  .example-content {
+    font-size: 0.98rem;
+  }
+}

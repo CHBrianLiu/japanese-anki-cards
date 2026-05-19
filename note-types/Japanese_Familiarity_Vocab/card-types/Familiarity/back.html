@@ -1,0 +1,38 @@
+<div class="card-front">
+  <div class="display-word">{{DisplayWord}}</div>
+</div>
+
+<hr class="divider">
+
+<div class="card-back">
+  {{#Reading}}
+  <div class="reading">{{Reading}}</div>
+  {{/Reading}}
+
+  {{#Meaning}}
+  <div class="meaning">{{Meaning}}</div>
+  {{/Meaning}}
+
+  <div class="badge-row">
+    {{#UsageLabel}}
+    <span class="badge">{{UsageLabel}}</span>
+    {{/UsageLabel}}
+    {{#Source}}
+    <span class="badge badge-source">{{Source}}</span>
+    {{/Source}}
+  </div>
+
+  {{#Example}}
+  <div class="example-block">
+    <div class="example-label">Example</div>
+    <div class="example-content">{{Example}}</div>
+  </div>
+  {{/Example}}
+
+  {{#Notes}}
+  <details class="collapsible">
+    <summary>Notes</summary>
+    <div class="collapsible-content">{{Notes}}</div>
+  </details>
+  {{/Notes}}
+</div>
