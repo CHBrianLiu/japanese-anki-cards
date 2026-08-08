@@ -9,11 +9,7 @@ and should be regenerated whenever a YAML file changes.
 
 ## Requirements
 
-Python 3.10+ and PyYAML:
-
-```bash
-pip install pyyaml
-```
+Python 3.10 or newer. Refer to ./requirements.txt for the dependencies.
 
 ---
 
