@@ -1,0 +1,120 @@
+notetype: Japanese_Mined_Grammar
+deck: Japanese::Tadoku::手袋を買いに
+entries:
+  - GrammarID: "006_0001"
+    GrammarPoint: 〜ようとする
+    Meaning_Hint: Be just about to go out; attempt to go out
+    Formation: Verb volitional form + とする
+    Sentence: ある朝、小狐が外へ<b>出ようとして</b>、「お母さん、目に何かが入った！痛い痛い！」と大きな声を出しました。
+    SentenceTranslation: One morning, just as the little fox was about to go outside, he cried out loudly, "Mom, something got in my eye! It hurts, it hurts!"
+    Notes: |
+      〜ようとする expresses being about to do something or making an attempt to do it.
+      Here it means the little fox was just about to go outside when the next event happened.
+    Tags: ""
+  - GrammarID: "006_0002"
+    GrammarPoint: 〜てあげる
+    Meaning_Hint: Decide to do something for the child as a kindness
+    Formation: Verbて + あげる
+    Sentence: 「かわいそうに...。町へ出て、この子に手袋を<b>買ってあげよう</b>」と思いました。
+    SentenceTranslation: \"Oh, you poor thing... I'll go into town and buy this child some gloves,\" she thought.
+    Notes: |
+      〜てあげる means to do something for someone else as a favor or kind action.
+      Here it appears in the volitional form 〜てあげよう, expressing the mother fox's decision or intention to do that kind act.
+    Tags: ""
+  - GrammarID: "006_0003"
+    GrammarPoint: 〜んだ
+    Meaning_Hint: Explanatory tone - it is the town's lights, not a star
+    Formation: Plain form + んだ / Noun・な-adjective + なんだ
+    Sentence: 「あれは星じゃなくて、街の明かり<b>なんだよ</b>」と母狐は教えてあげました。
+    SentenceTranslation: \"That isn't a star, it's the lights of the town,\" the mother fox explained to him.
+    Notes: |
+      〜んだ adds an explanatory or clarifying tone.
+      Because 明かり is a noun, the form is なんだ.
+      The sentence-final よ adds emphasis, so なんだよ sounds like a clear, reassuring explanation.
+    Tags: ""
+  - GrammarID: "006_0004"
+    GrammarPoint: 〜ば
+    Meaning_Hint: If the little fox goes, it might be okay
+    Formation: Verb conditional (u-row -> e-row + ば / ichidan る -> れば / する -> すれば / 来る -> 来れば)
+    Sentence: 小さい小狐が<b>行けば</b>、大丈夫かもしれない。。
+    SentenceTranslation: If the little fox goes, it might be okay.
+    Notes: |
+      〜ば expresses a conditional meaning like "if" or "when that condition is met."
+      Here, 行けば presents going as the condition for the possibility that things will be okay.
+      This is the conditional form of 行く: 行く → 行けば.
+
+      Formation rules:
+      - Godan verbs: change the final u-row sound to the corresponding e-row sound, then add ば.
+        Example: 行く → 行けば, 読む → 読めば, 話す → 話せば.
+      - Ichidan verbs: replace る with れば.
+        Example: 食べる → 食べれば, 見る → 見れば.
+      - Irregular verbs: する → すれば, 来る → 来れば.
+    Tags: ""
+  - GrammarID: "006_0005"
+    GrammarPoint: 〜って
+    Meaning_Hint: Colloquial topic marking - as for humans, they are very scary
+    Formation: Noun + って
+    Sentence: <b>人間って</b>とても怖いものなんだよ。
+    SentenceTranslation: Humans are really scary creatures, you know.
+    Notes: |
+      〜って is a casual spoken topic marker.
+      Here, 人間って is similar to 人間は or 人間というのは, meaning "as for humans" or "humans, you know..."
+      It often introduces the speaker's view, explanation, or characterization in a conversational tone.
+    Tags: ""
+  - GrammarID: "006_0006"
+    GrammarPoint: 〜とおり
+    Meaning_Hint: Do exactly as the mother fox taught him
+    Formation: Verb (dictionary/past) + とおり / Noun + のとおり
+    Sentence: 小狐は母狐に教えてもらった<b>とおり</b>、戸を手でトントン叩きました。
+    SentenceTranslation: The little fox knocked on the door with his hand, ton-ton, just as his mother had taught him.
+    Notes: |
+      〜とおり means "just as," "in the same way as," or "according to."
+      Here it shows that the little fox acted exactly in the way he had been taught.
+      In this sentence it follows the past form 教えてもらった, but it can also follow dictionary form verbs and nouns with の.
+    Tags: ""
+  - GrammarID: "006_0007"
+    GrammarPoint: 〜てしまう
+    Meaning_Hint: Accidentally ended up putting out the fox hand instead
+    Formation: Verbて + しまう
+    Sentence: 狐の手の方を出し<b>てしまいました</b>。
+    SentenceTranslation: He accidentally ended up sticking out the fox hand instead.
+    Notes: |
+      〜てしまう can express either completion or an unintended / regrettable result.
+      Here it has the unintended-result nuance: the little fox made a mistake and ended up doing the wrong thing.
+      In this sentence it appears in the polite past form 〜てしまいました.
+    Tags: ""
+  - GrammarID: "006_0008"
+    GrammarPoint: 〜ぐらい
+    Meaning_Hint: So happy that it was almost enough to make her cry
+    Formation: Noun / Verb plain form + ぐらい
+    Sentence: 小狐が帰って来ると、泣きたい<b>ぐらい</b>喜びました。
+    SentenceTranslation: When the little fox came back, she was so happy she felt like crying.
+    Notes: |
+      〜ぐらい indicates degree or extent, similar to "so... that..." or "to the extent that...."
+      Here, 泣きたいぐらい means "to the extent that she felt like crying."
+      In casual usage, ぐらい and くらい are often interchangeable.
+    Tags: ""
+  - GrammarID: "006_0009"
+    GrammarPoint: 〜もの
+    Meaning_Hint: Softly giving the reason - because he gave such warm, nice gloves
+    Formation: Clause + もの
+    Sentence: こんなに暖かい、いい手袋をくれた<b>もの</b>。
+    SentenceTranslation: Because he gave me such nice, warm gloves.
+    Notes: |
+      Sentence-final もの can be used to give a reason or justification in a soft, emotional way.
+      It often sounds childlike, feminine, or intimate in tone.
+      Here it means something like "because, you see..." or "after all...."
+      A more neutral way to say this would be こんなに暖かい、いい手袋をくれたから or こんなに暖かい、いい手袋をくれたので.
+    Tags: ""
+  - GrammarID: "006_0010"
+    GrammarPoint: 〜かしら
+    Meaning_Hint: Wondering softly whether humans are really good after all
+    Formation: Clause + かしら
+    Sentence: 本当に人間はいいもの<b>かしら</b>。。
+    SentenceTranslation: I wonder if humans really are good after all.
+    Notes: |
+      Sentence-final かしら expresses wondering or asking oneself something softly.
+      It often has a thoughtful, gentle, and traditionally somewhat feminine tone.
+      Here it shows the speaker quietly reconsidering whether humans might truly be good.
+      A more neutral equivalent would be 本当に人間はいいものだろうか or 本当に人間はいいのかな.
+    Tags: ""

@@ -1,0 +1,344 @@
+notetype: Japanese_Mined_Vocab
+deck: Japanese::Tadoku::手袋を買いに
+entries:
+  - VocabID: "006_0001"
+    TargetWord: 狐
+    Reading: きつね
+    Meaning: fox
+    Sentence: 森には、<b>狐</b>の親子が住んでいます。
+    SentenceTranslation: A fox parent and child live in the forest.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0002"
+    TargetWord: 親子
+    Reading: おやこ
+    Meaning: parent and child; parent-child pair
+    Sentence: 森には、狐の<b>親子</b>が住んでいます。
+    SentenceTranslation: A fox parent and child live in the forest.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0003"
+    TargetWord: 真っ白
+    Reading: まっしろ
+    Meaning: pure white; completely white; all white
+    Sentence: 母狐が外に出て見ると、外は<b>真っ白</b>です。
+    SentenceTranslation: When the mother fox went outside and looked, everything outside was pure white.
+    Notes: |
+      Intensified form of 白い.
+      Often used to describe something being entirely white, such as snow-covered scenery.
+    Tags: ""
+  - VocabID: "006_0004"
+    TargetWord: お日様
+    Reading: おひさま
+    Meaning: the sun
+    Sentence: 雪を初めて見た小狐は、雪が、<b>お日様</b>の光でひらひら光っているのを見て、「目に何かが入った！」と間違えたのでしょう。
+    SentenceTranslation: Seeing snow for the first time, the little fox saw the snow fluttering and sparkling in the sunlight and probably mistook it for something getting into his eye.
+    Notes: |
+      A warm, familiar, childlike way to say 太陽.
+      Common in children's stories and when speaking gently to children.
+    Tags: ""
+  - VocabID: "006_0005"
+    TargetWord: 光
+    Reading: ひかり
+    Meaning: light
+    Sentence: 雪を初めて見た小狐は、雪が、お日様の<b>光</b>でひらひら光っているのを見て、「目に何かが入った！」と間違えたのでしょう。
+    SentenceTranslation: Seeing snow for the first time, the little fox saw the snow fluttering and sparkling in the sunlight and probably mistook it for something getting into his eye.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0006"
+    TargetWord: ひらひら光る
+    Reading: ひらひらひかる
+    Meaning: to flutter and sparkle; to glimmer lightly
+    Sentence: 雪を初めて見た小狐は、雪が、お日様の光で<b>ひらひら光って</b>いるのを見て、「目に何かが入った！」と間違えたのでしょう。
+    SentenceTranslation: Seeing snow for the first time, the little fox saw the snow fluttering and sparkling in the sunlight and probably mistook it for something getting into his eye.
+    Notes: |
+      ひらひら adds a light, fluttering visual nuance.
+      With 光る, it describes something shimmering or glinting delicately as it moves.
+    Tags: ""
+  - VocabID: "006_0007"
+    TargetWord: 柔らかい
+    Reading: やわらかい
+    Meaning: soft
+    Sentence: <b>柔らかい</b>雪の上を走ると、雪がたくさんとんで、小さい虹が出ました。
+    SentenceTranslation: When he ran over the soft snow, lots of snow flew up, and a small rainbow appeared.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0008"
+    TargetWord: 虹
+    Reading: にじ
+    Meaning: rainbow
+    Sentence: 柔らかい雪の上を走ると、雪がたくさんとんで、小さい<b>虹</b>が出ました。
+    SentenceTranslation: When he ran over the soft snow, lots of snow flew up, and a small rainbow appeared.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0009"
+    TargetWord: 音
+    Reading: おと
+    Meaning: sound; noise
+    Sentence: 後ろで「ざーっ」という大きい<b>音</b>がいました。
+    SentenceTranslation: Behind him, there was a loud sound that went "zaaah."
+    Notes: |
+      音 is a general word for sound or noise.
+      The quoted 「ざーっ」 is an onomatopoeic sound effect describing the sound.
+    Tags: ""
+  - VocabID: "006_0010"
+    TargetWord: 飛びあがる
+    Reading: とびあがる
+    Meaning: to jump up; to leap up
+    Sentence: 小狐はびっくりして<b>飛びあがりました</b>。
+    SentenceTranslation: The little fox was startled and jumped up.
+    Notes: |
+      Often used when someone suddenly jumps because of surprise, fear, or shock.
+      Here it appears in the polite past form: 飛びあがりました.
+    Tags: ""
+  - VocabID: "006_0011"
+    TargetWord: 枝
+    Reading: えだ
+    Meaning: branch; twig
+    Sentence: 後ろを見ると、それは木の<b>枝</b>から落ちた雪でした。
+    SentenceTranslation: When he looked behind him, it was snow that had fallen from a tree branch.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0012"
+    TargetWord: 落ちる
+    Reading: おちる
+    Meaning: to fall; to drop
+    Sentence: 後ろを見ると、それは木の枝から<b>落ちた</b>雪でした。
+    SentenceTranslation: When he looked behind him, it was snow that had fallen from a tree branch.
+    Notes: |
+      Intransitive verb meaning something falls on its own.
+      Here it appears in the past plain form: 落ちた.
+    Tags: ""
+  - VocabID: "006_0013"
+    TargetWord: ちんちんする
+    Reading: ちんちんする
+    Meaning: to tingle painfully from the cold; to feel stinging cold
+    Sentence: おててが<b>ちんちんする</b>。
+    SentenceTranslation: My little hands are tingling painfully from the cold.
+    Notes: |
+      In this story, ちんちんする describes a sharp, stinging sensation from the cold.
+      This is an onomatopoeic, childlike expression rather than a neutral everyday verb.
+      A more natural everyday version would be 手がじんじんする.
+      A plainer paraphrase would be 手が冷たくて痛い.
+    Tags: ""
+  - VocabID: "006_0014"
+    TargetWord: すごく
+    Reading: すごく
+    Meaning: very; really; extremely
+    Sentence: <b>すごく</b>痛そうです。
+    SentenceTranslation: It looks very painful.
+    Notes: |
+      Adverbial form of すごい.
+      In everyday speech, すごく is commonly used as an intensifier meaning "very" or "really."
+    Tags: ""
+  - VocabID: "006_0015"
+    TargetWord: かわいそうに
+    Reading: かわいそうに
+    Meaning: oh, you poor thing; how pitiful
+    Sentence: 「<b>かわいそうに</b>...。町へ出て、この子に手袋を買ってあげよう」と思いました。
+    SentenceTranslation: \"Oh, you poor thing... I'll go into town and buy this child some gloves,\" she thought.
+    Notes: |
+      An expression of sympathy or pity.
+      The sentence-final に adds an emotional, exclamatory tone, common in spoken narration and stories.
+    Tags: ""
+  - VocabID: "006_0016"
+    TargetWord: お星様
+    Reading: おほしさま
+    Meaning: star
+    Sentence: 「あっ、あんな低いところに<b>お星様</b>がいる！」と言いました。
+    SentenceTranslation: \"Ah, there's a star in such a low place!\" he said.
+    Notes: |
+      A gentle, childlike way to say 星.
+      Like お日様, it adds warmth and softness, which fits children's speech and storytelling.
+    Tags: ""
+  - VocabID: "006_0017"
+    TargetWord: 明かり
+    Reading: あかり
+    Meaning: light; lamp; illumination
+    Sentence: 「あれは星じゃなくて、街の<b>明かり</b>なんだよ」と母狐は教えてあげました。
+    SentenceTranslation: \"That isn't a star, it's the lights of the town,\" the mother fox explained to him.
+    Notes: |
+      明かり often refers to visible light from lamps, windows, streets, or buildings.
+      Here it means the lights of the town seen from a distance.
+    Tags: ""
+  - VocabID: "006_0018"
+    TargetWord: アヒル
+    Reading: あひる
+    Meaning: duck
+    Sentence: 昔、友達の狐と一緒に、人間のうちの<b>アヒル</b>を取ろうとして、見つかってしまったことがありました。
+    SentenceTranslation: Long ago, together with a fox friend, she once tried to take a duck from a human house and ended up being discovered.
+    Notes: ""
+    Tags: ""
+  - VocabID: "006_0019"
+    TargetWord: 見つかる
+    Reading: みつかる
+    Meaning: to be found; to be discovered
+    Sentence: 昔、友達の狐と一緒に、人間のうちのアヒルを取ろうとして、<b>見つかって</b>しまったことがありました。
+    SentenceTranslation: Long ago, together with a fox friend, she once tried to take a duck from a human house and ended up being discovered.
+    Notes: |
+      Intransitive verb meaning to be found or discovered.
+      Transitive pair is 見つける (to find; to discover).
+      Here it appears in the て-form as 見つかって and combines with しまう to suggest an unfortunate result.
+    Tags: ""
+  - VocabID: "006_0020"
+    TargetWord: 追いかける
+    Reading: おいかける
+    Meaning: to chase; to run after
+    Sentence: 人間はとても大きい声を出して、<b>追いかけて</b>来ました。
+    SentenceTranslation: The human shouted loudly and came chasing after them.
+    Notes: |
+      Compound verb: 追う + かける.
+      追う means "to pursue / go after," while かける in compound verbs often adds the nuance of starting, extending, or directing an action toward a target.
+      In 追いかける, the combination gives the sense of actively going after someone over some distance, not just following once.
+      Here it appears in the て-form as 追いかけて and connects to 来ました.
+    Tags: ""
+  - VocabID: "006_0021"
+    TargetWord: 足を止める
+    Reading: あしをとめる
+    Meaning: to stop walking; to come to a stop
+    Sentence: 母狐あは<b>足を止めて</b>、「どうしよう...」と思いました。
+    SentenceTranslation: The mother fox stopped in her tracks and thought, "What should I do...?"
+    Notes: |
+      Literally "to stop one's feet," meaning to stop moving or walking.
+      Here it appears in the て-form as 足を止めて.
+    Tags: ""
+  - VocabID: "006_0022"
+    TargetWord: 触る
+    Reading: さわる
+    Meaning: to touch
+    Sentence: 自分の手で優しく<b>触りました</b>。
+    SentenceTranslation: He gently touched it with his own hand.
+    Notes: |
+      Godan verb.
+      Here it appears in the polite past form: 触りました.
+    Tags: ""
+  - VocabID: "006_0023"
+    TargetWord: 見つける
+    Reading: みつける
+    Meaning: to find; to discover
+    Sentence: <b>見つけた</b>ら、その店のドアを手で「トントン」と叩いて、「こんばんは」って言いなさい。
+    SentenceTranslation: When you find it, knock on the shop door with your hand, going "ton-ton," and say, "Good evening."
+    Notes: |
+      Transitive verb meaning to find or discover something.
+      Intransitive pair is 見つかる (to be found; to be discovered).
+      Here it appears in the plain past form: 見つけた.
+    Tags: ""
+  - VocabID: "006_0024"
+    TargetWord: 叩く
+    Reading: たたく
+    Meaning: to knock; to hit; to tap
+    Sentence: 見つけたら、その店のドアを手で「トントン」と<b>叩いて</b>、「こんばんは」って言いなさい。
+    SentenceTranslation: When you find it, knock on the shop door with your hand, going "ton-ton," and say, "Good evening."
+    Notes: |
+      Here it means to knock or tap on a door.
+      It appears in the て-form as 叩いて.
+    Tags: ""
+  - VocabID: "006_0025"
+    TargetWord: 間
+    Reading: あいだ
+    Meaning: gap; opening; space between
+    Sentence: そのドアの<b>間</b>からこの人間の手を出して、「この手にちょうどいい手袋を下さい」って言うんだよ。
+    SentenceTranslation: Put out this human hand through the gap in the door and say, "Please give me gloves that are just right for this hand."
+    Notes: |
+      In this sentence, 間 means the gap or space between parts of the door.
+      It is not the time-related meaning of 間.
+    Tags: ""
+  - VocabID: "006_0026"
+    TargetWord: 不思議
+    Reading: ふしぎ
+    Meaning: strange; mysterious; puzzled
+    Sentence: 小狐は<b>不思議</b>そうな顔をしました。
+    SentenceTranslation: The little fox made a puzzled look.
+    Notes: |
+      不思議 can mean strange, mysterious, or puzzling depending on context.
+      Here, 不思議そう means "looking puzzled / looking as if something seems strange."
+    Tags: ""
+  - VocabID: "006_0027"
+    TargetWord: 戸
+    Reading: と
+    Meaning: door; sliding door; door panel
+    Sentence: もう家の<b>戸</b>はみんな閉まっていて人は誰も歩いていません。
+    SentenceTranslation: The doors of the houses were all already shut, and no one was walking around.
+    Notes: |
+      戸 often refers to a door panel or sliding door, especially in older-style houses.
+      In stories like this, it sounds more traditional than the broader word ドア.
+    Tags: ""
+  - VocabID: "006_0028"
+    TargetWord: ついている
+    Reading: ついている
+    Meaning: to have on it; to be attached; to feature
+    Sentence: 黒くて大きな帽子の絵が<b>ついている</b>店です。
+    SentenceTranslation: It is a shop with a picture of a big black hat on it.
+    Notes: |
+      In this sentence, ついている means that something is attached to, marked on, or featured on the shop.
+      The base verb is つく, but this fixed form is more useful here because つく has many other meanings.
+    Tags: ""
+  - VocabID: "006_0029"
+    TargetWord: 細い
+    Reading: ほそい
+    Meaning: narrow; thin
+    Sentence: ドアが<b>細く</b>開いて、目の前が強く光りました。
+    SentenceTranslation: The door opened a little, and the space in front of him lit up brightly.
+    Notes: |
+      Here it appears in the adverbial form 細く, describing how the door opened: only narrowly / slightly.
+    Tags: ""
+  - VocabID: "006_0030"
+    TargetWord: 光る
+    Reading: ひかる
+    Meaning: to shine; to glow
+    Sentence: ドアが細く開いて、目の前が強く<b>光りました</b>。
+    SentenceTranslation: The door opened a little, and the space in front of him shone brightly.
+    Notes: |
+      This is the verb form, different from the noun 光 (light).
+      Here it appears in the polite past form: 光りました.
+    Tags: ""
+  - VocabID: "006_0031"
+    TargetWord: 先に
+    Reading: さきに
+    Meaning: first; beforehand; ahead of time
+    Sentence: <b>先に</b>お金をください。
+    SentenceTranslation: Please give me the money first.
+    Notes: |
+      先に often means doing something before something else.
+      In this sentence, it means "first / beforehand" before the next step happens.
+    Tags: ""
+  - VocabID: "006_0032"
+    TargetWord: 長い間
+    Reading: ながいあいだ
+    Meaning: for a long time; for quite a while
+    Sentence: 帽子屋はお金を<b>長い間</b>、見ていました。
+    SentenceTranslation: The hatter looked at the money for a long time.
+    Notes: |
+      A time expression meaning "for a long time" or "for quite a while."
+      Here it describes how long the hatter kept looking at the money.
+    Tags: ""
+  - VocabID: "006_0033"
+    TargetWord: 見せる
+    Reading: みせる
+    Meaning: to show
+    Sentence: 狐の手を<b>見せて</b>しまったけど、大丈夫だった。
+    SentenceTranslation: He ended up showing his fox hand, but it was okay.
+    Notes: |
+      Transitive verb meaning to show something to someone.
+      Here it appears in the て-form as 見せて.
+    Tags: ""
+  - VocabID: "006_0034"
+    TargetWord: 喜ぶ
+    Reading: よろこぶ
+    Meaning: to be delighted; to rejoice
+    Sentence: 小狐が帰って来ると、泣きたいぐらい<b>喜びました</b>。
+    SentenceTranslation: When the little fox came back, she was so happy she felt like crying.
+    Notes: |
+      Godan verb.
+      Here it appears in the polite past form: 喜びました.
+    Tags: ""
+  - VocabID: "006_0035"
+    TargetWord: こんなに
+    Reading: こんなに
+    Meaning: this much; this kind of; so
+    Sentence: <b>こんなに</b>暖かい、いい手袋をくれたもの。
+    SentenceTranslation: Because he gave me such nice, warm gloves.
+    Notes: |
+      こんなに emphasizes degree: "this much" or "so."
+      In this sentence, it highlights how warm and nice the gloves are.
+    Tags: ""
