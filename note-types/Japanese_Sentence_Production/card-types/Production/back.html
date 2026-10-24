@@ -1,0 +1,46 @@
+<main class="sentence-production">
+  <div id="sentence-id" hidden>{{SentenceID}}</div>
+  <div class="label">English prompt</div>
+  <div class="prompt" id="english-prompt" lang="en">{{EnglishSentence}}</div>
+
+  <hr id="answer">
+
+  <section class="response-block" aria-labelledby="your-answer-label">
+    <div class="label" id="your-answer-label">Your answer</div>
+    <div class="japanese typed-response" id="typed-response" lang="ja">Your response could not be retrieved.</div>
+  </section>
+
+  <section class="response-block" aria-labelledby="reference-label">
+    <div class="label" id="reference-label">Reference answer</div>
+    <div class="japanese" lang="ja">{{JapaneseSentence}}</div>
+  </section>
+
+  {{#Notes}}
+  <section class="notes" aria-labelledby="notes-label">
+    <div class="label" id="notes-label">Notes</div>
+    <div>{{Notes}}</div>
+  </section>
+  {{/Notes}}
+</main>
+
+<script>
+(function () {
+  var key = "Japanese_Sentence_Production.response";
+  var state = window[key];
+  if (!state) {
+    try {
+      state = JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+      // Leave an explicit message rather than showing another review's response.
+    }
+  }
+
+  if (state && state.id === document.getElementById("sentence-id").textContent &&
+      state.prompt === document.getElementById("english-prompt").textContent &&
+      typeof state.answer === "string") {
+    var response = document.getElementById("typed-response");
+    response.textContent = state.answer || "No answer entered.";
+    if (!state.answer) response.classList.add("empty-response");
+  }
+})();
+</script>

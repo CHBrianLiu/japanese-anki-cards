@@ -1,0 +1,14 @@
+notetype: Japanese_Sentence_Production
+
+# Canonical import column order. Tags maps to Anki's native tags.
+fields:
+  - name: SentenceID
+    required: true
+  - name: EnglishSentence
+    required: true
+  - name: JapaneseSentence
+    required: true
+  - name: Notes
+    required: false
+  - name: Tags
+    required: false

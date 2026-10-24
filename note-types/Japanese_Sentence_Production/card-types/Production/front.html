@@ -1,0 +1,39 @@
+<main class="sentence-production">
+  <div id="sentence-id" hidden>{{SentenceID}}</div>
+  <div class="label">Translate into Japanese</div>
+  <div class="prompt" id="english-prompt" lang="en">{{EnglishSentence}}</div>
+
+  <label class="label" for="japanese-response">Your answer</label>
+  <textarea id="japanese-response" lang="ja" rows="3"
+    autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+  <div class="instruction">Reveal the answer when you are ready.</div>
+</main>
+
+<script>
+(function () {
+  var key = "Japanese_Sentence_Production.response";
+  var input = document.getElementById("japanese-response");
+  var state = {
+    id: document.getElementById("sentence-id").textContent,
+    prompt: document.getElementById("english-prompt").textContent,
+    answer: ""
+  };
+
+  function save() {
+    state.answer = input.value;
+    window[key] = state;
+    // Some clients recreate the page when revealing the answer.
+    try {
+      localStorage.setItem(key, JSON.stringify(state));
+    } catch (error) {
+      // The review-page copy still works when browser storage is unavailable.
+    }
+  }
+
+  input.value = "";
+  save();
+  input.addEventListener("input", save);
+  input.addEventListener("compositionend", save);
+  input.addEventListener("change", save);
+})();
+</script>

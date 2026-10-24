@@ -1,0 +1,119 @@
+.card {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: left;
+  color: #1a1a1a;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 24px 20px;
+}
+
+.sentence-production {
+  max-width: 640px;
+  margin: 0 auto;
+  overflow-wrap: anywhere;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.prompt {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+#japanese-response {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 130px;
+  padding: 12px 14px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 1.15rem;
+  color: inherit;
+  background-color: #fff;
+  resize: vertical;
+}
+
+#japanese-response:focus {
+  outline: 2px solid #1a6ebd;
+  outline-offset: 2px;
+}
+
+.instruction,
+.empty-response {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.instruction {
+  margin-top: 8px;
+}
+
+#answer {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 24px 0;
+}
+
+.response-block {
+  margin-bottom: 24px;
+}
+
+.japanese {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+.typed-response {
+  white-space: pre-wrap;
+}
+
+.notes {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+.nightMode.card,
+.night_mode.card {
+  color: #eee;
+  background-color: #202124;
+}
+
+.nightMode .label,
+.night_mode .label,
+.nightMode .instruction,
+.night_mode .instruction,
+.nightMode .empty-response,
+.night_mode .empty-response {
+  color: #aaa;
+}
+
+.nightMode #japanese-response,
+.night_mode #japanese-response {
+  background-color: #292a2d;
+  border-color: #666;
+}
+
+.nightMode #answer,
+.night_mode #answer,
+.nightMode .notes,
+.night_mode .notes {
+  border-color: #555;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 16px;
+  }
+}

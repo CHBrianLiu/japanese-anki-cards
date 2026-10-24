@@ -1,0 +1,335 @@
+notetype: Japanese_Sentence_Production
+deck: Japanese::Sentence Production::出口日語N4文法
+
+# Source: /Users/brianliu/notes/出口日語N4文法.md
+# Video playlist: https://www.youtube.com/playlist?list=PLynCeSdpMqxD8N-l7AC_aFocINA2CKQKi
+# One Note per nonempty top-level bullet, in source order.
+# Fragment-only bullets are expanded into sentences; corrections are recorded in Notes.
+entries:
+  - SentenceID: "002_0001"
+    EnglishSentence: Please submit the report by next Tuesday.
+    JapaneseSentence: 来週の火曜日までに、レポートを出してください。
+    Notes: |
+      <b>Grammar: 〜までに</b> — a deadline by which an action must be completed.
+      Compare 〜まで, which marks the endpoint of a continuing action or state.
+    Tags: JLPT::N4 出口日語N4文法 grammar::made_ni
+
+  - SentenceID: "002_0002"
+    EnglishSentence: I intend to return to my home country.
+    JapaneseSentence: 国へ帰るつもりです。
+    Notes: |
+      <b>Grammar: dictionary form / ない form + つもりです</b> — a settled intention.
+      国へ帰らないつもりです。 — I intend not to return to my home country.
+      国へ帰るつもりはありません。 — I have no intention of returning to my home country. This denies the intention; it does not necessarily mean an explicit decision against returning.
+      留学するつもりです。 / 留学しようと思っています。 / 留学しようと思います。 — I intend to study abroad / I have been thinking of studying abroad / I think I will study abroad. These suggest different degrees or stages of intention, not a rigid ranking.
+      For an immediate announcement: では、会議を始めようと思います。 — Well then, I think we should begin the meeting. Corrected the source's missing volitional よう.
+      Asking about someone's intention with つもり can sound probing. Neutral alternatives: 週末、何をしますか。 / 週末、何か予定はありますか。 — What will you do this weekend? / Do you have any plans this weekend?
+    Tags: JLPT::N4 出口日語N4文法 grammar::tsumori
+
+  - SentenceID: "002_0003"
+    EnglishSentence: A typhoon might come this weekend.
+    JapaneseSentence: 週末、台風が来るかもしれない。
+    Notes: |
+      <b>Grammar: 〜かもしれない</b> — a possibility, without claiming certainty. Polite form: かもしれません.
+      Casual shortening: パーティーに遅れるかも。 — I might be late for the party.
+      Compare あと一時間で着くはずです。 — We should arrive in another hour. 〜はず expresses an expectation based on reasons or evidence, rather than merely a possibility.
+    Tags: JLPT::N4 出口日語N4文法 grammar::kamoshirenai
+
+  - SentenceID: "002_0004"
+    EnglishSentence: Hokkaido is larger than Kyushu.
+    JapaneseSentence: 北海道は九州より大きいです。
+    Notes: |
+      <b>Grammar: A は B より + adjective</b> — A is more ... than B.
+      より marks the standard of comparison.
+    Tags: JLPT::N4 出口日語N4文法 grammar::yori
+
+  - SentenceID: "002_0005"
+    EnglishSentence: This ballpoint pen is easy to write with.
+    JapaneseSentence: このボールペンは書きやすいです。
+    Notes: |
+      <b>Grammar: verb ます stem + やすい</b> — easy to do, or prone to happening. The result conjugates as an い-adjective.
+      Alternative: このボールペンは書くのが易しいです。 Corrected 優しい (kind/gentle) to 易しい (easy); 書きやすい is more natural here.
+      このカップは割れやすいです。 — This cup breaks easily. Related: このカップはよく割れます。 — This cup often breaks; frequency and susceptibility are not identical.
+    Tags: JLPT::N4 出口日語N4文法 grammar::yasui
+
+  - SentenceID: "002_0006"
+    EnglishSentence: This ballpoint pen is hard to write with.
+    JapaneseSentence: このボールペンは書きにくいです。
+    Notes: |
+      <b>Grammar: verb ます stem + にくい</b> — difficult to do, or unlikely to happen. The result conjugates as an い-adjective.
+      Alternative: このボールペンは書くのが難しいです。
+      このカップは割れにくいです。 — This cup does not break easily.
+      Related: このカップはなかなか割れないです。 — This cup is hard to break.
+    Tags: JLPT::N4 出口日語N4文法 grammar::nikui
+
+  - SentenceID: "002_0007"
+    EnglishSentence: Please teach me how to read this kanji and how to use this word.
+    JapaneseSentence: この漢字の読み方と、この言葉の使い方を教えてください。
+    Notes: |
+      <b>Grammar: verb ます stem + 方（かた）</b> — the way to do something.
+      Expanded the source's fragments 読み方、使い方、思い方 into a complete sentence using 読み方 and 使い方.
+      読み方 — how to read / a reading; 使い方 — how to use.
+      For a way of thinking, 考え方 is generally more natural than the source's 思い方.
+    Tags: JLPT::N4 出口日語N4文法 grammar::kata
+
+  - SentenceID: "002_0008"
+    EnglishSentence: I'll wash it later, so please leave it as it is.
+    JapaneseSentence: あとで私が洗うので、そのままにしておいてください。
+    Notes: |
+      <b>Grammar: plain form + ので; noun / な-adjective + なので</b> — gives a reason, often with a softer or more explanatory tone than から.
+      Corrected して置いて to the usual auxiliary spelling しておいて.
+      台風なので、旅行はキャンセルされました。 — Because of the typhoon, the trip was canceled. Corrected キャンセルされだった.
+      The source's blanket rule against demands is too strong: polite requests with ので are common, as in the reference answer. A blunt command such as 夜遅いので、もう寝ろ is stylistically mismatched.
+      For a sentence-final explanation, use 日本へ旅行するからです。 — It is because I am traveling to Japan. Do not use 日本へ旅行するのでです.
+    Tags: JLPT::N4 出口日語N4文法 grammar::node
+
+  - SentenceID: "002_0009"
+    EnglishSentence: The food at this restaurant isn't tasty, yet the prices are high.
+    JapaneseSentence: この店は美味しくないのに、値段が高いです。
+    Notes: |
+      <b>Grammar: plain form + のに; noun / な-adjective + なのに</b> — although / even though, often expressing surprise or dissatisfaction.
+      平日なのに、人が多いです。 — Even though it is a weekday, there are a lot of people.
+    Tags: JLPT::N4 出口日語N4文法 grammar::noni
+
+  - SentenceID: "002_0010"
+    EnglishSentence: You cannot enter this building.
+    JapaneseSentence: この建物に入ることができません。
+    Notes: |
+      <b>Grammar: dictionary form + ことができる</b> — can / be able to do something.
+      Corrected この建物は入る to この建物に入る for a clear destination construction. この建物には入ることができません is also natural.
+      英語を話すことができる。 — I can speak English.
+      ここでコピーができます。 — You can make copies here. This describes an available service or facility.
+      Depending on context, inability may reflect a restriction. However, 〜てもいいです explicitly grants permission and 〜てはいけません explicitly prohibits something; they are not interchangeable with ability in general.
+    Tags: JLPT::N4 出口日語N4文法 grammar::koto_ga_dekiru
+
+  - SentenceID: "002_0011"
+    EnglishSentence: I have been to the United States before.
+    JapaneseSentence: アメリカへ行ったことがあります。
+    Notes: |
+      <b>Grammar: verb た form + ことがある</b> — having experienced doing something at least once.
+      Compare アメリカへ行きました。 — I went to the United States; this reports a past event rather than emphasizing experience.
+    Tags: JLPT::N4 出口日語N4文法 grammar::ta_koto_ga_aru
+
+  - SentenceID: "002_0012"
+    EnglishSentence: I think you should tell the truth.
+    JapaneseSentence: 本当のことを話したほうがいいと思います。
+    Notes: |
+      <b>Grammar: verb た form + ほうがいい / verb ない form + ほうがいい</b> — advice to do / not do something.
+      風邪の時は、辛いものを食べないほうがいいです。 — When you have a cold, you should avoid spicy food.
+      A: 浅草寺に行きたいんですが…。 B: あそこの交番で聞いたらいいです。 — A: I'd like to go to Sensoji Temple... B: You could ask at that police box.
+      〜たほうがいい often suggests that the alternative is less advisable; 〜たらいい can offer a workable suggestion without that same contrast. Here, telling the truth is contrasted with not telling it.
+    Tags: JLPT::N4 出口日語N4文法 grammar::hou_ga_ii
+
+  - SentenceID: "002_0013"
+    EnglishSentence: I ate too much at a restaurant that was too expensive and too lively.
+    JapaneseSentence: 高すぎて賑やかすぎるレストランで、食べすぎました。
+    Notes: |
+      <b>Grammar: verb ます stem / adjective stem + すぎる</b> — do too much / be excessively ... . Usually negative in evaluation, but not necessarily always.
+      Expanded the source's fragments 食べすぎる、高すぎる、賑やかすぎる into one sentence.
+      ない becomes なさすぎる: 彼は責任感がなさすぎると思います。 — I think he has far too little sense of responsibility.
+    Tags: JLPT::N4 出口日語N4文法 grammar::sugiru
+
+  - SentenceID: "002_0014"
+    EnglishSentence: Go to bed early.
+    JapaneseSentence: 早く寝なさい。
+    Notes: |
+      <b>Grammar: verb ます stem + なさい</b> — an instruction or command, often from a parent or teacher to a child or student.
+      It is not a neutral polite request to a peer or superior.
+    Tags: JLPT::N4 出口日語N4文法 grammar::nasai
+
+  - SentenceID: "002_0015"
+    EnglishSentence: May I take a photo?
+    JapaneseSentence: 写真を撮ってもいいですか。
+    Notes: |
+      <b>Grammar: verb て form + もいいですか</b> — asks permission to do something.
+      傘を借りてもいいですか。 — May I borrow an umbrella?
+      傘を貸してもいいですか is grammatical if you mean “May I lend an umbrella?” It does not ask someone to lend one to you; the source's X marks a mismatch with that intended meaning, not an inherently invalid sentence.
+    Tags: JLPT::N4 出口日語N4文法 grammar::temo_ii
+
+  - SentenceID: "002_0016"
+    EnglishSentence: You must not smoke.
+    JapaneseSentence: タバコを吸ってはいけません。
+    Notes: |
+      <b>Grammar: verb て form + はいけません</b> — prohibition; often used for rules.
+      More conversational: タバコを吸ってはダメです。
+      A direct request to a person is often softer with タバコを吸わないでください。 — Please do not smoke.
+    Tags: JLPT::N4 出口日語N4文法 grammar::tewa_ikenai
+
+  - SentenceID: "002_0017"
+    EnglishSentence: You don't have to take off your shoes here.
+    JapaneseSentence: ここでは靴を脱がなくてもいいです。
+    Notes: |
+      <b>Grammar: verb ない form without い + くてもいい</b> — do not have to ...; absence of an obligation, not prohibition.
+      Also used with negative adjectives and nouns: 安くなくてもいいです。 — It doesn't have to be cheap. Corrected 安くなても.
+      日本語が得意じゃなくてもいいです。 — You don't have to be good at Japanese.
+      学生じゃなくてもいいです。 — You don't have to be a student.
+    Tags: JLPT::N4 出口日語N4文法 grammar::nakutemo_ii
+
+  - SentenceID: "002_0018"
+    EnglishSentence: I have to take my medicine.
+    JapaneseSentence: 薬を飲まなければなりません。
+    Notes: |
+      <b>Grammar: 〜なければなりません</b> — must / have to.
+      Related obligation patterns include 〜なくてはいけません, 〜なければいけません, 〜なくてはなりません, and 〜ないとダメです. Corrected the source's 行けません to いけません in this construction.
+      Examples: 薬を飲まなくてはいけません。 / 薬を飲まないとダメです。
+    Tags: JLPT::N4 出口日語N4文法 grammar::nakereba_naranai
+
+  - SentenceID: "002_0019"
+    EnglishSentence: It has been decided that we will get married next June.
+    JapaneseSentence: 私たちは来年六月に結婚することになりました。
+    Notes: |
+      <b>Grammar: dictionary form / ない form + ことになる</b> — a decision or arrangement presented as an outcome, rather than emphasizing the speaker's personal choice.
+      Compare 明日からタバコを吸わないことにしました。 — I decided not to smoke starting tomorrow.
+      The source's “cannot be the speaker” rule is too absolute: ことになる can describe arrangements involving the speaker, including a mutually agreed marriage. It is the framing of the decision that differs.
+    Tags: JLPT::N4 出口日語N4文法 grammar::koto_ni_naru
+
+  - SentenceID: "002_0020"
+    EnglishSentence: I have decided to take the JLPT in December.
+    JapaneseSentence: 十二月のJLPT試験を受けることにしました。
+    Notes: |
+      <b>Grammar: dictionary form / ない form + ことにする</b> — decide to do / not do something, emphasizing one's own decision.
+      Corrected JLPT試験を参加する to JLPT試験を受ける. 参加する normally takes に, but 受ける is the natural verb for taking an exam.
+      Compare ことになる, which presents a decision as an arrangement or outcome rather than emphasizing personal choice.
+    Tags: JLPT::N4 出口日語N4文法 grammar::koto_ni_suru
+
+  - SentenceID: "002_0021"
+    EnglishSentence: The teacher came into the classroom.
+    JapaneseSentence: 先生が教室に入ってきました。
+    Notes: |
+      <b>Grammar: verb て form + くる</b> — movement toward the speaker or viewpoint; also an action followed by returning, or continuation from the past up to now.
+      ちょっと飲み物を買ってきます。 — I'll go buy a drink and come back.
+      私は台湾で二十年間日本語を教えてきました。 — I have been teaching Japanese in Taiwan for twenty years.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_kuru
+
+  - SentenceID: "002_0022"
+    EnglishSentence: The teacher went out of the classroom.
+    JapaneseSentence: 先生が教室を出ていきました。
+    Notes: |
+      <b>Grammar: verb て form + いく</b> — movement away from the speaker or viewpoint; also doing something before going onward, or continuation into the future.
+      これからもこの仕事を続けていくつもりです。 — I intend to keep doing this work from now on.
+      松田さんのうちへ行く前にコンビニでお菓子を買っていきましょう。 — Let's buy some snacks at a convenience store before going to Matsuda's house.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_iku
+
+  - SentenceID: "002_0023"
+    EnglishSentence: Please try eating it.
+    JapaneseSentence: 食べてみてください。
+    Notes: |
+      <b>Grammar: verb て form + みる</b> — try doing something to see what it is like or what happens.
+      The top-level source fragment 食べてみる was expanded using its nested example 食べてみてください.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_miru
+
+  - SentenceID: "002_0024"
+    EnglishSentence: When I drink alcohol, my face ends up turning red.
+    JapaneseSentence: お酒を飲むと、顔が赤くなってしまいます。
+    Notes: |
+      <b>Grammar: verb て form + しまう</b> — completion, or an unintended/unfortunate result, depending on context.
+      Corrected 顔を赤くなる to 顔が赤くなる; 飲むと makes the recurring consequence explicit.
+      残りはあと少しですから、全部飲んでしまいましょう。 — There's only a little left, so let's finish drinking it all. This emphasizes completion.
+      Casual contractions: 食べてしまいます → 食べちゃいます; 飲んでしまいます → 飲んじゃいます.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_shimau
+
+  - SentenceID: "002_0025"
+    EnglishSentence: I'll exchange some money before the trip to prepare for it.
+    JapaneseSentence: 旅行の前にお金を換えておきます。
+    Notes: |
+      <b>Grammar: verb て form + おく</b> — do something in advance for a future purpose; it can also mean leaving something in a certain state.
+      Casual contraction: 旅行の前にお金を換えときます。
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_oku
+
+  - SentenceID: "002_0026"
+    EnglishSentence: I live in Taiwan.
+    JapaneseSentence: 台湾に住んでいます。
+    Notes: |
+      <b>Grammar: verb て form + いる</b> — an ongoing action or continuing state, depending on the verb.
+      住んでいます describes one's current residence, not a momentary action of moving in.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_iru
+
+  - SentenceID: "002_0027"
+    EnglishSentence: Hold your chopsticks like this.
+    JapaneseSentence: 箸はこう持ちます。
+    Notes: |
+      <b>Grammar: こう / こんな / こんなに / このように</b> — ways of referring to manner, kind, or degree.
+      Expanded the top-level list using its nested chopstick example. こう describes a demonstrated manner; こんな modifies a noun, as in こんな持ち方 (this kind of grip).
+      Degree: 今回のテストはそんなに難しくなかったです。 — This test wasn't that difficult. Corrected 難しくないでした. こんなに means “this much / to this extent”; そんなに means “that much.”
+      大根はこのように切ります。 — Cut the daikon like this. このように can refer to a demonstrated manner or appearance; unlike the source's strict distinction, it is not limited to the final result.
+    Tags: JLPT::N4 出口日語N4文法 grammar::kou_konna
+
+  - SentenceID: "002_0028"
+    EnglishSentence: It has already been a year since I started studying Japanese.
+    JapaneseSentence: 日本語を勉強し始めて、もう一年経ちました。
+    Notes: |
+      <b>Grammar: verb ます stem + 始める</b> — begin doing something.
+      赤ちゃんが泣き出した。 — The baby suddenly started crying. 〜出す often highlights a sudden onset.
+      The source marks 赤ちゃんが泣き始めた as wrong, but it is grammatical: it neutrally says that the baby began crying, without emphasizing suddenness.
+    Tags: JLPT::N4 出口日語N4文法 grammar::hajimeru
+
+  - SentenceID: "002_0029"
+    EnglishSentence: The car parked on the slope suddenly started moving.
+    JapaneseSentence: 坂道に止めた車が突然動き出しました。
+    Notes: |
+      <b>Grammar: verb ます stem + 出す</b> — start doing something, often suddenly or spontaneously.
+      カバンの中から傘を取り出しました。 — I took an umbrella out of my bag. 取り出す is a compound meaning “take out”; 出す here is not the sudden-onset construction.
+    Tags: JLPT::N4 出口日語N4文法 grammar::dasu
+
+  - SentenceID: "002_0030"
+    EnglishSentence: He has kept using the computer ever since he got home.
+    JapaneseSentence: 彼は家に帰ってから、ずっとパソコンを使い続けています。
+    Notes: |
+      <b>Grammar: verb ます stem + 続ける</b> — continue doing something.
+      Corrected the source's 使い続きます to 使い続けています. 続ける is the verb used in this construction; the progressive form makes the continuing action up to now explicit.
+    Tags: JLPT::N4 出口日語N4文法 grammar::tsuzukeru
+
+  - SentenceID: "002_0031"
+    EnglishSentence: Please wash the dishes after you finish eating dinner.
+    JapaneseSentence: 晩御飯を食べ終わったら、お皿を洗ってください。
+    Notes: |
+      <b>Grammar: verb ます stem + 終わる</b> — finish doing something.
+      Typically used for actions or tasks with a recognizable completion. For rain stopping, use 雨が降り止みました。 — It stopped raining, rather than the source's 雨が降り終わりました.
+    Tags: JLPT::N4 出口日語N4文法 grammar::owaru
+
+  - SentenceID: "002_0032"
+    EnglishSentence: I can hear a voice from far away.
+    JapaneseSentence: 遠い所から声がします。
+    Notes: |
+      <b>Grammar: sensory noun + がする</b> — perceive a sound, smell, taste, or feeling.
+      焼肉の匂いがします。 — I can smell grilled meat.
+      この試験は去年のより難しい気がします。 — I feel that this exam is harder than last year's. 〜気がする expresses an impression.
+      今日は出かける気がしない。 — I don't feel like going out today. Here 気 refers to inclination or desire.
+    Tags: JLPT::N4 出口日語N4文法 grammar::ga_suru
+
+  - SentenceID: "002_0033"
+    EnglishSentence: I cooked for my friend.
+    JapaneseSentence: 友達に料理を作ってあげました。
+    Notes: |
+      <b>Grammar: verb て form + あげる</b> — do something for someone else's benefit.
+      Saying 〜てあげる directly to the recipient can sound patronizing in some contexts. A neutral offer: 荷物を持ちましょうか。 — Shall I carry your luggage?
+      Humble form: 先生にパソコンの使い方を教えて差し上げました。 — I taught the teacher how to use a computer. Even 差し上げる can sound presumptuous if it foregrounds your favor to a superior; use with care.
+      Source video title: 【Ｎ４文法】さしあげます・～てさしあげます.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_ageru
+
+  - SentenceID: "002_0034"
+    EnglishSentence: My friend showed me around Tokyo.
+    JapaneseSentence: 私は友達に東京を案内してもらいました。
+    Notes: |
+      <b>Grammar: person に + verb て form + もらう</b> — receive the benefit of someone doing something; the beneficiary is the subject.
+      Potential forms make requests: 傘を貸してもらえませんか。 — Could you lend me an umbrella?
+      Generally from casual toward more polite: 傘を貸してもらえる？ / 傘を貸してもらえない？ / 傘を貸してもらえますか？ / 傘を貸してもらえませんか？ / 傘を貸していただけますか？ / 傘を貸していただけませんか？ / 傘を貸していただけないでしょうか？
+      Corrected the source's いただけますんか to いただけませんか. Politeness also depends on context and tone, not just a fixed ranking.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_morau
+
+  - SentenceID: "002_0035"
+    EnglishSentence: My friend taught me how to snowboard.
+    JapaneseSentence: 友達は僕にスノーボードの仕方を教えてくれました。
+    Notes: |
+      <b>Grammar: verb て form + くれる</b> — someone does something for the speaker or someone in the speaker's in-group; the giver is the subject.
+      Corrected スノボすることを教える to the more natural スノーボードの仕方を教える. Casual スノボのやり方を教えてくれました is also possible.
+      Compare 友達にスノーボードの仕方を教えてもらいました。 — I had my friend teach me how to snowboard; the beneficiary is the subject instead.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_kureru
+
+  - SentenceID: "002_0036"
+    EnglishSentence: I teach my son English.
+    JapaneseSentence: 私は息子に英語を教えてやります。
+    Notes: |
+      <b>Grammar: verb て form + やる</b> — do something for someone viewed as lower in status, or for an animal or plant. It can sound rough or condescending when used about people.
+      The source uses a parent-to-child example. A more neutral everyday alternative is 私は息子に英語を教えます。 〜てあげる is also possible when emphasizing the benefit, subject to context.
+    Tags: JLPT::N4 出口日語N4文法 grammar::te_yaru

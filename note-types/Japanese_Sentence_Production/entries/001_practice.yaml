@@ -1,0 +1,9 @@
+notetype: Japanese_Sentence_Production
+deck: Japanese::Sentence Production
+
+entries:
+  - SentenceID: "001_0001"
+    EnglishSentence: I think New Zealand has less snow than Japan, and powder days are rare.
+    JapaneseSentence: ニュージーランドは日本より雪が少なくて、パウダーデイは珍しいと思う。
+    Notes:
+    Tags:
