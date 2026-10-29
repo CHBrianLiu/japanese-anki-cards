@@ -14,6 +14,8 @@ Source-specific subdecks:
 
 - `Japanese::Sentence Production::出口日語N4文法` — grammar examples from
   `出口日語N4文法.md`, authored in `entries/002_deguchi_n4_grammar.yaml`.
+- `Japanese::Sentence Production::布団の中から出たくない` — sentences mined from
+  the song `布団の中から出たくない`, authored in `entries/003_futon_song.yaml`.
 
 ## ID Strategy
 

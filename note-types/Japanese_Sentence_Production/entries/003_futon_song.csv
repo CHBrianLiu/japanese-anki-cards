@@ -1,0 +1,19 @@
+#notetype:Japanese_Sentence_Production
+#deck:Japanese::Sentence Production::布団の中から出たくない
+#separator:Comma
+#html:true
+#tags column:5
+#columns:SentenceID,EnglishSentence,JapaneseSentence,Notes,Tags
+003_0001,"In the morning, I wake up.",朝、目が覚める。,目が覚める（めがさめる） means to wake up. Changed the supplied 眼 to the more usual spelling 目.,source::song 布団の中から出たくない
+003_0002,I wake up under the covers.,布団の中で起きる。,"布団（ふとん） is Japanese bedding; 布団の中 means under the covers here. で marks where the action happens.<br>起きる（おきる） can mean to wake up or get up; here, the speaker is still under the covers.",source::song 布団の中から出たくない
+003_0003,"The futon is warm, and the futon is soft.",布団は暖かくて、布団は柔らかい。,暖かい（あたたかい） → 暖かくて connects the two descriptions. 柔らかい（やわらかい） means soft.,source::song 布団の中から出たくない
+003_0004,But it's morning. I've got to get up.,だけど、朝だ。起きなくちゃ。,"だけど means but. 起きなくちゃ is a casual shortening of 起きなくては, with the ending such as いけない omitted; it means I have to get up.",source::song 布団の中から出たくない
+003_0005,"I get out from under the covers, and it's cold!",布団から出て、寒い！,"から marks the starting point; 出て（でて） is the て-form of 出る, to leave or come out. 寒い（さむい） describes cold weather or surroundings.",source::song 布団の中から出たくない
+003_0006,What the heck? It's cold!,なんだこりゃ寒い。,"こりゃ is a colloquial contraction of これは. なんだこりゃ expresses surprise, like What the heck is this?",source::song 布団の中から出たくない
+003_0007,I can't get out from under the covers.,布団から出られない。,"出られない（でられない） is the negative potential form of 出る; it means cannot get out, rather than do not want to get out.",source::song 布団の中から出たくない
+003_0008,I've got an idea—I'll turn on the heater and warm up the room.,そうだストーブつけて、部屋を温めよう。,"そうだ marks a sudden idea here. ストーブ means a room heater, not a cooking stove; the object particle を is omitted before つけて.<br>温めよう（あたためよう） is the volitional form of 温める, to warm something up, and expresses the speaker's intention here.",source::song 布団の中から出たくない
+003_0009,"For now, I'll get out from under the covers to turn on the switch.",ひとまずスイッチつけに布団から出よう。,"ひとまず means for now or as a first step. Verb ます stem + に expresses purpose, so つけに means to turn on; を is omitted after スイッチ.<br>出よう（でよう） is the volitional form of 出る and expresses the speaker's intention here.",source::song 布団の中から出たくない
+003_0010,I don't want to get out from under the covers anymore.,もう布団の中から出たくない。,"もう + negative means not anymore. 出たくない（でたくない） is the negative of 出たい, want to get out.",source::song 布団の中から出たくない
+003_0011,Because it's too cold outside the covers.,布団の外は寒すぎるから。,布団の外（ふとんのそと） contrasts with 布団の中. 寒い → 寒すぎる means too cold; sentence-final から gives the reason for not wanting to get out.,source::song 布団の中から出たくない
+003_0012,I don't want to get out from under the covers.,布団の中から出たくない。,"Verb ます stem + たくない means do not want to do something. Unlike the earlier line with もう, this line does not include anymore.",source::song 布団の中から出たくない
+003_0013,Because it's too warm under the covers.,布団の中は暖かすぎるから。,"暖かい → 暖かすぎる（あたたかすぎる） means too warm; here, the warmth makes the speaker reluctant to leave. から gives the reason.",source::song 布団の中から出たくない

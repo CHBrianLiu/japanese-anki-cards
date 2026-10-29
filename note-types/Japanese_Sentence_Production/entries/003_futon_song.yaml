@@ -1,0 +1,99 @@
+notetype: Japanese_Sentence_Production
+deck: Japanese::Sentence Production::布団の中から出たくない
+
+# Source: user-supplied sentences mined from the song 布団の中から出たくない.
+# One Note per supplied line, in source order; spelling adjustments are recorded in Notes.
+entries:
+  - SentenceID: "003_0001"
+    EnglishSentence: In the morning, I wake up.
+    JapaneseSentence: 朝、目が覚める。
+    Notes: |
+      目が覚める（めがさめる） means to wake up. Changed the supplied 眼 to the more usual spelling 目.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0002"
+    EnglishSentence: I wake up under the covers.
+    JapaneseSentence: 布団の中で起きる。
+    Notes: |
+      布団（ふとん） is Japanese bedding; 布団の中 means under the covers here. で marks where the action happens.
+      起きる（おきる） can mean to wake up or get up; here, the speaker is still under the covers.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0003"
+    EnglishSentence: The futon is warm, and the futon is soft.
+    JapaneseSentence: 布団は暖かくて、布団は柔らかい。
+    Notes: |
+      暖かい（あたたかい） → 暖かくて connects the two descriptions. 柔らかい（やわらかい） means soft.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0004"
+    EnglishSentence: But it's morning. I've got to get up.
+    JapaneseSentence: だけど、朝だ。起きなくちゃ。
+    Notes: |
+      だけど means but. 起きなくちゃ is a casual shortening of 起きなくては, with the ending such as いけない omitted; it means I have to get up.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0005"
+    EnglishSentence: I get out from under the covers, and it's cold!
+    JapaneseSentence: 布団から出て、寒い！
+    Notes: |
+      から marks the starting point; 出て（でて） is the て-form of 出る, to leave or come out. 寒い（さむい） describes cold weather or surroundings.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0006"
+    EnglishSentence: What the heck? It's cold!
+    JapaneseSentence: なんだこりゃ寒い。
+    Notes: |
+      こりゃ is a colloquial contraction of これは. なんだこりゃ expresses surprise, like What the heck is this?
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0007"
+    EnglishSentence: I can't get out from under the covers.
+    JapaneseSentence: 布団から出られない。
+    Notes: |
+      出られない（でられない） is the negative potential form of 出る; it means cannot get out, rather than do not want to get out.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0008"
+    EnglishSentence: I've got an idea—I'll turn on the heater and warm up the room.
+    JapaneseSentence: そうだストーブつけて、部屋を温めよう。
+    Notes: |
+      そうだ marks a sudden idea here. ストーブ means a room heater, not a cooking stove; the object particle を is omitted before つけて.
+      温めよう（あたためよう） is the volitional form of 温める, to warm something up, and expresses the speaker's intention here.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0009"
+    EnglishSentence: For now, I'll get out from under the covers to turn on the switch.
+    JapaneseSentence: ひとまずスイッチつけに布団から出よう。
+    Notes: |
+      ひとまず means for now or as a first step. Verb ます stem + に expresses purpose, so つけに means to turn on; を is omitted after スイッチ.
+      出よう（でよう） is the volitional form of 出る and expresses the speaker's intention here.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0010"
+    EnglishSentence: I don't want to get out from under the covers anymore.
+    JapaneseSentence: もう布団の中から出たくない。
+    Notes: |
+      もう + negative means not anymore. 出たくない（でたくない） is the negative of 出たい, want to get out.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0011"
+    EnglishSentence: Because it's too cold outside the covers.
+    JapaneseSentence: 布団の外は寒すぎるから。
+    Notes: |
+      布団の外（ふとんのそと） contrasts with 布団の中. 寒い → 寒すぎる means too cold; sentence-final から gives the reason for not wanting to get out.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0012"
+    EnglishSentence: I don't want to get out from under the covers.
+    JapaneseSentence: 布団の中から出たくない。
+    Notes: |
+      Verb ます stem + たくない means do not want to do something. Unlike the earlier line with もう, this line does not include anymore.
+    Tags: source::song 布団の中から出たくない
+
+  - SentenceID: "003_0013"
+    EnglishSentence: Because it's too warm under the covers.
+    JapaneseSentence: 布団の中は暖かすぎるから。
+    Notes: |
+      暖かい → 暖かすぎる（あたたかすぎる） means too warm; here, the warmth makes the speaker reluctant to leave. から gives the reason.
+    Tags: source::song 布団の中から出たくない
