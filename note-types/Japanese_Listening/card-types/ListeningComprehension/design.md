@@ -64,9 +64,9 @@ not displayed by this Card Type.
 
 ## Styling
 
-**File:** `style.css`
+**File:** `../../style.css` (shared by the Note Type)
 
-- Styling belongs to this Card Type; no global stylesheet is assumed.
+- Styling is shared by all Card Types of this Note Type.
 - Japanese font stack: `"Hiragino Sans"`, `"Yu Gothic"`, `"Noto Sans JP"`.
 - Centered audio and transcript with a 640px maximum content width.
 - Optional content uses separate bordered collapsibles.

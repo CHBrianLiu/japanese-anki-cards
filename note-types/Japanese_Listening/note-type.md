@@ -52,9 +52,9 @@ There is no English translation Field.
 ## Setup and Data Entry
 
 1. Create the `Japanese_Listening` Note Type in Anki with the six Fields above and
-   a single `ListeningComprehension` Card Type. Replace its Front Template, Back
-   Template, and Styling with the corresponding files under
-   `card-types/ListeningComprehension/`.
+   a single `ListeningComprehension` Card Type. Use the Front and Back Templates
+   under `card-types/ListeningComprehension/` and the shared Note Type stylesheet
+   `style.css` for Styling.
 2. Author Notes in `entries/*.yaml`, using the Field order in `entries-config.yaml`.
    Each entry file must declare `notetype: Japanese_Listening`, a `deck` such as
    `Japanese::Listening`, and at least one Note under `entries`.

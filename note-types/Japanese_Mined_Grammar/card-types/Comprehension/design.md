@@ -44,10 +44,10 @@ The front is intentionally minimal so the learner first reads the sentence natur
 
 ---
 
-## Styling Notes (`style.css`)
+## Styling Notes (`../../style.css`)
 
 - Japanese font stack: `"Hiragino Sans"`, `"Yu Gothic"`, `"Noto Sans JP"`.
 - The bolded grammar span in the sentence is colored `#1a6ebd` to anchor the learner's attention.
 - The answer area is split into compact labeled rows so `GrammarPoint`, `Meaning_Hint`, and `Formation` are easy to scan separately.
 - Collapsible blocks use native `<details>`/`<summary>` HTML — no JavaScript required.
-- Styling is scoped to this Card Type; no global stylesheet is assumed.
+- Styling is shared by the Note Type; Production-specific rules are scoped to its Template.

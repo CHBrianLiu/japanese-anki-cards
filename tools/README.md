@@ -185,3 +185,33 @@ directory.
 2. Add an `entries-config.yaml` declaring the `notetype` and `fields`.
 3. Create entry YAML files following the format above.
 4. Run `python tools/yaml_to_csv.py` to generate the CSVs.
+
+## Shared styling checks
+
+Each Note Type has one `style.css` alongside `note-type.md`; its Card Types keep
+their own Front and Back Templates. Run the repository Template and rendering
+checks with:
+
+```bash
+.venv/bin/python -m unittest discover -s tools -p test_shared_styling.py
+```
+
+The rendering checks use headless Chrome or Chromium with a temporary browser
+profile. Set `CHROME` to its executable if it is not on `PATH`. They are skipped
+when no browser is available; the Template Field checks still run. The browser
+test uses synthetic Field values, not an Anki Collection, and does not emulate
+Anki's audio controls, mobile clients, or all Template features.
+
+Before adopting a styling change, use a **disposable** test Collection on each
+intended Anki client. Install the shared stylesheet once on each Note Type and
+the separate Front/Back Templates in the documented Card Type order. Check:
+
+1. Both sides of Comprehension and Production for mined vocabulary and grammar:
+   blue answer spans, Production blanking and hints, and their distinct sentence
+   spacing. Verify the Comprehension presentation has no Production styling.
+2. Both sides of Familiarity, Listening, and Sentence Production, including
+   optional content and their intended prompt/answer visibility.
+3. Narrow screens and night mode where supported, audio replay for Listening,
+   and typing/response preservation for Sentence Production.
+
+These client checks supplement, rather than replace, the automated rendering test.

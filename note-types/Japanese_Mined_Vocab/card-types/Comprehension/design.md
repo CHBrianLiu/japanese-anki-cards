@@ -44,10 +44,10 @@ The front is intentionally minimal — the sentence alone is the stimulus.
 
 ---
 
-## Styling Notes (`style.css`)
+## Styling Notes (`../../style.css`)
 
 - Japanese font stack: `"Hiragino Sans"`, `"Yu Gothic"`, `"Noto Sans JP"`.
 - The bolded target word in the sentence is colored `#1a6ebd` (blue) to draw the eye.
 - Collapsible blocks use native `<details>`/`<summary>` HTML — no JavaScript required.
 - Custom `::before` pseudo-element replaces the default browser disclosure triangle with `▶` / `▼`.
-- Styling is scoped to this Card Type; no global stylesheet is assumed.
+- Styling is shared by the Note Type; Production-specific rules are scoped to its Template.

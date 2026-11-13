@@ -64,9 +64,9 @@ Test whether the learner can actively recall the correct Japanese vocabulary wor
 
 ---
 
-## Styling Notes (`style.css`)
+## Styling Notes (`../../style.css`)
 
 - Identical font stack and base layout to the Comprehension card for visual consistency.
 - `.hint-label` and `.hint` classes style the meaning hint with subdued color and italic text.
 - The `<b>` tag inside `.sentence` is styled blue (`#1a6ebd`) — on the front this is invisible (replaced by JS), on the back it highlights the revealed answer.
-- Styling is scoped to this Card Type; no global stylesheet is assumed.
+- Production-specific spacing and hint rules are scoped to the `production` class on both Templates.

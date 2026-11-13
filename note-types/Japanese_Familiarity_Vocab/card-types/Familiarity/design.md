@@ -54,7 +54,7 @@ All optional fields are hidden when empty, so the back stays scannable and never
 
 ---
 
-## Styling Notes (`style.css`)
+## Styling Notes (`../../style.css`)
 
 - Japanese font stack: `"Hiragino Sans"`, `"Yu Gothic"`, `"Noto Sans JP"`.
 - Calm neutral background (`#fcfcfc`) to reduce visual fatigue during bulk review.
@@ -63,4 +63,4 @@ All optional fields are hidden when empty, so the back stays scannable and never
 - `Example` block is visually separated with a light card-like container.
 - Collapsible blocks use native `<details>`/`<summary>` HTML.
 - Mobile-friendly spacing and font sizing.
-- Styling is scoped to this Card Type; no global stylesheet is assumed.
+- Styling is shared by all Card Types of this Note Type.

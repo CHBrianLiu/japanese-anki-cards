@@ -22,6 +22,7 @@ The repository follows a nested structure where Card Types and Note Entries belo
 /note-types/
   {NoteTypeName}/
     note-type.md             ← Schema and ID strategy definition
+    style.css                ← Shared styling for all Card Types of this Note Type
     /entries/
       entries-config.yaml    ← Canonical field list for this Note Type's entry files
       {deck-name}.yaml       ← Human-edited Note entry source file
@@ -30,7 +31,6 @@ The repository follows a nested structure where Card Types and Note Entries belo
       {CardTypeName}/
         front.html           ← Front template
         back.html            ← Back template
-        style.css            ← Styling specific to this Card Type
         design.md            ← Card Type design rationale
 ```
 
@@ -42,8 +42,8 @@ Every Note Type must have a `note-type.md` document that serves as the source of
 - **Target Deck(s):** Where the resulting cards should be placed.
 
 ## 4. Card Type Architecture & Styling
-- **Scoping:** Styling (`style.css`) is defined **per Card Type**. Do not assume a global stylesheet exists unless explicitly instructed.
-- **Source Files:** The templates must be split into `front.html`, `back.html`, and `style.css`. 
+- **Scoping:** Author one `style.css` per Note Type, shared by its Card Types. Use explicit Card-Type-specific selectors when presentations differ; keep documented Card Type order stable if using positional selectors.
+- **Source Files:** Keep each Card Type's `front.html` and `back.html` separate from the parent Note Type's `style.css`.
 - **Design Document:** Each Card Type requires a `design.md` explaining the learning intention, field mappings (e.g., `{{FieldName}}`), and any conditional logic (e.g., `{{#FieldName}}` / `{{^FieldName}}`).
 
 ## 5. Note Entries & Idempotent Import Workflow

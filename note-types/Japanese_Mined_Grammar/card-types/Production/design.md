@@ -62,9 +62,10 @@ Test whether the learner can actively recall the correct grammar chunk given sen
 
 ---
 
-## Styling Notes (`style.css`)
+## Styling Notes (`../../style.css`)
 
 - Matches the Comprehension Card Type closely for visual consistency.
+- Production-specific spacing and hint rules are scoped to the `production` class on both Templates.
 - The gapped sentence stays central and prominent.
 - `Meaning_Hint` is styled as a subdued prompt so it helps disambiguation without giving away the answer form.
 - The revealed bolded answer span is colored `#1a6ebd` on the back.

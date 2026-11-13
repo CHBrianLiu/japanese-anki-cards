@@ -49,8 +49,8 @@ would use `{{Tags}}` to display native tags; this Card Type does not display the
 ## Setup and Data Entry
 
 1. Create this Note Type in Anki with the Fields above and a single `Production`
-   Card Type. Replace its Front Template, Back Template, and Styling with the
-   corresponding files under `card-types/Production/`.
+   Card Type. Use the Front and Back Templates under `card-types/Production/`
+   and the shared Note Type stylesheet `style.css` for Styling.
 2. Author Notes in `entries/*.yaml`, using the Field order in `entries-config.yaml`.
 3. Regenerate the CSV after every entry edit:
    `tools/.venv/bin/python tools/yaml_to_csv.py --file note-types/Japanese_Sentence_Production/entries/001_practice.yaml`.

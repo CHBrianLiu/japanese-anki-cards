@@ -44,7 +44,7 @@ it (or the client's browser storage is cleared). It is not an answer history.
 
 ## Styling
 
-Per-Card-Type styling follows the repository's existing Japanese sans-serif fonts,
+The shared Note Type stylesheet `../../style.css` uses Japanese sans-serif fonts,
 640px content width, and neutral light background. The prompt, typed response, and
 reference answer have clear labels; no comparison colors imply an automatic grade.
 The input is full-width with a visible focus outline, and light and night modes

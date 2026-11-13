@@ -54,6 +54,9 @@ The deck name may differ from the source list name and does not have to match a 
    - **Front**: Displays only `DisplayWord`. You self-assess whether you recognize the word.
    - **Back**: Reveals `Reading`, `Meaning`, `UsageLabel`, and `Example` (if present), plus optional `Notes`. Keeps review light and reminder-oriented.
 
+Use the Front and Back Templates under `card-types/Familiarity/` and the shared
+Note Type stylesheet `style.css`.
+
 ---
 
 ## Normalization Rules for List Entries

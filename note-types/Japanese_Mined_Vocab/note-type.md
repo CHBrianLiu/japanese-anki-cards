@@ -43,6 +43,10 @@ This Note Type is designed for sentence-mining Japanese vocabulary. Each Note ca
 1. **Comprehension** — Read the sentence in context; recognize and understand the bolded target word.
 2. **Production** — Given the sentence with the target word blanked out and a native-language hint, recall the correct Japanese word.
 
+Use the Front and Back Templates under each `card-types/` directory and the
+shared Note Type stylesheet `style.css` for both Card Types. Production-specific
+rules are scoped to its Template's `production` class, independent of order.
+
 ---
 
 ## Data Entry Rules

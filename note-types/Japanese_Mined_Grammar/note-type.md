@@ -43,6 +43,10 @@ This Note Type is designed for sentence-mined Japanese grammar. Each Note captur
 1. **Comprehension** — Read the sentence in context, recognize the highlighted grammar span, and recall the grammar point, nuance, and formation.
 2. **Production** — Given the sentence with the tested span blanked out and a meaning hint, actively recall the full grammar chunk in context.
 
+Use the Front and Back Templates under each `card-types/` directory and the
+shared Note Type stylesheet `style.css` for both Card Types. Production-specific
+rules are scoped to its Template's `production` class, independent of order.
+
 ---
 
 ## Data Entry Rules

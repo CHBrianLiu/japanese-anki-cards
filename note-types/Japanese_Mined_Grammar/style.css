@@ -1,5 +1,5 @@
 /* ============================================================
-   Production Card — Japanese_Mined_Vocab
+   Shared styling — Japanese_Mined_Grammar
    ============================================================ */
 
 .card {
@@ -13,23 +13,24 @@
   padding: 1.5rem 1.25rem;
 }
 
-/* --- Sentence --- */
 .sentence {
   font-size: 1.45rem;
   line-height: 1.8;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-/* On the front, <b> content is replaced with ＿＿＿ by JS.
-   On the back, the original bold text is shown in blue. */
 .sentence b {
   color: #1a6ebd;
   font-weight: 700;
 }
 
-/* --- Hint --- */
-.hint-label {
+/* Production has a little more room below the sentence and a subdued hint. */
+.production .sentence {
+  margin-bottom: 0.5rem;
+}
+
+.production .hint-label {
   text-align: center;
   font-size: 0.8rem;
   color: #999;
@@ -38,7 +39,7 @@
   margin-top: 0.75rem;
 }
 
-.hint {
+.production .hint {
   text-align: center;
   font-size: 1rem;
   color: #555;
@@ -46,37 +47,50 @@
   margin-top: 0.2rem;
 }
 
-/* --- Divider --- */
 .divider {
   border: none;
   border-top: 1px solid #ddd;
   margin: 1.1rem 0;
 }
 
-/* --- Vocabulary line --- */
-.vocab-line {
+.answer-panel {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem;
-  justify-content: center;
-  margin-bottom: 0.75rem;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 0.95rem;
 }
 
-.target-word {
-  font-size: 1.5rem;
+.primary-answer {
+  text-align: center;
+  font-size: 1.65rem;
   font-weight: 700;
   color: #1a1a1a;
 }
 
-.reading {
-  font-size: 1.1rem;
-  color: #555;
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fff;
 }
 
-/* --- Collapsible blocks --- */
+.info-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #7a7a7a;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: #333;
+}
+
 .extra-blocks {
-  margin-top: 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
