@@ -91,3 +91,16 @@ To minimize errors, you must actively validate the consistency of the repository
 6. **Workflow Compliance:** After modifying any entry YAML file, regenerate the corresponding CSV. Do not manually edit generated CSV files unless the user explicitly asks for repository repair work on the generated artifact itself.
 7. **Error Reporting:** If the user requests a change that breaks this consistency, such as adding data for a Field that is not declared in `entries-config.yaml` or `note-type.md`, you must block the action, explain the discrepancy, and ask how to proceed.
 
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as local markdown files under `.scratch/<feature>/`. Before publishing, fetching, or updating tickets, read `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles use their default names as local issue status strings. Before triaging issues, read `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: root `GLOSSARY.md` and `docs/adr/`. Before exploring the repository or proposing domain changes, read `docs/agents/domain.md`.
