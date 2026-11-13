@@ -1,0 +1,28 @@
+<div class="japanese-listening">
+  <div class="audio">{{Audio}}</div>
+
+  <hr id="answer" class="divider">
+
+  <div class="sentence" lang="ja">{{JapaneseSentence}}</div>
+
+  {{#Reading}}
+  <details class="collapsible">
+    <summary>Reading</summary>
+    <div class="collapsible-content" lang="ja">{{Reading}}</div>
+  </details>
+  {{/Reading}}
+
+  {{#Notes}}
+  <details class="collapsible">
+    <summary>Notes</summary>
+    <div class="collapsible-content" lang="ja">{{Notes}}</div>
+  </details>
+  {{/Notes}}
+
+  {{#Source}}
+  <details class="collapsible">
+    <summary>Source</summary>
+    <div class="collapsible-content">{{Source}}</div>
+  </details>
+  {{/Source}}
+</div>

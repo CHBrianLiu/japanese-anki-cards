@@ -1,0 +1,106 @@
+/* ListeningComprehension Card — Japanese_Listening */
+
+.card {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: left;
+  color: #1a1a1a;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 24px 20px;
+}
+
+.japanese-listening {
+  max-width: 640px;
+  margin: 0 auto;
+  overflow-wrap: anywhere;
+}
+
+.japanese-listening .audio {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.japanese-listening .instruction {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.japanese-listening .divider {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 24px 0;
+}
+
+.japanese-listening .sentence {
+  font-size: 1.45rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.japanese-listening .collapsible {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.japanese-listening .collapsible summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.japanese-listening .collapsible-content {
+  border-top: 1px solid #eee;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+
+.japanese-listening a {
+  color: #1a6ebd;
+}
+
+.nightMode.card,
+.night_mode.card {
+  color: #eee;
+  background-color: #202124;
+}
+
+.nightMode .japanese-listening .instruction,
+.night_mode .japanese-listening .instruction,
+.nightMode .japanese-listening .collapsible summary,
+.night_mode .japanese-listening .collapsible summary {
+  color: #bbb;
+}
+
+.nightMode .japanese-listening .collapsible,
+.night_mode .japanese-listening .collapsible {
+  background-color: #292a2d;
+}
+
+.nightMode .japanese-listening .divider,
+.night_mode .japanese-listening .divider,
+.nightMode .japanese-listening .collapsible,
+.night_mode .japanese-listening .collapsible,
+.nightMode .japanese-listening .collapsible-content,
+.night_mode .japanese-listening .collapsible-content {
+  border-color: #555;
+}
+
+.nightMode .japanese-listening a,
+.night_mode .japanese-listening a {
+  color: #8ab4f8;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 16px;
+  }
+}

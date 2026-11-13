@@ -1,0 +1,18 @@
+notetype: Japanese_Listening
+
+# Canonical import column order. Tags maps to Anki's native tags.
+fields:
+  - name: ListeningID
+    required: true
+  - name: Audio
+    required: true
+  - name: JapaneseSentence
+    required: true
+  - name: Reading
+    required: false
+  - name: Notes
+    required: false
+  - name: Source
+    required: false
+  - name: Tags
+    required: false
