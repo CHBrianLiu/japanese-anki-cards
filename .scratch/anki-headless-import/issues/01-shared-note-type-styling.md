@@ -6,6 +6,8 @@
 
 **Status:** resolved
 
+**Verification environment:** Any further epic work or rendering/regression verification uses sandbox Notes/Collections from [`tools/headless_import/exploration.md`](../../../tools/headless_import/exploration.md). No personal Collection access is required. Existing completion evidence remains historical.
+
 - [x] Migrate every repository Note Type to one human-authored shared stylesheet; no CSS merging or compilation tool is introduced.
 - [x] Deliberately reconcile overlapping selectors and preserve intentional Card Type differences through shared rules or explicitly authored Card-Type-specific selectors.
 - [x] Keep Card Type order stable where styling depends on template position.
@@ -17,3 +19,4 @@
 
 - 2026-11-14: Implemented as `8947399`. Styling and YAML/CSV checks passed; intended-client rendering remains a manual check.
 - 2026-11-14: Reviewed. One shared `style.css` per Note Type with no per-Card-Type stylesheets; overlapping selectors reconciled via explicit `.production` selectors; instructions/schema/design docs updated together; commit touched no YAML/CSV. `tools/test_shared_styling.py` passes (5 tests, including Template-field validation and headless-Chrome rendering/isolation). Marked resolved and merged into `main`.
+- 2026-11-16: Epic pivot: all subsequent verification, including intended-client rendering, uses the documented sandbox environment. No backup mechanism is required. Resolution and completed evidence are unchanged; no new checks were executed by this planning update.
