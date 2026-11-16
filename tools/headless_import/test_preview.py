@@ -52,18 +52,11 @@ class PreviewCommandTests(unittest.TestCase):
             '  - CustomID: "001_0002"\n    Text: "New"\n', encoding="utf-8")
         self.sandbox = create_sandbox(self.tool / ".local", Path("/Applications/Anki.app"))
         self.collection = Path(self.sandbox["collection"])
-        target = self.sandbox["deck_candidates"][1]
-        self.links = self.root / "links.json"
-        self.links.write_text(json.dumps({
-            "collection": str(self.collection),
-            "links": [{"requested": target["name"], "name": target["name"],
-                       "id": target["id"], "approved": True}],
-        }), encoding="utf-8")
 
     def run_preview(self):
         return subprocess.run(
             [sys.executable, str(self.tool / "preview.py"), "--sandbox", self.collection.parent.name,
-             "--note-type", "Headless_Preview_Fixture", "--deck-links", str(self.links)],
+              "--note-type", "Headless_Preview_Fixture"],
             capture_output=True, text=True,
         )
 
@@ -113,23 +106,13 @@ class PreviewCommandTests(unittest.TestCase):
                 self.assertEqual(self.collection.read_bytes(), before)
         self.entries.write_text(original, encoding="utf-8")
 
-    def test_requires_approved_collection_local_deck_links(self):
-        original = json.loads(self.links.read_text(encoding="utf-8"))
-        target = original["links"][0]
-        cases = [
-            ({**original, "collection": str(self.root / "other.anki2")}, "different Collection"),
-            ({**original, "links": []}, "Missing or ambiguous"),
-            ({**original, "links": [target, target]}, "Missing or ambiguous"),
-            ({**original, "links": [{**target, "approved": False}]}, "not approved"),
-            ({**original, "links": [{**target, "id": 123456}]}, "Deck target"),
-            ({**original, "links": [{**target, "name": "Wrong"}]}, "Deck target"),
-        ]
-        for config, message in cases:
-            with self.subTest(message=message):
-                self.links.write_text(json.dumps(config), encoding="utf-8")
-                result = self.run_preview()
-                self.assertNotEqual(result.returncode, 0)
-                self.assertIn(message, result.stderr)
+    def test_yaml_deck_resolves_without_approval_file_and_missing_decks_fail(self):
+        self.assertEqual(self.run_preview().returncode, 0)
+        self.entries.write_text(self.entries.read_text(encoding="utf-8").replace(
+            "Preview Sandbox::Target", "Missing::Deck"), encoding="utf-8")
+        result = self.run_preview()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Missing, ambiguous or filtered Deck target", result.stderr)
 
     def test_preview_includes_committed_wal_without_checkpointing_source(self):
         import sqlite3
@@ -207,12 +190,10 @@ class PreviewCommandTests(unittest.TestCase):
             filtered_id = col.decks.new_filtered("Fixture Filtered")
         finally:
             col.close()
-        config = json.loads(self.links.read_text(encoding="utf-8"))
-        config["links"][0].update({"name": "Fixture Filtered", "id": filtered_id})
-        self.links.write_text(json.dumps(config), encoding="utf-8")
+        original = self.entries.read_text(encoding="utf-8")
+        self.entries.write_text(original.replace("Preview Sandbox::Target", "Fixture Filtered"), encoding="utf-8")
         self.assertIn("filtered Deck target", self.run_preview().stderr)
-        config["links"][0].update({"name": "Preview Sandbox::Target", "id": self.sandbox["deck_candidates"][1]["id"]})
-        self.links.write_text(json.dumps(config), encoding="utf-8")
+        self.entries.write_text(original, encoding="utf-8")
         col = Collection(str(self.collection))
         try:
             card = col.get_card(self.sandbox["baseline"]["card_ids"][0])
@@ -230,16 +211,15 @@ class PreviewCommandTests(unittest.TestCase):
         media.write_bytes(b"synthetic media")
         self.entries.write_text(self.entries.read_text(encoding="utf-8").replace('Text: "Changed"', 'Text: "[sound:fixture.mp3]"'), encoding="utf-8")
         command = [sys.executable, str(self.tool / "preview.py"), "--sandbox", self.collection.parent.name,
-                   "--note-type", "Headless_Preview_Fixture", "--deck-links", str(self.links)]
+                   "--note-type", "Headless_Preview_Fixture"]
         env = {**os.environ, "TMPDIR": str(tempdir)}
         before = self.collection.read_bytes(), media.read_bytes()
         result = subprocess.run(command, capture_output=True, text=True, env=env)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(list(tempdir.iterdir()), [])
         self.assertEqual((self.collection.read_bytes(), media.read_bytes()), before)
-        config = json.loads(self.links.read_text(encoding="utf-8"))
-        config["links"][0]["approved"] = False
-        self.links.write_text(json.dumps(config), encoding="utf-8")
+        self.entries.write_text(self.entries.read_text(encoding="utf-8").replace(
+            "Preview Sandbox::Target", "Missing::Deck"), encoding="utf-8")
         result = subprocess.run(command, capture_output=True, text=True, env=env)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(list(tempdir.iterdir()), [])
@@ -311,13 +291,13 @@ class PreviewCommandTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout)["notes"][0]["action"], "unchanged")
 
-    def test_links_cannot_be_reused_for_another_sandbox_profile(self):
+    def test_decks_are_resolved_in_explicitly_selected_sandbox(self):
         other = create_sandbox(self.tool / ".local", Path("/Applications/Anki.app"))
         command = [sys.executable, str(self.tool / "preview.py"), "--sandbox", Path(other["collection"]).parent.name,
-                   "--note-type", "Headless_Preview_Fixture", "--deck-links", str(self.links)]
+                   "--note-type", "Headless_Preview_Fixture"]
         result = subprocess.run(command, capture_output=True, text=True)
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn("different Collection", result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["notes"][1]["new_cards_deck"]["id"], other["deck_candidates"][1]["id"])
 
 
 if __name__ == "__main__":

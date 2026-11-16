@@ -1,8 +1,9 @@
-# Headless import exploration
+# Sandbox YAML preview and application
 
-Sandbox preparation, non-mutating YAML preview, and direct YAML API import
-exploration. Commands cannot target a normal user Collection; preview and import
-accept only a tool-created sandbox folder name. Preview does not apply changes.
+Sandbox preparation, non-mutating YAML preview, validated YAML application, and
+historical direct YAML API import exploration. Commands cannot target a normal
+user Collection; preview and application accept only a tool-created sandbox
+folder name. Preview does not apply changes.
 
 See [ticket 03 exploration findings](exploration.md) for executed evidence,
 repository discrepancies, and the recommended next implementation steps.
@@ -42,7 +43,7 @@ The synthetic fixture contains:
 - A candidate managed Note with a quoted-string-compatible custom ID, old tags,
   and a native review-log row; an unrelated Note in the target Deck.
 - A manifest recording identity, tags, review history, and candidate Deck IDs.
-  Candidate Decks are **not** approved links or a finalized configuration format.
+  YAML `deck` resolves by exact hierarchical name in the selected Collection.
 
 The command closes and reopens only its own fresh Collection to verify baseline
 persistence. It never reads/generates CSV, imports repository Notes, copies the
@@ -52,30 +53,17 @@ ticket 03 preview must reject missing target Decks instead of creating them.
 ## Preview YAML against existing sandbox Decks
 
 Quit Anki Desktop completely. Select a tool-created sandbox and one or more
-repository Note Types. First propose exact-name matches; the output is not approval:
+repository Note Types:
 
 ```bash
-tools/headless_import/.venv/bin/python tools/headless_import/preview.py --sandbox sandbox-2gs8b2z0 --note-type Japanese_Mined_Vocab --propose-decks
+tools/headless_import/.venv/bin/python tools/headless_import/preview.py --sandbox sandbox-2gs8b2z0 --note-type Japanese_Mined_Vocab
 ```
 
-Create a JSON file of explicitly approved links for **every** requested `deck`.
-Use the selected sandbox's absolute `collection.anki2` path from its manifest;
-copy each target ID and exact hierarchical name from the proposals or another
-verified existing normal Deck. For example (IDs below are illustrative):
-
-```json
-{
-  "collection": "/absolute/path/to/sandbox-2gs8b2z0/collection.anki2",
-  "links": [
-    {"requested": "Japanese::Vocabulary", "name": "Japanese::Vocabulary", "id": 123456, "approved": true}
-  ]
-}
-```
-
-Run the preview with `--deck-links /path/to/links.json` in place of
-`--propose-decks`. Repeat `--note-type` for more Note Types. Approved targets can
-have different names from the requested names; each ID and name must match the
-selected Collection. Missing, ambiguous, filtered, or unapproved links fail.
+YAML's `deck` declaration is the only Deck mapping input: it must exactly match
+one existing normal Deck in the selected sandbox. No approved links, links JSON,
+or alternate-name mapping is needed. Missing, ambiguous, or filtered targets fail;
+no Decks are created. Repeat `--note-type` for more Note Types. Optional
+`--propose-decks` lists exact-name candidates without applying changes.
 
 The JSON report lists add/update/unchanged Notes, Field changes and tag additions
 and removals. New managed Cards include their requested and resolved Deck; existing
@@ -86,7 +74,50 @@ changes, creates Decks, uploads media, or retains backups. Creating fixture Deck
 and media is a separate sandbox setup step. The selected Collection is independent
 of YAML's `deck`; Desktop Profiles are not inspected.
 
-## Import Japanese_Mined_Vocab directly from YAML
+## Apply YAML Notes (ticket 04)
+
+Review the preview above, keep Anki Desktop closed, then explicitly approve the
+same selection:
+
+```bash
+tools/headless_import/.venv/bin/python tools/headless_import/apply_yaml.py --sandbox sandbox-2gs8b2z0 --note-type Japanese_Mined_Vocab --approve
+```
+
+Repeat `--note-type` to select more Note Types. Application requires compatible
+**existing** Note Types and exact-name existing normal Decks. It shares preview's
+YAML validation, normalization, matching, and per-Note Field/tag change reports.
+Field Unicode normalization follows the selected Collection's Anki setting;
+native tags use NFC. Stable IDs are matched in that same normalized representation,
+with normalization collisions rejected rather than creating duplicate Notes.
+Before target access it applies the entire selection to a disposable WAL-consistent
+copy, reopens it, and verifies persistence and preservation. That copy is removed;
+application creates no pre-import backup, snapshot archive, or restore artifact.
+
+- Adds missing Notes with native identities; updates matches by exact Note Type
+  and first-Field stable ID, retaining Note IDs/GUIDs and existing Card IDs.
+- Replaces the complete managed Note tag set, including clearing personal tags.
+  `REPO_DELETE` is only a tag; absent Notes and retained empty Cards are not deleted.
+- Places **new Cards only**, including newly generated conditional Cards, in the
+  YAML Deck. Existing Cards retain their placement without mismatch reports or moves.
+- Rejects invalid sources, ambiguous identities, schema mismatches, missing media,
+  filtered Cards/Decks, and conflicting Template Deck overrides before target writes.
+  Does not edit Templates/CSS, Deck options, unrelated Notes, or media.
+- Reopens the target to verify Fields/tags, retained identities, Card placement,
+  scheduling, and review-history rows. Reports new Card IDs and verified persistence
+  on stdout; a second identical application reports only `unchanged` Notes.
+- On failure, releases the Collection/lock and reports completed native operations.
+  Earlier writes may remain committed. Obtain a fresh preview and approval before
+  retrying; no whole-run rollback or restoration is attempted.
+
+`--approve` is explicit run approval, not a Deck-links file or a persisted preview
+token. Durable approval/staleness guards remain ticket 07 work. This command is
+sandbox-only and does not retire the repository's CSV fallback workflow.
+
+## Historical exploration: import Japanese_Mined_Vocab directly from YAML
+
+`import_yaml.py` below is the earlier exploration command, **not** the ticket 04
+application path. Its Deck creation, existing-Card moves, and retained database
+snapshots are exploration behavior, not supported application behavior.
 
 Quit Anki Desktop completely, then run from the repository root:
 
