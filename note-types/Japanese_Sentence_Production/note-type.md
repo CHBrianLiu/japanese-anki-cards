@@ -35,11 +35,14 @@ User-defined stable identifier in the first Field, `SentenceID`.
 | 2 | `EnglishSentence` | Required English sentence shown as the production prompt. |
 | 3 | `JapaneseSentence` | Required reference Japanese sentence, revealed on the back. |
 | 4 | `Notes` | Optional explanations or alternative translations, shown only on the back. |
-| 5 | `Tags` | Optional import column mapped to Anki's native tags, not a custom Anki Field. |
 
 Create the first four Fields in Anki in this order. The repository's fifth column,
 `Tags`, is mapped to native tags by the generated `#tags column:5` header. Templates
 would use `{{Tags}}` to display native tags; this Card Type does not display them.
+
+Entry YAML `Tags` is native metadata. API import replaces the complete tag set;
+absent, null, or empty values clear it. Entry YAML's `deck` is authoritative for
+API Card placement; targets above describe intended scope.
 
 ## Card Types
 

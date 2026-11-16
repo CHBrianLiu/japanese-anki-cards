@@ -35,12 +35,15 @@ User-defined stable identifier in the first Field, `ListeningID`.
 | 4 | `Reading` | Optional kana reading aid for the transcript; back only. |
 | 5 | `Notes` | Optional Japanese explanations of meaning, vocabulary, grammar, or connected speech; back only. |
 | 6 | `Source` | Optional attribution, episode, timestamp, or source URL; back only. |
-| 7 | `Tags` | Optional import column mapped to Anki's native tags, not a custom Anki Field. |
 
 Create the first six Fields in Anki in this order. The repository's seventh column,
 `Tags`, is mapped to native tags by the generated `#tags column:7` header. Templates
 would use `{{Tags}}` to display native tags; this Card Type does not display them.
 There is no English translation Field.
+
+Entry YAML `Tags` is native metadata. API import replaces the complete tag set;
+absent, null, or empty values clear it. Entry YAML's `deck` is authoritative for
+API Card placement; the target above describes intended scope.
 
 ## Card Types
 

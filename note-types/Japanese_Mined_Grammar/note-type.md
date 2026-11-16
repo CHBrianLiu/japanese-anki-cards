@@ -8,7 +8,9 @@ This Note Type is designed for sentence-mined Japanese grammar. Each Note captur
 
 ## Target Deck
 
-`Japanese::Grammar`
+Entry YAML's `deck` value is authoritative for API Card placement. Current entries
+target `Japanese::Tadoku::<title>` Decks; `Japanese::Grammar` is intended context,
+not an override of entry declarations.
 
 ---
 
@@ -34,7 +36,14 @@ This Note Type is designed for sentence-mined Japanese grammar. Each Note captur
 | 5 | `Sentence` | The mined Japanese sentence, with the full tested answer span wrapped in `<b>...</b>` (e.g. `教室に<b>入ると</b>先生がレオ君に言いました。`). |
 | 6 | `SentenceTranslation` | Full translation of the mined sentence into the learner's native language. |
 | 7 | `Notes` | Optional usage notes, source context, restrictions, contrasts, or reminders. |
-| 8 | `Tags` | Optional Anki tags for organization, workflow markers, or deletion tagging such as `REPO_DELETE`. |
+
+### Native tags metadata
+
+Entry YAML `Tags` is native Note metadata, not an eighth ordinary Field. API
+import replaces the complete tag set; absent, null, or empty values clear it.
+`REPO_DELETE` remains a manual-deletion marker. Templates can use `{{Tags}}`.
+The unchanged legacy config retains `Tags` as CSV column 8, mapped by
+`#tags column:8`; only its first seven columns are ordinary Anki Fields.
 
 ---
 
@@ -60,4 +69,4 @@ rules are scoped to its Template's `production` class, independent of order.
 - `Tags` is optional. Use it for Anki tags and repository workflow markers.
 - `GrammarID` values must be quoted strings in YAML, for example `GrammarID: "001_0001"`.
 - After editing an entry YAML file, regenerate the corresponding CSV with `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Mined_Grammar/entries/<file>.yaml` or omit `--file` to regenerate all CSVs.
-- To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` Field in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.
+- To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` metadata in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.

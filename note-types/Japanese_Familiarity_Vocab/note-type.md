@@ -44,7 +44,14 @@ The deck name may differ from the source list name and does not have to match a 
 | 6 | `Example`      | No       | Optional example sentence for context. Not required for every entry.                                  |
 | 7 | `Source`       | No       | Source list name (e.g. `JLPT N5`) shown as a compact badge on the back.                               |
 | 8 | `Notes`        | No       | Additional context, abbreviation notes, or reminders about source-form quirks.                        |
-| 9 | `Tags`         | No       | Optional Anki tags for organization, workflow markers, or deletion tagging such as `REPO_DELETE`.     |
+
+### Native tags metadata
+
+Entry YAML `Tags` is native Note metadata, not a ninth ordinary Field. API import
+replaces the complete tag set; absent, null, or empty values clear it.
+`REPO_DELETE` remains a manual-deletion marker. Templates can use `{{Tags}}`.
+The unchanged legacy config retains `Tags` as CSV column 9, mapped by
+`#tags column:9`; only its first eight columns are ordinary Anki Fields.
 
 ---
 
@@ -81,4 +88,4 @@ When importing from a proficiency-list source, apply light normalization to prod
 - `Tags` is optional. Use it for Anki tags and repository workflow markers.
 - `WordID` values must be quoted strings in YAML, for example `WordID: "005_0001"`.
 - After editing an entry YAML file, regenerate the corresponding CSV with `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Familiarity_Vocab/entries/<file>.yaml` or omit `--file` to regenerate all CSVs.
-- To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` Field in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.
+- To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` metadata in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.
