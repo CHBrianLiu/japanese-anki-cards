@@ -178,18 +178,22 @@ def sandbox_access(local_root, sandbox_name):
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if Path(manifest["collection"]).resolve() != collection.resolve() or "baseline" not in manifest:
         raise ValueError("Sandbox manifest does not identify this Collection")
-    running = subprocess.run(
-        ["pgrep", "-ifl", r"/Applications/Anki.app/Contents/|anki-launcher|python.*-m aqt"],
-        capture_output=True, text=True, check=False,
-    )
-    if running.returncode != 1:
-        raise ValueError("Quit Anki Desktop completely before sandbox API import")
+    require_desktop_closed()
     with (sandbox / ".import.lock").open("a") as lock:
         try:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
             raise ValueError("Another sandbox import is running") from exc
         yield collection, manifest
+
+
+def require_desktop_closed():
+    running = subprocess.run(
+        ["pgrep", "-ifl", r"/[Aa]nki\.app/Contents/|anki-launcher|python.*-m aqt"],
+        capture_output=True, text=True, check=False,
+    )
+    if running.returncode != 1:
+        raise ValueError("Quit Anki Desktop completely before sandbox API import")
 
 
 def backup_database(collection):

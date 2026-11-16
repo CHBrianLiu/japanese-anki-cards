@@ -159,6 +159,39 @@ The current sandbox proves isolated native API access is available. It does not
 prove compatibility with the user's actual schemas, Decks, or media; that remains
 unverified without a separately authorized representative snapshot.
 
+## Ticket 07 guarded workflow acceptance (2026-11-16)
+
+The dedicated `.venv` and tool-created sandbox fixtures are the end-to-end
+verification environment, not merely preliminary exploration. No personal
+Collection or normal Desktop Profile registry was inspected.
+
+Executed the [documented sandbox-only smoke procedure](README.md#executable-sandbox-only-end-to-end-smoke-procedure):
+
+```bash
+HEADLESS_SMOKE_REPORT=1 PYTHONPATH=tools/headless_import tools/headless_import/.venv/bin/python -m unittest test_update_collection.GuardedCommandTests.test_complete_workflow_smoke -v
+```
+
+- Explicit target: isolated `sandbox-zccp9tu1`, matching tool-created manifest,
+  `Preview Sandbox::Target` approved ID `1794815380103`.
+- Desktop closed; package 26.09.4 matched Desktop 26.9.4; Collection schema 18.
+- Full disposable rehearsal verified before token approval; the public command
+  received the exact token plus Deck-link and Note Type ownership approvals.
+- Retained Front/Back Templates and CSS, managed YAML Fields/tags, new Notes, and
+  Template-generated managed Cards persisted after independent reopening.
+- Existing identities, history, scheduling, and Deck placement were preserved;
+  new managed Cards used the approved existing Deck. Referenced media was unchanged.
+- Fresh rehearsal/approval followed by a second application proved a no-op.
+- Isolated fixture disposed on exit; no recovery backup, media archive, automatic
+  restore, or target replacement was created. Historical `before-import-*` files
+  elsewhere in older exploration sandboxes are unrelated to this workflow.
+
+`test_update_collection.py` additionally executes the existing application behavior
+suite through the guarded public command and covers Collection selection, manifest
+and schema version rejection, Desktop reopening, updater/native locks, stale source/
+media/history approval, source changes during rehearsal, committed WAL inclusion,
+source immutability, partial failure/interruption and fresh-approved retry.
+Desktop UI rendering and personal/live Collection smoke testing are not gates here.
+
 ## Sources
 
 - [Official command-line/headless use](https://github.com/ankitects/anki/blob/26.09.4/docs-site/addons/command-line-use.mdx)
