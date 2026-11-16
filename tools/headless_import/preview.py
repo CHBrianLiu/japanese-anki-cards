@@ -14,11 +14,15 @@ from create_sandbox import prerequisites
 from import_yaml import load_source, sandbox_access
 
 
-def load_selection(tool, names):
+def selection_names(names):
     names = sorted(set(names))
     if any(not name or Path(name).name != name or name in (".", "..") for name in names):
         raise ValueError("Note Type must be a directory name")
-    return [load_source(tool.parents[1] / "note-types" / name) for name in names]
+    return names
+
+
+def load_selection(tool, names, captured=None):
+    return [load_source(tool.parents[1] / "note-types" / name, captured) for name in selection_names(names)]
 
 
 def validate_media(collection, sources):

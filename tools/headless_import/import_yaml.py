@@ -75,13 +75,19 @@ def media_references(text, styles=False):
     return names
 
 
-def load_source(note_type_dir):
+def load_source(note_type_dir, captured=None):
+    def read_text(path):
+        if captured is None:
+            return path.read_text(encoding="utf-8")
+        # Match read_text's universal-newline decoding, using approved bytes only.
+        return captured[path].decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+
     note_type = note_type_dir.name
     config = yaml.load(
-        (note_type_dir / "entries/entries-config.yaml").read_text(encoding="utf-8"),
+        read_text(note_type_dir / "entries/entries-config.yaml"),
         Loader=StrictLoader,
     )
-    schema = (note_type_dir / "note-type.md").read_text(encoding="utf-8")
+    schema = read_text(note_type_dir / "note-type.md")
     field_names = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+)`", schema, re.MULTILINE)
     if config["notetype"] != note_type or not field_names or "Tags" in field_names:
         raise ValueError("Schema must declare ordinary Fields separately from native Tags.")
@@ -99,8 +105,8 @@ def load_source(note_type_dir):
         directory = note_type_dir / "card-types" / name
         template = {
             "name": name,
-            "qfmt": (directory / "front.html").read_text(encoding="utf-8"),
-            "afmt": (directory / "back.html").read_text(encoding="utf-8"),
+            "qfmt": read_text(directory / "front.html"),
+            "afmt": read_text(directory / "back.html"),
         }
         for text in (template["qfmt"], template["afmt"]):
             references = re.findall(r"{{\s*[#^/]?\s*([^{}]+?)\s*}}", text)
@@ -113,14 +119,15 @@ def load_source(note_type_dir):
                 raise ValueError(f"{name}: Dynamic Template media references are unsupported")
             media.update(references)
         templates.append(template)
-    css = (note_type_dir / "style.css").read_text(encoding="utf-8")
+    css = read_text(note_type_dir / "style.css")
     media.update(media_references(css, styles=True))
     entries, seen = [], set()
-    paths = sorted((note_type_dir / "entries").glob("*.yaml"))
+    paths = sorted((note_type_dir / "entries").glob("*.yaml")) if captured is None else sorted(
+        path for path in captured if path.parent == note_type_dir / "entries" and path.suffix == ".yaml")
     for path in paths:
         if path.name == "entries-config.yaml":
             continue
-        raw = path.read_text(encoding="utf-8")
+        raw = read_text(path)
         data = yaml.load(raw, Loader=StrictLoader)
         if not isinstance(data, dict) or data.get("notetype") != note_type:
             raise ValueError(f"{path.name}: incorrect Note Type")

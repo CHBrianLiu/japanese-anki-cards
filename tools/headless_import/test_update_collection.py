@@ -252,6 +252,30 @@ class GuardedCommandTests(unittest.TestCase):
         self.assertIn("media reference", result.stderr)
         self.assertEqual(self.state(), before)
 
+    def test_template_hash_and_parse_use_the_same_captured_bytes(self):
+        template = self.source / "card-types/Primary/back.html"
+        template.write_text("APPROVED {{Text}}")
+        token = json.loads(self.command().stdout)["approval"]
+        injection = self.root / "injection"
+        injection.mkdir()
+        (injection / "sitecustomize.py").write_text(
+            'import os\nfrom pathlib import Path\n'
+            'original = Path.read_bytes\nreads = 0\n'
+            'def read(self):\n'
+            '    global reads\n'
+            '    result = original(self)\n'
+            '    if self.resolve() == Path(os.environ["CHANGE_TEMPLATE"]).resolve():\n'
+            '        reads += 1\n'
+            '        if reads == 4:\n'
+            '            self.write_text("UNAPPROVED {{Text}}")\n'
+            '    return result\n'
+            'Path.read_bytes = read\n')
+        result = self.command("--approve", token, "--approve-deck-links", "--approve-note-types", env={
+            **os.environ, "PYTHONPATH": str(injection), "CHANGE_TEMPLATE": str(template),
+        })
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.state()["model"]["tmpls"][0]["afmt"], "APPROVED {{Text}}")
+
 
 class GuardedIntegratedTests(test_apply_yaml.ApplyCommandTests):
     command = GuardedCommandTests.command

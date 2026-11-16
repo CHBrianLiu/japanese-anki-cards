@@ -171,8 +171,8 @@ Executed the [documented sandbox-only smoke procedure](README.md#executable-sand
 HEADLESS_SMOKE_REPORT=1 PYTHONPATH=tools/headless_import tools/headless_import/.venv/bin/python -m unittest test_update_collection.GuardedCommandTests.test_complete_workflow_smoke -v
 ```
 
-- Explicit target: isolated `sandbox-zccp9tu1`, matching tool-created manifest,
-  `Preview Sandbox::Target` approved ID `1794815380103`.
+- Final smoke target: isolated `sandbox-p1idp7oh`, matching tool-created manifest,
+  `Preview Sandbox::Target` approved ID `1794816156145`.
 - Desktop closed; package 26.09.4 matched Desktop 26.9.4; Collection schema 18.
 - Full disposable rehearsal verified before token approval; the public command
   received the exact token plus Deck-link and Note Type ownership approvals.
@@ -192,6 +192,8 @@ media/history approval, source changes during rehearsal, committed WAL inclusion
 source immutability, partial failure/interruption and fresh-approved retry.
 Review regression tests additionally reject scheduling changes at native lock
 acquisition and missing media referenced by inline CSS in YAML Fields.
+Source hash/parse interleaving also has a public-command regression: parsing uses
+the exact captured approved bytes rather than rereading a concurrently edited Template.
 Desktop UI rendering and personal/live Collection smoke testing are not gates here.
 
 ## Sources

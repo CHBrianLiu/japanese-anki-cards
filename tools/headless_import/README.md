@@ -117,6 +117,8 @@ validated and bound to approval. A changed target,
 input, or interrupted partial application requires a fresh preview and token.
 Tokens are not security credentials or saved recovery artifacts. Identical no-op
 inputs may reuse the same token if the entire target state is still unchanged.
+Source hashing and parsing use the same captured bytes, so a concurrent source
+edit cannot substitute unapproved HTML/CSS or YAML between those two operations.
 
 This command checks the pinned 26.9.4 environment, matching sandbox manifest,
 and Collection schema version 18 **before** Anki opens the disposable copy, so

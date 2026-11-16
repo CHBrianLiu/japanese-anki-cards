@@ -15,7 +15,7 @@ from packaging.version import Version
 from apply_yaml import prepare, verify
 from create_sandbox import prerequisites
 from import_yaml import require_desktop_closed, sandbox_access
-from preview import copy_database, load_selection, resolve_decks, validate_media
+from preview import copy_database, load_selection, resolve_decks, selection_names, validate_media
 
 
 def database_state(path):
@@ -39,16 +39,19 @@ def database_state(path):
 
 def input_state(tool, names, collection, versions):
     digest = hashlib.sha256()
-    for name in sorted(set(names)):
+    captured = {}
+    names = selection_names(names)
+    for name in names:
         source = tool.parents[1] / "note-types" / name
         files = [source / "note-type.md", source / "style.css"]
         files += sorted((source / "entries").glob("*.yaml"))
         files += sorted((source / "card-types").glob("*/front.html"))
         files += sorted((source / "card-types").glob("*/back.html"))
         for path in files:
+            captured[path] = path.read_bytes()
             digest.update(str(path.relative_to(tool.parents[1])).encode())
-            digest.update(hashlib.sha256(path.read_bytes()).digest())
-    sources = load_selection(tool, names)
+            digest.update(hashlib.sha256(captured[path]).digest())
+    sources = load_selection(tool, names, captured)
     media_dir = validate_media(collection, sources)
     for name in sorted({name for source in sources for name in source["media"]}):
         digest.update(name.encode())
