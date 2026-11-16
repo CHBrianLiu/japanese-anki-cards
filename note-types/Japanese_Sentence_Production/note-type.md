@@ -8,7 +8,8 @@ valid translations are welcome; there is no automatic grading or exact-match che
 
 ## Target Deck
 
-`Japanese::Sentence Production`
+`Japanese::Sentence Production` is intended context. Each entry YAML file's
+`deck` declaration is authoritative for new Card placement.
 
 Source-specific subdecks:
 

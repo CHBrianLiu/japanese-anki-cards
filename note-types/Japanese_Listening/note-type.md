@@ -13,7 +13,8 @@ transcript and choose utterances that make sense without unseen context.
 
 ## Target Deck
 
-`Japanese::Listening`
+`Japanese::Listening` is intended context. Each entry YAML file's `deck`
+declaration is authoritative for new Card placement.
 
 ## ID Strategy
 

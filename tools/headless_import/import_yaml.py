@@ -72,9 +72,10 @@ def load_source(note_type_dir):
     field_names = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+)`", schema, re.MULTILINE)
     if config["notetype"] != note_type or not field_names or "Tags" in field_names:
         raise ValueError("Schema must declare ordinary Fields separately from native Tags.")
-    if [field["name"] for field in config["fields"]] != field_names + ["Tags"]:
-        raise ValueError("Legacy config column order does not match schema plus native Tags.")
-    required = {field["name"] for field in config["fields"] if field["required"]}
+    columns = [field["name"] for field in config["fields"]]
+    if not columns or columns[0] != field_names[0] or columns.count("Tags") > 1 or [name for name in columns if name != "Tags"] != field_names:
+        raise ValueError("Legacy config ordinary Field order does not match schema.")
+    required = {field["name"] for field in config["fields"] if field["required"] and field["name"] != "Tags"}
     card_section = schema.split("## Card Types\n", 1)[1].split("\n## ", 1)[0]
     card_types = re.findall(r"^\d+\.\s+\*\*([A-Za-z0-9_]+)", card_section, re.MULTILINE)
     actual_card_types = {path.name for path in (note_type_dir / "card-types").iterdir() if path.is_dir()}

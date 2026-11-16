@@ -1,8 +1,8 @@
 # Headless import exploration
 
-Sandbox preparation and direct YAML API import exploration. This is **not**
-ticket 03's preview or a production updater. Commands cannot target a normal
-user Collection; import accepts only a tool-created sandbox folder name.
+Sandbox preparation, non-mutating YAML preview, and direct YAML API import
+exploration. Commands cannot target a normal user Collection; preview and import
+accept only a tool-created sandbox folder name. Preview does not apply changes.
 
 See [ticket 03 exploration findings](exploration.md) for executed evidence,
 repository discrepancies, and the recommended next implementation steps.
@@ -49,6 +49,43 @@ persistence. It never reads/generates CSV, imports repository Notes, copies the
 user's Collection, or syncs. Fresh Deck creation here is fixture setup only;
 ticket 03 preview must reject missing target Decks instead of creating them.
 
+## Preview YAML against existing sandbox Decks
+
+Quit Anki Desktop completely. Select a tool-created sandbox and one or more
+repository Note Types. First propose exact-name matches; the output is not approval:
+
+```bash
+tools/headless_import/.venv/bin/python tools/headless_import/preview.py --sandbox sandbox-2gs8b2z0 --note-type Japanese_Mined_Vocab --propose-decks
+```
+
+Create a JSON file of explicitly approved links for **every** requested `deck`.
+Use the selected sandbox's absolute `collection.anki2` path from its manifest;
+copy each target ID and exact hierarchical name from the proposals or another
+verified existing normal Deck. For example (IDs below are illustrative):
+
+```json
+{
+  "collection": "/absolute/path/to/sandbox-2gs8b2z0/collection.anki2",
+  "links": [
+    {"requested": "Japanese::Vocabulary", "name": "Japanese::Vocabulary", "id": 123456, "approved": true}
+  ]
+}
+```
+
+Run the preview with `--deck-links /path/to/links.json` in place of
+`--propose-decks`. Repeat `--note-type` for more Note Types. Approved targets can
+have different names from the requested names; each ID and name must match the
+selected Collection. Missing, ambiguous, filtered, or unapproved links fail.
+
+The JSON report lists add/update/unchanged Notes, Field changes and tag additions
+and removals. New managed Cards include their requested and resolved Deck; existing
+Card placement is ignored. The command uses a temporary SQLite backup API copy,
+including committed WAL contents, opens Anki only on the copy, validates media
+in the sandbox, and removes the copy on exit. It neither writes CSV nor applies
+changes, creates Decks, uploads media, or retains backups. Creating fixture Decks
+and media is a separate sandbox setup step. The selected Collection is independent
+of YAML's `deck`; Desktop Profiles are not inspected.
+
 ## Import Japanese_Mined_Vocab directly from YAML
 
 Quit Anki Desktop completely, then run from the repository root:
@@ -87,8 +124,8 @@ Existing Note Type structural or Template/CSS differences are rejected, not migr
 Native moves may affect learning steps/FSRS state; do not use this sandbox experiment
 as a production scheduler-preservation guarantee.
 
-This user-approved exploration deliberately **creates** Decks, unlike ticket 03's
-linked-existing-Deck preview. It does not implement preview, Deck approvals, stale
+This user-approved exploration deliberately **creates** Decks, unlike the
+linked-existing-Deck preview above. It does not implement Deck approvals, stale
 approval detection, or production recovery guards. Repository-wide CSV retirement
 remains a later workflow transition; no entry YAML or CSV artifact is changed here.
 
@@ -119,5 +156,4 @@ that other Note Types' Notes/Cards and existing review history remain unchanged.
 tools/headless_import/.venv/bin/python -m unittest discover -s tools/headless_import -p 'test_*.py' -v
 ```
 
-Tests use temporary synthetic Collections, never a user Collection. This setup
-does not prove ticket 03's preview/copy safety or cover its rejection cases.
+Tests use temporary synthetic Collections, never a user Collection.

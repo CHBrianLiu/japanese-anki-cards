@@ -24,7 +24,7 @@ The repository follows a nested structure where Card Types and Note Entries belo
     note-type.md             ← Schema and ID strategy definition
     style.css                ← Shared styling for all Card Types of this Note Type
     /entries/
-      entries-config.yaml    ← Canonical field list for this Note Type's entry files
+      entries-config.yaml    ← Ordered ordinary Fields and legacy CSV columns
       {deck-name}.yaml       ← Human-edited Note entry source file
       {deck-name}.csv        ← Generated Anki import file (do not hand-edit)
     /card-types/
@@ -59,7 +59,7 @@ Entries are authored as UTF-8 YAML files and converted into generated CSV files 
   - Use only lowercase ASCII letters, digits, underscores, hyphens, and periods in media filenames. Do not use spaces or additional punctuation.
   - Examples: `spanish_survival_phrase__001_0001__audio.mp3`, `spanish_survival_phrase__001_0001__image_01.jpg`, `japanese_mined_vocab__003_0007__audio.mp3`.
 - **Media Stability Rule:** Media filenames are part of the repository's stable references. Do not rename or replace a media file in a way that changes its meaning without also updating every Field that references it.
-- **Per-Directory Config:** Every `entries/` directory must contain an `entries-config.yaml` that defines the canonical field list, field order, required fields, and the Note Type name for all entry YAML files in that directory.
+- **Per-Directory Config:** Every `entries/` directory must contain an `entries-config.yaml` that defines the ordered ordinary Fields, required values, Note Type name, and legacy CSV column layout for its entry YAML files. `Tags` is native Note metadata, not an ordinary Field; its config entry preserves the legacy CSV column.
 - **Conversion Workflow:** Whenever an entry YAML file changes, regenerate its CSV with `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py` or append `--file path/to/file.yaml`.
 - **Python Environment Workflow:** Before running a tool, use its own existing virtual environment if available; otherwise look for one in the project root or `tools/` and use it. If none exists, ask the user to prepare an environment instead of installing packages system-wide. Tool-specific setup is documented in its README.
 - **File Headers:** Every generated CSV must include Anki file headers mapping to the Note Type's ID strategy:
@@ -71,21 +71,21 @@ Entries are authored as UTF-8 YAML files and converted into generated CSV files 
   #tags column:5
   ```
 - **Field Order:** The field order in `entries-config.yaml` determines the generated CSV column order. The first field is always the stable ID field used for idempotent imports and must never be empty.
-- **Tags Field:** If `entries-config.yaml` includes a `Tags` Field, its 1-based position determines the generated `#tags column:<N>` header.
+- **Tags metadata:** If `entries-config.yaml` includes a `Tags` column, its 1-based position determines the generated `#tags column:<N>` header. Entry `Tags` replaces the complete native tag set; absent, null, or empty values mean no tags.
 - **Repeatable Imports:** Import the generated CSV via Anki's **File -> Import** using **Update existing notes where first field matches**. You must structure the YAML and generated CSV to respect the ID Strategy defined in `note-type.md`.
 - **YAML ID Quoting:** The first Field in each entry must be a quoted YAML string such as `VocabID: "001_0001"`. Unquoted IDs like `001_0001` may be parsed as numbers and are invalid.
 - **Deletion Workflow (Tagging Workaround):** 
   - Anki's text import does not delete Notes when rows are removed from a generated CSV.
   - To delete a Note, do not remove the YAML entry immediately.
-  - Instead, add a deletion tag such as `REPO_DELETE` to the entry's `Tags` Field in YAML.
+  - Instead, add a deletion tag such as `REPO_DELETE` to the entry's `Tags` metadata in YAML.
   - Regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, and manually delete the matching Notes in Anki.
   - Only after that cleanup is complete may the YAML entry be removed from the repository, followed by regenerating the CSV again.
 
 ## 6. Active Validation & Linting
 To minimize errors, you must actively validate the consistency of the repository whenever creating or modifying files:
 1. **Card Type Field Validation:** Ensure every Field referenced in a Card Type's `front.html` or `back.html` (e.g., `{{Concept}}`) is explicitly declared in the parent `note-type.md`.
-2. **Entry Config Validation:** Ensure every Field used in an entry YAML file is declared in the sibling `entries-config.yaml`, and that the `entries-config.yaml` field order matches the parent `note-type.md` schema.
-3. **Generated CSV Alignment:** Verify that the number of columns and their order in generated `.csv` files exactly match the Field list defined in `entries-config.yaml`.
+2. **Entry Config Validation:** Ensure every ordinary Field used in an entry YAML file is declared in the sibling `entries-config.yaml`, and its ordinary Field order matches the parent `note-type.md` schema. Native `Tags` metadata need not appear in the config except to map its legacy CSV column.
+3. **Generated CSV Alignment:** Verify that the number of columns and their order in generated `.csv` files exactly match the legacy column list defined in `entries-config.yaml`.
 4. **ID Strategy Compliance:** If the `note-type.md` mandates a first-field custom ID, ensure the first configured Field is never empty and contains stable identifiers in every YAML entry. The ID value must remain a quoted string in YAML. If it mandates a GUID, ensure the generated CSV includes the required `#guid column` header.
 5. **Entry File Validation:** Ensure each entry YAML file declares the correct `notetype`, includes a `deck`, includes at least one entry under `entries`, and satisfies all `required: true` Field constraints from `entries-config.yaml`.
 6. **Workflow Compliance:** After modifying any entry YAML file, regenerate the corresponding CSV. Do not manually edit generated CSV files unless the user explicitly asks for repository repair work on the generated artifact itself.

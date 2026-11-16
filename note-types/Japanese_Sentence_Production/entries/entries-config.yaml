@@ -1,6 +1,7 @@
 notetype: Japanese_Sentence_Production
 
-# Canonical import column order. Tags maps to Anki's native tags.
+# Ordered ordinary Fields and legacy CSV columns. Tags is native Note metadata,
+# not an ordinary Field; its column is retained for the CSV import workflow.
 fields:
   - name: SentenceID
     required: true

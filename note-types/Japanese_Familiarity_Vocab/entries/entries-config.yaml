@@ -1,6 +1,7 @@
 notetype: Japanese_Familiarity_Vocab
 
-# Canonical field definitions for all entry YAML files in this directory.
+# Ordered ordinary Fields and legacy CSV columns. Tags is native Note metadata,
+# not an ordinary Field; its column is retained for the CSV import workflow.
 # - Order here determines CSV column order.
 # - The first field is always the ID field used for idempotent imports;
 #   it must never be empty in any entry.

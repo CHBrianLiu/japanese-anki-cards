@@ -60,9 +60,9 @@ entries/
 ## entries-config.yaml
 
 Every `entries/` directory **must** contain an `entries-config.yaml` that
-defines the canonical field list for its Note Type. The tool reads this file
-to determine column order, which fields are required, and where the `Tags`
-column is located.
+defines the ordered ordinary Fields and legacy CSV columns for its Note Type.
+The tool reads it to determine column order, required values, and the position of
+the native `Tags` metadata column.
 
 **Schema:**
 
@@ -103,9 +103,9 @@ fields:
     required: false
 ```
 
-The `Tags` field is special: its 1-based column position is automatically
-used to emit the `#tags column:<N>` Anki directive. If your Note Type has
-no `Tags` field, the directive is omitted.
+`Tags` is native Note metadata, not an ordinary Field. Its 1-based column
+position is used to emit the `#tags column:<N>` directive. If the config has
+no `Tags` column, the directive is omitted.
 
 ---
 
