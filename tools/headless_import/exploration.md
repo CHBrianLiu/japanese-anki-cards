@@ -190,6 +190,8 @@ suite through the guarded public command and covers Collection selection, manife
 and schema version rejection, Desktop reopening, updater/native locks, stale source/
 media/history approval, source changes during rehearsal, committed WAL inclusion,
 source immutability, partial failure/interruption and fresh-approved retry.
+Review regression tests additionally reject scheduling changes at native lock
+acquisition and missing media referenced by inline CSS in YAML Fields.
 Desktop UI rendering and personal/live Collection smoke testing are not gates here.
 
 ## Sources

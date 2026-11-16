@@ -65,6 +65,18 @@ def approval_token(inputs, database, decks):
     ).encode()).hexdigest()
 
 
+def native_database_state(col):
+    """Full database evidence read while Anki owns the native Collection lock."""
+    schema = col.db.all("select type, name, tbl_name, sql from sqlite_master order by type, name")
+    evidence = [schema]
+    for kind, name, _table, _sql in schema:
+        if kind == "table":
+            quoted = '"' + name.replace('"', '""') + '"'
+            evidence.append([name, sorted(col.db.all(f"select * from {quoted}"), key=repr)])
+    return hashlib.sha256(json.dumps(evidence, default=lambda value: value.hex(),
+                                     ensure_ascii=False).encode()).hexdigest()
+
+
 def update(tool, args, report):
     versions = prerequisites(args.anki_app)
     if Version(versions["package_version"]) != Version("26.9.4"):
@@ -87,6 +99,7 @@ def update(tool, args, report):
                 shutil.copyfile(collection.parent / "collection.media" / name, media / name)
             col = Collection(str(copy))
             try:
+                native_state = native_database_state(col)
                 decks = resolve_decks(col, requested)
                 links = [{"id": deck["id"], "name": deck["resolved"]} for deck in decks.values()]
                 token = approval_token(inputs, state, links)
@@ -122,6 +135,11 @@ def update(tool, args, report):
             raise ValueError("Inputs or Collection changed before application; fresh preview required")
         col = Collection(str(collection))  # Native lock failures are never bypassed.
         try:
+            if native_database_state(col) != native_state:
+                raise ValueError("Collection changed at native lock acquisition; fresh preview required")
+            fresh_inputs, fresh_sources = input_state(tool, args.note_type, collection, versions)
+            if inputs != fresh_inputs:
+                raise ValueError("Inputs changed at native lock acquisition; fresh preview required")
             actual_decks = resolve_decks(col, requested)
             if actual_decks != decks:
                 raise ValueError("Deck links changed; fresh preview required")

@@ -219,6 +219,39 @@ class GuardedCommandTests(unittest.TestCase):
                               "reopened_and_verified": True, "second_run": "no-op",
                               "temporary_fixture_disposed_on_exit": True}, indent=2))
 
+    def test_scheduling_change_at_native_open_rejects_stale_approval(self):
+        token = json.loads(self.command().stdout)["approval"]
+        injection = self.root / "injection"
+        injection.mkdir()
+        (injection / "sitecustomize.py").write_text(
+            'import os, sqlite3\nfrom anki.collection import Collection\n'
+            'original = Collection.__init__\n'
+            'def initialize(self, path, *args, **kwargs):\n'
+            '    if os.path.realpath(path) == os.path.realpath(os.environ["CHANGE_TARGET"]):\n'
+            '        db = sqlite3.connect(path)\n'
+            '        db.execute("update cards set due = due + 100 where nid = ?", '
+            '(int(os.environ["CHANGE_NOTE"]),))\n'
+            '        db.commit()\n        db.close()\n'
+            '    return original(self, path, *args, **kwargs)\n'
+            'Collection.__init__ = initialize\n')
+        before = self.state()
+        result = self.command("--approve", token, "--approve-deck-links", env={
+            **os.environ, "PYTHONPATH": str(injection), "CHANGE_TARGET": str(self.collection),
+            "CHANGE_NOTE": str(self.sandbox["baseline"]["unrelated_note_id"]),
+        })
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("fresh preview", result.stderr)
+        self.assertEqual(self.state()["notes"], before["notes"])
+
+    def test_missing_inline_css_field_media_blocks_rehearsal(self):
+        self.entries.write_text(self.entries.read_text().replace(
+            'Text: "Changed"', 'Text: \'<div style="background:url(missing.png)">Changed</div>\''))
+        before = self.state()
+        result = self.command()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("media reference", result.stderr)
+        self.assertEqual(self.state(), before)
+
 
 class GuardedIntegratedTests(test_apply_yaml.ApplyCommandTests):
     command = GuardedCommandTests.command

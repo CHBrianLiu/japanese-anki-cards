@@ -158,7 +158,7 @@ def load_source(note_type_dir):
                 raise ValueError(f"{path.name}, {custom_id}: Tags must be a string or null")
             values = [normalize(row.get(name)) for name in field_names]
             for text in values:
-                media.update(media_references(text))
+                media.update(media_references(text, styles=True))
             entries.append({"id": custom_id, "fields": values, "tags": (tags or "").split(), "deck": deck})
     return {"name": note_type, "fields": field_names, "templates": templates, "css": css, "entries": entries, "media": media}
 

@@ -110,7 +110,10 @@ Decks. Repeat `--note-type` identically for multiple selections.
 Approval is bound to the complete Collection database state, selected raw source
 files (including comments), referenced target-media bytes, manifest, versions,
 and resolved Deck IDs. Apply rehearses again and rejects stale tokens; it also
-revalidates inputs and target immediately before application. A changed target,
+revalidates inputs and target immediately before application, then compares the
+complete database evidence and source inputs again under Anki's native lock before
+the first managed operation. Inline CSS media references in YAML Fields are also
+validated and bound to approval. A changed target,
 input, or interrupted partial application requires a fresh preview and token.
 Tokens are not security credentials or saved recovery artifacts. Identical no-op
 inputs may reuse the same token if the entire target state is still unchanged.
