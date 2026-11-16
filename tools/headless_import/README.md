@@ -107,7 +107,12 @@ application creates no pre-import backup, snapshot archive, or restore artifact.
 - Replaces the complete managed Note tag set, including clearing personal tags.
   `REPO_DELETE` is only a tag; absent Notes and retained empty Cards are not deleted.
 - Places **new Cards only**, including newly generated conditional Cards, in the
-  YAML Deck. Existing Cards retain their placement without mismatch reports or moves.
+  YAML Deck. IDs are captured before native Note/Template updates; the reusable
+  placement boundary handles only each managed Note's newly generated Cards.
+  Cards already in the target Deck receive no placement operation. Existing Cards
+  retain their placement without mismatch reports or moves, including learning,
+  relearning, review, and Card Types intentionally split across normal Decks.
+  Changing YAML `deck` affects future generated Cards only.
 - Rejects invalid sources, ambiguous identities, schema mismatches, missing media,
   filtered Cards/Decks, and conflicting Template Deck overrides before target writes.
   Does not edit Deck options, unrelated Note content, or media. Anki may generate
@@ -117,11 +122,17 @@ application creates no pre-import backup, snapshot archive, or restore artifact.
   media directory. Dynamic Template media references such as `<img src="{{Field}}">`
   are rejected because their assets cannot be validated for every affected Note.
 - Reopens the target to verify Fields/tags, retained identities, Card placement,
-  scheduling, and review-history rows. Reports new Card IDs and verified persistence
+  scheduling, and review-history rows. Reports new Card IDs, Card Type names, actual
+  Deck IDs/names (`new_cards`), and verified persistence
   on stdout; a second identical application reports only `unchanged` Notes.
 - On failure, releases the Collection/lock and reports completed native operations.
   Earlier writes may remain committed. Obtain a fresh preview and approval before
   retrying; no whole-run rollback or restoration is attempted.
+  A placement failure reports the newly generated managed Cards' actual Decks,
+  not just the intended destination. Failure reports also include `generated_cards`
+  for all committed managed deltas, including Notes not reached before failure
+  after shared Template generation. On retry those committed Cards are existing
+  Cards and will not be moved automatically, even if placement was interrupted.
 
 `--approve` is explicit run approval, not a Deck-links file or a persisted preview
 token. Durable approval/staleness guards remain ticket 07 work. This command is

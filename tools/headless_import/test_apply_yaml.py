@@ -176,6 +176,11 @@ class ApplyCommandTests(unittest.TestCase):
         item = json.loads(result.stdout)["notes"][0]
         self.assertEqual(item["tags_removed"], ["old_tag", "personal"])
         self.assertEqual(len(item["new_card_ids"]), 1)
+        self.assertEqual(item["new_cards"], [{
+            "id": item["new_card_ids"][0], "card_type": "Conditional",
+            "deck": {"id": self.sandbox["deck_candidates"][1]["id"],
+                     "name": "Preview Sandbox::Target"},
+        }])
         after = self.state()
         self.assertEqual(after["notes"]["001_0001"]["fields"][2], "first line<br>second line")
         self.assertEqual(after["notes"]["001_0001"]["tags"], [])
@@ -210,6 +215,79 @@ class ApplyCommandTests(unittest.TestCase):
                 self.assertEqual(self.collection.read_bytes(), before)
         self.entries.write_text(original, encoding="utf-8")
         self.assertEqual(self.run_apply().returncode, 0)
+
+    def test_split_learning_relearning_and_review_cards_never_receive_moves(self):
+        col = Collection(str(self.collection))
+        try:
+            note = col.get_note(self.sandbox["baseline"]["note_id"])
+            note["Extra"] = "Existing conditional Card"
+            col.update_note(note)
+            cards = [col.get_card(cid) for cid in col.card_ids_of_note(note.id)]
+            cards[1].did = self.sandbox["deck_candidates"][1]["id"]
+            for card, kind, queue, due, interval in (
+                (cards[0], 1, 1, 1800000000, 0),
+                (cards[1], 3, 1, 1800000300, 21),
+                (col.get_card(col.card_ids_of_note(self.sandbox["baseline"]["unrelated_note_id"])[0]), 2, 2, 75, 21),
+            ):
+                card.type, card.queue, card.due, card.ivl = kind, queue, due, interval
+                card.left = 1001 if queue == 1 else 0
+                col.update_card(card)
+        finally:
+            col.close()
+        before = self.state()
+        # At the native boundary, fail if any existing Card is passed to set_deck,
+        # or if a correctly placed newly added Card receives a redundant move.
+        injection = self.root / "injection"
+        injection.mkdir()
+        (injection / "sitecustomize.py").write_text(
+            'from anki.collection import Collection\n'
+            'def forbidden(*args, **kwargs):\n'
+            '    raise RuntimeError("unexpected native placement operation")\n'
+            'Collection.set_deck = forbidden\n', encoding="utf-8")
+        result = self.run_apply(env={**os.environ, "PYTHONPATH": str(injection)})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertNotIn("mismatch", result.stdout.lower())
+        after = self.state()
+        for row in before["cards"]:
+            self.assertIn(row, after["cards"])
+        self.assertEqual(after["history"], before["history"])
+        self.assertEqual(after["decks"], before["decks"])
+        self.assertEqual(self.run_apply().returncode, 0)
+        self.assertEqual(self.state(), after)
+
+    def test_yaml_deck_change_affects_future_cards_only(self):
+        col = Collection(str(self.collection))
+        try:
+            third = col.decks.add_normal_deck_with_name("Preview Sandbox::Future").id
+        finally:
+            col.close()
+        self.entries.write_text(
+            'notetype: Headless_Preview_Fixture\ndeck: Preview Sandbox::Target\nentries:\n'
+            '  - CustomID: "001_0001"\n    Text: "Changed"\n', encoding="utf-8")
+        self.assertEqual(self.run_apply().returncode, 0)
+        before = self.state()
+        self.entries.write_text(self.entries.read_text(encoding="utf-8").replace(
+            "Preview Sandbox::Target", "Preview Sandbox::Future"), encoding="utf-8")
+        preview = test_preview.PreviewCommandTests.run_preview(self)
+        self.assertEqual(preview.returncode, 0, preview.stderr)
+        self.assertEqual(json.loads(preview.stdout)["notes"][0]["action"], "unchanged")
+        self.assertNotIn("deck", json.loads(preview.stdout)["notes"][0])
+        self.assertEqual(self.run_apply().returncode, 0)
+        self.assertEqual(self.state(), before)
+        self.entries.write_text(self.entries.read_text(encoding="utf-8") + '    Extra: "Generate"\n', encoding="utf-8")
+        result = self.run_apply()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        item = json.loads(result.stdout)["notes"][0]
+        self.assertEqual(item["new_cards"][0]["deck"], {"id": third, "name": "Preview Sandbox::Future"})
+        after = self.state()
+        for row in before["cards"]:
+            self.assertIn(row, after["cards"])
+        self.assertEqual(after["history"], before["history"])
+        self.assertEqual(after["decks"], before["decks"])
+        again = self.run_apply()
+        self.assertEqual(again.returncode, 0, again.stderr)
+        self.assertNotIn("new_cards", json.loads(again.stdout)["notes"][0])
+        self.assertEqual(self.state(), after)
 
     def test_incompatible_and_ambiguous_note_types_fail_before_writes(self):
         col = Collection(str(self.collection))
@@ -365,6 +443,81 @@ class ApplyCommandTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual([note["action"] for note in json.loads(result.stdout)["notes"]], ["unchanged", "add"])
 
+    def test_placement_failure_reports_actual_new_cards_and_keeps_committed_templates(self):
+        col = Collection(str(self.collection))
+        try:
+            second = col.new_note(col.models.by_name("Headless_Preview_Fixture"))
+            second["CustomID"], second["Text"] = "001_0002", "Second managed Note"
+            col.add_note(second, self.sandbox["deck_candidates"][0]["id"])
+        finally:
+            col.close()
+        self.entries.write_text(
+            'notetype: Headless_Preview_Fixture\ndeck: Preview Sandbox::Target\nentries:\n'
+            '  - CustomID: "001_0001"\n    Text: "Existing <b>synthetic</b> content"\n'
+            '    Tags: "personal old_tag"\n'
+            '  - CustomID: "001_0002"\n    Text: "Second managed Note"\n', encoding="utf-8")
+        (self.source / "card-types/Conditional/front.html").write_text("{{CustomID}}", encoding="utf-8")
+        before = self.state()
+        preview = test_preview.PreviewCommandTests.run_preview(self)
+        self.assertEqual(preview.returncode, 0, preview.stderr)
+        injection = self.root / "injection"
+        injection.mkdir()
+        (injection / "sitecustomize.py").write_text(
+            'import os\nfrom anki.collection import Collection\n'
+            'original = Collection.set_deck\n'
+            'def fail(self, cards, deck):\n'
+            '    if os.path.realpath(self.path) == os.path.realpath(os.environ["FAIL_COLLECTION"]):\n'
+            '        raise RuntimeError("injected placement failure")\n'
+            '    return original(self, cards, deck)\n'
+            'Collection.set_deck = fail\n', encoding="utf-8")
+        disposable = self.root / "disposable"
+        disposable.mkdir()
+        result = self.run_apply(approve_note_types=True, env={
+            **os.environ, "PYTHONPATH": str(injection), "FAIL_COLLECTION": str(self.collection),
+            "TMPDIR": str(disposable),
+        })
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("injected placement failure", result.stderr)
+        self.assertIn("fresh preview and approval", result.stderr)
+        progress = json.loads(result.stderr.split("committed progress: ", 1)[1].split(
+            ". Obtain a fresh preview", 1)[0])
+        self.assertFalse(progress["persistence_verified"])
+        item = progress["notes"][0]
+        self.assertEqual(len(progress["generated_cards"]), 2)
+        self.assertEqual([entry["id"] for entry in progress["generated_cards"]], ["001_0001", "001_0002"])
+        second_progress = progress["generated_cards"][1]
+        self.assertEqual(second_progress["note_id"], second.id)
+        self.assertEqual(second_progress["new_cards"][0]["card_type"], "Conditional")
+        self.assertEqual(second_progress["new_cards"][0]["deck"], {
+            "id": self.sandbox["deck_candidates"][0]["id"], "name": "Preview Sandbox::Source"})
+        self.assertEqual(item["note_id"], self.sandbox["baseline"]["note_id"])
+        self.assertEqual(item["new_cards"], [{
+            "id": item["new_card_ids"][0], "card_type": "Conditional",
+            "deck": {"id": self.sandbox["deck_candidates"][0]["id"],
+                     "name": "Preview Sandbox::Source"},
+        }])
+        after = self.state()  # Also proves the failed command released the backend.
+        for row in before["cards"]:
+            self.assertIn(row, after["cards"])
+        self.assertEqual(after["history"], before["history"])
+        self.assertEqual(after["decks"], before["decks"])
+        self.assertEqual(after["notes"], before["notes"])
+        self.assertEqual(after["model"]["tmpls"][1]["qfmt"], "{{CustomID}}")
+        self.assertEqual(len(after["cards"]) - len(before["cards"]), 3)
+        self.assertIn(second_progress["new_cards"][0]["id"], [row[0] for row in after["cards"]])
+        unrelated = [row for row in after["cards"] if row[1] == self.sandbox["baseline"]["unrelated_note_id"]]
+        self.assertEqual({row[2] for row in unrelated}, {self.sandbox["deck_candidates"][1]["id"]})
+        self.assertEqual(list(disposable.iterdir()), [])
+        self.assertFalse(list(self.collection.parent.glob("before-*")))
+        # Fresh preview discloses the committed state; retry never moves the now
+        # existing Card, even though the interrupted run could not place it.
+        fresh = test_preview.PreviewCommandTests.run_preview(self)
+        self.assertEqual(fresh.returncode, 0, fresh.stderr)
+        self.assertNotIn("new_cards_deck", json.loads(fresh.stdout)["notes"][0])
+        retry = self.run_apply()
+        self.assertEqual(retry.returncode, 0, retry.stderr)
+        self.assertEqual(self.state(), after)
+
     def test_absent_notes_empty_conditional_cards_and_other_note_types_are_retained(self):
         col = Collection(str(self.collection))
         try:
@@ -434,6 +587,37 @@ class ApplyCommandTests(unittest.TestCase):
         self.assertEqual(media.read_bytes(), b"synthetic media")
         self.assertEqual(list(tempdir.iterdir()), [])
         self.assertFalse(list(self.collection.parent.glob("before-*")))
+
+    def test_native_generated_filtered_card_is_rejected_without_target_writes(self):
+        col = Collection(str(self.collection))
+        try:
+            filtered = col.decks.new_filtered("Fixture Filtered")
+        finally:
+            col.close()
+        self.entries.write_text(self.entries.read_text(encoding="utf-8").replace(
+            'Extra: ""', 'Extra: "Generate"'), encoding="utf-8")
+        injection = self.root / "injection"
+        injection.mkdir()
+        (injection / "sitecustomize.py").write_text(
+            'import os\nfrom anki.collection import Collection\n'
+            'original = Collection.update_note\n'
+            'def filtered(self, note, *args, **kwargs):\n'
+            '    before = set(self.card_ids_of_note(note.id))\n'
+            '    result = original(self, note, *args, **kwargs)\n'
+            '    for cid in set(self.card_ids_of_note(note.id)) - before:\n'
+            '        card = self.get_card(cid)\n'
+            '        card.odid = card.did\n'
+            '        card.did = int(os.environ["FILTERED_DECK"])\n'
+            '        self.update_card(card)\n'
+            '    return result\n'
+            'Collection.update_note = filtered\n', encoding="utf-8")
+        before = self.collection.read_bytes()
+        result = self.run_apply(env={**os.environ, "PYTHONPATH": str(injection),
+                                     "FILTERED_DECK": str(filtered)})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Filtered newly generated Card", result.stderr)
+        self.assertEqual(self.collection.read_bytes(), before)
+        self.assertEqual(self.run_apply().returncode, 0)
 
     def test_unicode_normalization_respects_collection_setting_and_converges(self):
         original = self.entries.read_text(encoding="utf-8")

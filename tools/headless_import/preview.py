@@ -165,7 +165,7 @@ def plan_notes(col, sources, resolved_decks, existing_only=False):
             old_cards = set(col.card_ids_of_note(nid)) if nid else set()
             for cid in old_cards:
                 card = col.get_card(cid)
-                deck = col.decks.get(card.did)
+                deck = col.decks.get(card.did, default=False)
                 if card.odid or not deck or deck["dyn"]:
                     raise ValueError(f"Filtered source Card: {source['name']}, {entry['id']}")
             changes = {name: {"before": old, "after": new}
@@ -182,11 +182,55 @@ def plan_notes(col, sources, resolved_decks, existing_only=False):
     return plan
 
 
+def card_placement_evidence(col, model, card_ids):
+    result = []
+    for cid in sorted(card_ids):
+        card = col.get_card(cid)
+        deck = col.decks.get(card.did, default=False)
+        result.append({"id": cid, "card_type": model["tmpls"][card.ord]["name"],
+                       "deck": {"id": card.did, "name": deck["name"] if deck else None}})
+    return result
+
+
+def place_new_managed_cards(col, operation, item, committed=False):
+    """Place only the delta from IDs captured before Note/Template updates.
+
+    The caller supplies one managed Note; shared Template effects on other Notes
+    are deliberately outside this boundary. Record actual placement even when a
+    native move fails, so committed-progress reports describe recoverable facts.
+    """
+    note, target = operation["note"], operation["target"]
+    model = operation["model"]
+    new_cards = sorted(set(col.card_ids_of_note(note.id)) - operation["old_cards"])
+    if not new_cards:
+        return
+
+    if committed:
+        item["new_card_ids"] = new_cards
+        item["new_cards"] = card_placement_evidence(col, model, new_cards)
+    for cid in new_cards:
+        card = col.get_card(cid)
+        deck = col.decks.get(card.did, default=False)
+        if card.odid or not deck or deck["dyn"]:
+            raise ValueError(f"Filtered newly generated Card: {item['note_type']}, {item['id']}")
+        template = model["tmpls"][card.ord]
+        if template.get("did") and template["did"] != target["id"]:
+            raise ValueError(f"Conflicting Template Deck override: {item['note_type']}, {item['id']}")
+    item["new_cards_deck"] = target
+    misplaced = [cid for cid in new_cards if col.get_card(cid).did != target["id"]]
+    try:
+        if misplaced:
+            col.set_deck(misplaced, target["id"])
+    finally:
+        if committed:
+            item["new_cards"] = card_placement_evidence(col, model, new_cards)
+
+
 def execute_plan(col, plan, report, committed=False):
     for operation in plan:
         item = dict(operation["item"])
         note, entry = operation["note"], operation["entry"]
-        target, model = operation["target"], operation["model"]
+        target = operation["target"]
         if item["action"] != "unchanged":
             note.fields = entry["fields"][:]
             note.tags = entry["tags"][:]
@@ -196,24 +240,11 @@ def execute_plan(col, plan, report, committed=False):
                 col.add_note(note, target["id"])
             # Record the committed Note operation before any placement can fail.
             report.append(item)
-            if committed:
-                item["note_id"] = note.id
         else:
             report.append(item)
-        new_cards = set(col.card_ids_of_note(note.id)) - operation["old_cards"]
-        for cid in new_cards:
-            template = model["tmpls"][col.get_card(cid).ord]
-            if template.get("did") and template["did"] != target["id"]:
-                raise ValueError(f"Conflicting Template Deck override: {item['note_type']}, {entry['id']}")
-        if new_cards:
-            item["new_cards_deck"] = target
-            misplaced = [cid for cid in new_cards if col.get_card(cid).did != target["id"]]
-            if misplaced:
-                col.set_deck(misplaced, target["id"])
-            if committed:
-                item["new_card_ids"] = sorted(new_cards)
         if committed:
             item["note_id"] = note.id
+        place_new_managed_cards(col, operation, item, committed)
 
 
 def selection_plan(col, sources, decks):
@@ -232,25 +263,40 @@ def selection_plan(col, sources, decks):
 
 
 def execute_selection(col, sources, decks, selection, report, committed=False):
-    types, _, managed, cards = selection
-    execute_note_types(col, sources, types, report["note_types"])
-    for item in report["note_types"]:
-        model = col.models.by_name(item["note_type"])
-        new_managed = new_unrelated = 0
-        for nid in col.models.nids(model["id"]):
-            new = set(col.card_ids_of_note(nid)) - cards.get(nid, set())
-            if nid in managed:
-                new_managed += len(new)
-            else:
-                new_unrelated += len(new)
-        item["managed_new_cards"] = new_managed
-        item["unrelated_new_cards"] = new_unrelated
-    plan = plan_notes(col, sources, decks, existing_only=True)
-    for operation in plan:
-        if operation["note"].id:
-            operation["old_cards"] = cards.get(operation["note"].id, set())
-    execute_plan(col, plan, report["notes"], committed)
-    return plan
+    types, plan, managed, cards = selection
+    try:
+        execute_note_types(col, sources, types, report["note_types"])
+        for item in report["note_types"]:
+            model = col.models.by_name(item["note_type"])
+            new_managed = new_unrelated = 0
+            for nid in col.models.nids(model["id"]):
+                new = set(col.card_ids_of_note(nid)) - cards.get(nid, set())
+                if nid in managed:
+                    new_managed += len(new)
+                else:
+                    new_unrelated += len(new)
+            item["managed_new_cards"] = new_managed
+            item["unrelated_new_cards"] = new_unrelated
+        plan = plan_notes(col, sources, decks, existing_only=True)
+        for operation in plan:
+            if operation["note"].id:
+                operation["old_cards"] = cards.get(operation["note"].id, set())
+        execute_plan(col, plan, report["notes"], committed)
+        return plan
+    except (Exception, KeyboardInterrupt):
+        if committed:
+            # Template generation precedes per-Note operations. Even Notes not
+            # reached before failure may already have committed managed Cards.
+            report["generated_cards"] = []
+            for operation in plan:
+                nid = operation["note"].id
+                new = set(col.card_ids_of_note(nid)) - operation["old_cards"] if nid else set()
+                if new:
+                    report["generated_cards"].append({
+                        "note_type": operation["item"]["note_type"], "id": operation["entry"]["id"],
+                        "note_id": nid, "new_cards": card_placement_evidence(col, operation["model"], new),
+                    })
+        raise
 
 
 def main():
