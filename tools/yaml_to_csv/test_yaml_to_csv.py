@@ -2,10 +2,13 @@
 test_yaml_to_csv.py — Regression tests for yaml_to_csv.py.
 
 Run from the repository root:
-    python tools/test_yaml_to_csv.py
+    tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/test_yaml_to_csv.py
 """
 
 import sys
+import shutil
+import subprocess
+import tempfile
 import textwrap
 import unittest
 from pathlib import Path
@@ -782,31 +785,41 @@ class TestFindEntryYamlFiles(unittest.TestCase):
 
 
 class TestRealRepositoryFiles(unittest.TestCase):
-    """Smoke test against the actual files in the repository."""
+    """Smoke test against copies of the repository's entry files."""
 
-    REPO_ROOT = Path(__file__).resolve().parent.parent
+    REPO_ROOT = Path(__file__).resolve().parents[2]
+
+    def setUp(self):
+        source = self.REPO_ROOT / "note-types" / "Japanese_Mined_Vocab" / "entries"
+        if not (source / "001_明日は遠足.yaml").exists():
+            self.skipTest("Real entry file not found; skipping.")
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.repo = Path(temp.name)
+        dest = self.repo / "note-types" / "Japanese_Mined_Vocab" / "entries"
+        dest.mkdir(parents=True)
+        for name in (m.CONFIG_FILENAME, "001_明日は遠足.yaml"):
+            shutil.copy2(source / name, dest / name)
 
     def test_japanese_mined_vocab_converts_without_error(self):
         yaml_path = (
-            self.REPO_ROOT
+            self.repo
             / "note-types"
             / "Japanese_Mined_Vocab"
             / "entries"
             / "001_明日は遠足.yaml"
         )
-        if not yaml_path.exists():
-            self.skipTest("Real entry file not found; skipping.")
         # Should not raise
         import io
         from contextlib import redirect_stdout
 
         buf = io.StringIO()
         with redirect_stdout(buf):
-            m.convert_file(yaml_path, self.REPO_ROOT)
+            m.convert_file(yaml_path, self.repo)
         self.assertIn("entries", buf.getvalue())
 
     def test_generated_csv_matches_expected_content(self):
-        repo = self.REPO_ROOT
+        repo = self.repo
         yaml_path = (
             repo
             / "note-types"
@@ -814,8 +827,6 @@ class TestRealRepositoryFiles(unittest.TestCase):
             / "entries"
             / "001_明日は遠足.yaml"
         )
-        if not yaml_path.exists():
-            self.skipTest("Real entry file not found; skipping.")
 
         import io
         from contextlib import redirect_stdout
@@ -848,6 +859,60 @@ class TestRealRepositoryFiles(unittest.TestCase):
         self.assertIn("001_0002", content)
         self.assertIn("起こす", content)
         self.assertIn("<b>起こしてくれなかった</b>", content)
+
+
+class TestCli(unittest.TestCase):
+    """Exercise the relocated script against a disposable repository."""
+
+    def setUp(self):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.repo = Path(temp.name)
+        script_dir = self.repo / "tools" / "yaml_to_csv"
+        script_dir.mkdir(parents=True)
+        self.script = script_dir / "yaml_to_csv.py"
+        shutil.copy2(Path(m.__file__), self.script)
+        entries = self.repo / "note-types" / "TestType" / "entries"
+        entries.mkdir(parents=True)
+        write_config(entries, DEFAULT_FIELDS)
+        self.entry = write_entry(
+            entries,
+            '''\
+            notetype: TestType
+            deck: TestDeck
+            entries:
+              - ID: "001"
+                Word: hello
+                Reading: hello
+                Meaning: hello
+            ''',
+        )
+
+    def run_cli(self, *args, cwd):
+        return subprocess.run(
+            [sys.executable, str(self.script), *args],
+            cwd=cwd,
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+
+    def assert_converted(self):
+        csv_path = self.entry.with_suffix(".csv")
+        self.assertIn("001,hello,hello,hello,,", csv_path.read_text(encoding="utf-8"))
+        link = self.repo / "entries" / "TestType__deck.csv"
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(link.resolve(), csv_path.resolve())
+
+    def test_discovery_uses_script_location_not_working_directory(self):
+        result = self.run_cli(cwd=self.repo / "tools")
+        self.assertIn("1 succeeded", result.stdout)
+        self.assert_converted()
+
+    def test_file_path_is_relative_to_working_directory(self):
+        relative = self.entry.relative_to(self.repo)
+        self.run_cli("--file", str(relative), cwd=self.repo)
+        self.assert_converted()
 
 
 if __name__ == "__main__":

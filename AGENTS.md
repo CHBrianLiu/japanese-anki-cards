@@ -60,8 +60,8 @@ Entries are authored as UTF-8 YAML files and converted into generated CSV files 
   - Examples: `spanish_survival_phrase__001_0001__audio.mp3`, `spanish_survival_phrase__001_0001__image_01.jpg`, `japanese_mined_vocab__003_0007__audio.mp3`.
 - **Media Stability Rule:** Media filenames are part of the repository's stable references. Do not rename or replace a media file in a way that changes its meaning without also updating every Field that references it.
 - **Per-Directory Config:** Every `entries/` directory must contain an `entries-config.yaml` that defines the canonical field list, field order, required fields, and the Note Type name for all entry YAML files in that directory.
-- **Conversion Workflow:** Whenever an entry YAML file changes, regenerate its CSV with `python tools/yaml_to_csv.py` or `python tools/yaml_to_csv.py --file path/to/file.yaml`.
-- **Python Environment Workflow:** Before running repository Python tooling, first look for an existing virtual environment in the project root or `tools/` directory and use it if present. If no virtual environment exists in either location, stop and ask the user to prepare the environment instead of attempting a system-wide package install.
+- **Conversion Workflow:** Whenever an entry YAML file changes, regenerate its CSV with `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py` or append `--file path/to/file.yaml`.
+- **Python Environment Workflow:** Before running a tool, use its own existing virtual environment if available; otherwise look for one in the project root or `tools/` and use it. If none exists, ask the user to prepare an environment instead of installing packages system-wide. Tool-specific setup is documented in its README.
 - **File Headers:** Every generated CSV must include Anki file headers mapping to the Note Type's ID strategy:
   ```text
   #notetype:YourNoteTypeName

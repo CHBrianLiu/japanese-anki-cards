@@ -53,7 +53,7 @@ would use `{{Tags}}` to display native tags; this Card Type does not display the
    and the shared Note Type stylesheet `style.css` for Styling.
 2. Author Notes in `entries/*.yaml`, using the Field order in `entries-config.yaml`.
 3. Regenerate the CSV after every entry edit:
-   `tools/.venv/bin/python tools/yaml_to_csv.py --file note-types/Japanese_Sentence_Production/entries/001_practice.yaml`.
+   `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Sentence_Production/entries/001_practice.yaml`.
 4. Import the generated CSV via **File -> Import**, updating Notes where the first
    Field matches. A convenient generated symlink is also available under root `entries/`.
 

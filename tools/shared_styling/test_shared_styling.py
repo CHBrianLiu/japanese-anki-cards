@@ -1,6 +1,6 @@
 """Render repository Templates with their Note Type stylesheet in headless Chrome.
 
-Run with .venv/bin/python -m unittest discover -s tools -p 'test_shared_styling.py'.
+Run with tools/shared_styling/.venv/bin/python tools/shared_styling/test_shared_styling.py.
 Set CHROME to a Chromium-compatible browser executable when it is not on PATH.
 """
 
@@ -15,7 +15,7 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 CHROME = os.environ.get("CHROME") or shutil.which("chromium") or shutil.which("google-chrome")
 if not CHROME and Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome").is_file():
     CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"

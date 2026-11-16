@@ -8,12 +8,12 @@ for that Note Type.
 
 Usage:
     # Convert all YAML entry files in the repository
-    python tools/yaml_to_csv.py
+    tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py
 
     # Convert a single file
-    python tools/yaml_to_csv.py --file note-types/Japanese_Mined_Vocab/entries/001_明日は遠足.yaml
+    tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Mined_Vocab/entries/001_明日は遠足.yaml
 
-See tools/README.md for full documentation.
+See tools/yaml_to_csv/README.md for full documentation.
 """
 
 import argparse
@@ -26,7 +26,7 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:
-    sys.exit("Error: PyYAML is not installed. Run: pip install pyyaml")
+    sys.exit("Error: PyYAML is not installed. See tools/yaml_to_csv/README.md for setup.")
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -344,7 +344,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parent.parent
+    repo_root = Path(__file__).resolve().parents[2]
 
     if args.file:
         target = Path(args.file)

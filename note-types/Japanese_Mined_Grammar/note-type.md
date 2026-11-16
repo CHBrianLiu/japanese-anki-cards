@@ -59,5 +59,5 @@ rules are scoped to its Template's `production` class, independent of order.
 - `Notes` is optional. Leave it empty if there is nothing worth calling out.
 - `Tags` is optional. Use it for Anki tags and repository workflow markers.
 - `GrammarID` values must be quoted strings in YAML, for example `GrammarID: "001_0001"`.
-- After editing an entry YAML file, regenerate the corresponding CSV with `python tools/yaml_to_csv.py --file note-types/Japanese_Mined_Grammar/entries/<file>.yaml` or regenerate all CSVs with `python tools/yaml_to_csv.py`.
+- After editing an entry YAML file, regenerate the corresponding CSV with `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Mined_Grammar/entries/<file>.yaml` or omit `--file` to regenerate all CSVs.
 - To delete a Note: add the tag `REPO_DELETE` to the Note's `Tags` Field in YAML, regenerate the CSV, import it into Anki, search for `tag:REPO_DELETE`, manually delete the matching Notes, then remove the YAML entry and regenerate the CSV again.

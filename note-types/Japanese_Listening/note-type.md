@@ -63,7 +63,7 @@ There is no English translation Field.
    Store the full `[sound:filename]` reference in `Audio`, with only the basename
    and no `media/` path. Do not build sound references from filenames in Templates.
 4. Regenerate the CSV after every entry edit:
-   `tools/.venv/bin/python tools/yaml_to_csv.py --file note-types/Japanese_Listening/entries/001_practice.yaml`.
+   `tools/yaml_to_csv/.venv/bin/python tools/yaml_to_csv/yaml_to_csv.py --file note-types/Japanese_Listening/entries/001_practice.yaml`.
    The generated CSV includes `#notetype:Japanese_Listening`, the entry file's
    `#deck`, `#separator:Comma`, `#html:true`, and `#tags column:7` headers, followed
    by the seven configured columns. Do not hand-edit the CSV.
