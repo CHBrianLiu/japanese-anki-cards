@@ -12,7 +12,7 @@ The author wants to update an existing Collection with Anki Desktop fully closed
 
 Provide a headless updater using Anki's official Python Collection interface. Authors edit repository content, preview validated changes against a consistent disposable Collection copy, and explicitly approve a guarded application to their selected existing Collection.
 
-The updater reconciles Notes by Note Type and exact stable first-Field ID, creates missing Note Types and Notes, updates retained Front/Back Templates and shared styling, replaces managed Notes' tags, and moves their Cards to approved existing normal Decks. It preserves existing identities and review history, reports automatic Card generation and native scheduling effects, and stops on unsafe or ambiguous conditions.
+The updater reconciles Notes by Note Type and exact stable first-Field ID, creates missing Note Types and Notes, updates retained Front/Back Templates and shared styling, and replaces managed Notes' tags. YAML's `deck` declaration determines the approved existing normal Deck for newly generated managed Cards. Existing Cards retain their current Deck placement, even when it differs from YAML; those differences are neither reported nor reconciled. The updater preserves existing identities and review history, reports automatic Card generation, and stops on unsafe or ambiguous conditions.
 
 Align repository styling with Anki by maintaining one human-authored stylesheet per Note Type. After the headless workflow is verified, make YAML-to-Collection updates canonical and retain CSV tooling/artifacts as an optional Desktop-import fallback.
 
@@ -21,7 +21,7 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 1. As a repository author, I want to apply changes with Anki Desktop closed, so that I do not need to navigate import dialogs or editing screens.
 2. As a repository author, I want YAML to be the direct source for Notes, so that I do not need an intermediate CSV for ordinary updates.
 3. As a repository author, I want the same source data to drive preview and application, so that the changes I approve match the changes performed.
-4. As a repository author, I want an explicit target Collection and profile, so that I cannot accidentally update another Collection.
+4. As a repository author, I want an explicit target Collection, identified by its Desktop Profile when applicable, so that I cannot accidentally update another Collection. Each Desktop Profile owns one Collection; the Profile name is not a separate Collection name.
 5. As a repository author, I want the updater to verify package compatibility with my installed Anki version, so that routine updates do not silently upgrade or downgrade my Collection.
 6. As a repository author, I want missing environment prerequisites reported clearly, so that setup problems do not lead to unsafe installations or Collection access.
 7. As a repository author, I want invalid YAML and schema/config disagreements rejected before application, so that malformed content cannot produce partial imports.
@@ -39,12 +39,12 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 19. As a repository author, I want empty or omitted YAML tags to clear managed Notes' tags, so that tag removal is predictable.
 20. As a repository author, I want tag removals included in preview, so that replacement of personal tags is visible before application.
 21. As a learner, I want unrelated Notes left alone, so that repository updates do not overwrite personal content elsewhere in my Collection.
-22. As a repository author, I want to link repository Deck definitions to existing Anki Decks, so that updates reuse my established Deck hierarchy.
-23. As a repository author, I want entry YAML to determine target Deck placement, so that changing its Deck declaration has a clear effect.
+22. As a repository author, I want to resolve entry YAML `deck` declarations to approved existing Anki Decks, so that updates reuse my established Deck hierarchy without a second repository Deck definition.
+23. As a repository author, I want entry YAML to determine placement for new Cards, so that changing its Deck declaration affects future Card creation rather than moving existing Cards.
 24. As a repository author, I want missing, ambiguous, or invalid Deck links rejected, so that typos cannot create replacement Decks or misplace Cards.
-25. As a learner, I want Cards moved without recreation, so that changing a Deck does not destroy review history.
-26. As a learner, I want native learning-step and FSRS effects explained, so that I understand adjustments caused by a Deck move.
-27. As a repository author, I want Cards already in the correct Deck skipped, so that repeated runs avoid unnecessary changes.
+25. As a learner, I want existing Cards left in their current Decks, so that repository updates preserve intentional manual placement and avoid Deck-move scheduling effects.
+26. As a repository author, I want existing Card/YAML Deck differences ignored, so that preview does not produce unwanted placement warnings or proposed moves.
+27. As a repository author, I want newly generated managed Cards placed in their linked YAML Deck, so that conditional or Template-driven Card creation has predictable placement.
 28. As a repository author, I want one shared stylesheet per Note Type, so that repository styling matches Anki without a merging tool.
 29. As a repository author, I want intentional Card Type visual differences preserved, so that shared styling does not flatten distinct learning presentations.
 30. As a repository author, I want missing Note Types created from the approved schema and Templates, so that their YAML Notes can be imported without manual setup.
@@ -73,7 +73,7 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 - The public interface supports preview/rehearsal and explicitly approved application. Its required inputs identify repository content, the target Collection/profile, and approved Deck links. The exact command spelling and configuration encoding are implementation choices, not established contracts in this spec.
 - Use the official Anki Python Collection interface and native mutation operations, not direct database writes, a GUI add-on, or independently generated package identities.
 - Use a package compatible with the actual installed Desktop release. Resolve prerequisites before backend access; use an existing repository virtual environment and stop if a suitable environment is unavailable.
-- Reports distinguish validation failures, proposed changes, committed operations, new Cards, tag replacement, placement changes, scheduling effects, and recovery prerequisites. Errors must identify the relevant Note/Note Type/Deck without exposing unrelated Collection content.
+- Reports distinguish validation failures, proposed Field changes, committed operations, new Cards and their placement, tag replacement, and recovery prerequisites. Existing Card/YAML Deck differences are not reported. Errors must identify the relevant Note/Note Type/Deck without exposing unrelated Collection content.
 
 ### Repository source contract and preparation
 
@@ -93,23 +93,24 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 - Unmatched Notes remain untouched. Shared Templates/styling inherently affect every Note of a Note Type, so those effects and ownership must be explicitly approved rather than described as entry-local updates.
 - Create missing Note Types from the approved ordered schema, Templates, and shared styling, then import their Notes. For existing Note Types, only update retained Templates and styling; retain Field/template identities, ordinals, and unrelated metadata.
 - Reject existing Field/Card Type additions, removals, renames, reorderings, and Note Type conversions. Preserve template Deck overrides, but reject conflicts with requested placement rather than silently editing overrides.
-- Native Note or Front Template updates may generate missing Cards. Report those effects and place newly generated managed Cards after content/Template updates. Never remove retained empty Cards automatically.
-- Repeated identical inputs should cause no unnecessary native mutations, duplicate objects, tag changes, or Deck moves.
+- Native Note or Front Template updates may generate missing Cards. Capture existing Card IDs before updates, report newly generated Cards, and place only newly generated managed Cards in the linked YAML Deck. Cards generated for unrelated Notes by shared Template updates are reported under Note Type-wide effects but their placement is not changed by the updater. Never remove retained empty Cards automatically.
+- Repeated identical inputs should cause no unnecessary native mutations, duplicate objects, tag changes, or new-Card placement operations.
 
 ### Existing Deck links and placement
 
-- Entry YAML is authoritative for target Deck placement. Note Type target-Deck documentation describes intended scope/default context without overriding the entry declaration.
+- Entry YAML's top-level `deck` declaration is authoritative for new managed Card placement, not Collection selection. Every entry source must contain a nonempty valid `deck`; configuration-only files need no Deck declaration. Note Type target-Deck documentation describes intended scope/default context without overriding the entry declaration.
 - All repository Decks already have corresponding Anki Decks. Resolve explicit approved links to existing normal Decks in the selected Collection; exact hierarchical names may propose matches, but do not silently create missing Decks.
 - Validate resolved Deck IDs against the selected Collection rather than assuming IDs are portable to another Collection. Missing, ambiguous, filtered, or conflicting links fail before application.
-- Move applicable Cards of managed Notes through the native Deck operation after Note/Template updates. Cards already in their target Deck are skipped.
-- Preserve review history and ordinary review due dates/intervals. Do not promise every scheduling property remains byte-for-byte identical: native learning/relearning-step and FSRS memory-data effects must be reported and tested, including documented effects on the destination Deck.
+- Add new Notes to their linked Deck through native APIs. After Note/Template updates, place only newly generated managed Cards that require placement; never move a Card whose ID existed before the update. Existing placement differences from YAML are ignored without warnings or proposed moves.
+- Preserve existing review-history rows and ordinary review scheduling, including due dates and intervals. Verify existing Card Deck IDs remain unchanged; do not invoke Deck moves on existing learning/relearning or review Cards.
 - Reject Cards currently in filtered Decks for the initial workflow. Do not alter Deck options or create Decks.
 
 ### Safety, media, and failure contract
 
-- Never use the live Collection as an inspection-only dry run. Backend opening can migrate a Collection; resolve compatibility beforehand and rehearse only on a consistent disposable copy.
+- Never use the source Collection as an inspection-only dry run, even when the source is our sandbox. Backend opening can migrate a Collection; resolve compatibility beforehand and open the Anki backend for preview only on a consistent disposable copy.
 - Require Anki Desktop closed and prevent simultaneous updater runs. Honor native locking failures and release backend connections on success and failure.
-- Obtain a verified consistent backup before opening the live Collection. Account for WAL state and preserve media for recovery, even though this feature does not modify media.
+- Create consistent database snapshots with SQLite's backup API, which includes committed WAL changes in the destination database. Do not force a checkpoint on the source or copy only `collection.anki2` while ignoring its WAL. Close the source SQLite connection before opening the disposable snapshot with Anki; do not open the source through Anki merely to prepare a preview.
+- Obtain a verified consistent recoverable backup before opening the live Collection. Preserve media for recovery and make referenced media available for disposable validation without source-media writes. A database-only snapshot is not a complete media recovery package; opening the disposable database may create its own WAL files.
 - Rehearse the complete approved change, reopen the rehearsal Collection, and compare persisted identities, history, content, tags, Card counts, and scheduling. Rehearsal does not authorize replacing the live Collection with the copy.
 - Require explicit live-apply approval and revalidate source/target state before mutation. If it changed since rehearsal, stop and require a fresh rehearsal/approval.
 - Referenced media must already exist in the target Collection. Missing media fails validation; do not upload, rename, replace, or remove assets.
@@ -118,7 +119,7 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 
 ### Workflow transition
 
-- Preserve the eight approved tickets and their blocking edges: shared-styling preparation and headless capability verification can start independently; YAML preview follows verification; Note application follows preview; Note Type/Template application follows styling preparation and Note application; Card movement follows Note application; guarded integration follows Template application and Card movement; canonical workflow retirement follows guarded integration.
+- Preserve the eight ticket numbers and their blocking edges: shared-styling preparation and headless capability verification can start independently; YAML preview follows verification; Note application follows preview; Note Type/Template application follows styling preparation and Note application; new-Card placement verification follows Note application; guarded integration follows Template application and new-Card placement verification; canonical workflow retirement follows guarded integration. Ticket 06 replaces the previously planned existing-Card movement slice.
 - Do not retire mandatory CSV generation before the complete API workflow is verified. Then update instructions, guidance, and tests to make direct YAML preview/application canonical.
 - Keep the converter, existing generated CSV artifacts, and import symlinks as an explicitly optional fallback. Remove the mandatory regeneration requirement without deleting these artifacts or hand-editing generated imports.
 
@@ -127,12 +128,13 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 - **Approved primary seam:** the public updater command interface, supplied with repository fixtures and disposable real Anki Collections. Both callers and integration tests exercise the same interface. No separate public interfaces are needed for each internal loading, matching, or backend operation.
 - Good tests assert externally observable behavior: reports, rejection outcomes, persisted content after reopening, object identities, review-history preservation, placement, recovery guidance, and idempotency. Do not assert internal call ordering or mock individual Anki methods as proof of integration correctness.
 - Exercise the updater module end to end. Keep existing YAML/configuration and CSV regression tests as supporting coverage while their fallback remains supported, rather than replacing the primary seam with many new low-level tests.
-- Prior art is the repository's Python unittest-based converter suite: synthetic temporary YAML/configuration fixtures, invalid-input rejection, required/optional Field behavior, stable-ID validation, tags-column mapping, and normalization. Reuse these fixture concepts, but there is currently no Collection integration suite or demonstrated live update.
+- Prior art includes the repository's Python unittest-based converter suite and `tools/headless_import/` sandbox exploration: direct YAML imports, native tags, schema/Template creation, identity preservation, and repeat-run tests. Reuse these fixture concepts; sandbox imports are not proof of disposable-copy preview safety or guarded live updates.
 - Build synthetic disposable Collections with existing Notes, review history, multiple Card Types, normal Decks, and approved links. Include consistent disposable copies when testing preservation against representative existing data. Automated tests never access a real user Collection.
 - Test valid YAML addition/update and invalid YAML, missing requirements, unknown Fields, unquoted/empty IDs, duplicate source IDs, ambiguous Collection matches, incompatible schemas, and missing Deck/media references.
 - Verify Note IDs/GUIDs, Card IDs, review-history rows, ordinary review due dates and intervals before and after updates. Include unrelated Notes, multiple Note Types with the same custom ID, and intentional tag replacement/clearing.
 - Verify retained Template updates, newly created Note Types and Notes, shared styling/rendering, conditional/new Card generation, approved Note Type-wide effects, and structural-change rejection.
-- Verify existing normal Deck movement and persisted placement, including new Cards generated by Template changes. Cover no-op moves, filtered-Deck rejection, conflicting template overrides, and learning/FSRS adjustments without demanding unsupported byte-for-byte scheduler equality.
+- Verify new managed Card placement, including conditional Cards and Cards generated by Template changes. Existing Cards intentionally in different normal Decks must retain their Deck IDs and ordinary scheduling without mismatch reports. Cover filtered-Deck rejection, conflicting template overrides, unrelated Cards, and second-run no-op placement.
+- Verify deterministic per-Note add/update/unchanged summaries, Field before/after values, tag additions/removals, approved new-Card target resolution, and actual new-Card effects in rehearsal. Keep temporary paths and timestamps separate from deterministic summaries. Test WAL-inclusive snapshots and source database/media immutability during preview, including rejection paths.
 - Test the guard contract through the command interface: incompatible versions, unavailable prerequisites, lock contention, wrong target, stale approval, backup/rehearsal failures, interruption after committed operations, and connection cleanup. Failure simulation may be internal to the test environment; it must not become an unnecessary public production interface.
 - Run each valid scenario twice and verify the second run creates no duplicates or unnecessary mutations. Reopen Collections to prove persistence rather than trusting returned objects.
 - Verify the canonical path neither generates nor reads CSV. Retain explicit fallback tests after mandatory CSV retirement.
@@ -144,6 +146,7 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 - AnkiConnect or any requirement to run Anki Desktop during application.
 - AnkiWeb synchronization, remote-device orchestration, or automatic full-sync decisions.
 - Deck creation, Deck-option/preset changes, review-limit configuration, or deliberate rescheduling.
+- Moving existing Cards to match YAML, reporting existing Card/YAML Deck mismatches, or reconciling manual Deck placement.
 - Filtered-Deck handling beyond rejecting unsupported sources/destinations.
 - Automatic Field/Card Type schema migrations, renames, reorderings, removals, or Note Type conversion.
 - Automatic deletion of Notes, Cards, Templates, Decks, or media; deletion inferred from missing YAML entries; automatic cleanup of REPO_DELETE.
@@ -157,7 +160,11 @@ Align repository styling with Anki by maintaining one human-authored stylesheet 
 ## Further Notes
 
 - This spec synthesizes the approved investigation, user feedback, eight published tickets, and the user's explicit approval of the primary test seam. It does not authorize live Collection access or implementation merely by being published.
-- Research established feasibility against Anki 26.09.4, with investigation dated 2026-11-10 and design feedback recorded 2026-11-13. No updater, package installation, or Collection integration tests have been completed as part of that investigation. The actual installed version/profile and environment must be established during implementation, not assumed from the research baseline.
-- The initial frontier is shared Note Type styling and headless capability verification. Preserve existing ticket numbers and dependencies; this spec supplements them rather than closing, modifying, or replacing them.
+- Research established feasibility against Anki 26.09.4, with investigation dated 2026-11-10 and design feedback recorded 2026-11-13. Subsequent 2026-11-16 exploration prepared a dedicated virtual environment and imported all five repository Note Types into `sandbox-2gs8b2z0`, with 269 repository Notes and 488 Cards, persistence checks, and ten setup/import tests. Vocabulary Notes were verified by the user in Desktop. No personal Collection was accessed. The actual installed version/Profile and environment must still be checked at invocation.
+- Tickets 01 and 02 are resolved; tickets 03–08 remain open. The exploration mutates its persistent sandbox after making a database backup and deliberately creates missing Decks; it does not satisfy the revised preview or existing-Deck approval contract. Its support for moving existing Cards must not enter the canonical updater.
 - Schema/tag terminology, stylesheet organization, and canonical workflow changes intentionally require coordinated repository-instruction updates during their implementation tickets. Existing instructions remain active until those changes land.
 - Future requests for media handling, missing Deck creation, schema migrations, or sync require separately scoped work and approval; they must not silently enter this feature.
+
+## Comments
+
+- 2026-11-16: Revised after sandbox exploration and user clarification. Use SQLite backup snapshots without forcing source WAL checkpoints; Desktop Profiles each own one Collection rather than assigning the Collection a matching name. YAML `deck` is the requested existing Deck for new managed Cards. Retain explicit approved Collection-local links, ignore existing placement differences, and never move existing Cards. Ticket 06 now verifies new-Card placement; completed ticket history is preserved. This revision authorizes documentation changes only, not live Collection access.
