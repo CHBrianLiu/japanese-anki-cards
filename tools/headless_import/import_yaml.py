@@ -62,6 +62,19 @@ class MediaReferences(HTMLParser):
                     self.names.add(value)
 
 
+def media_references(text, styles=False):
+    parser = MediaReferences()
+    parser.feed(text)
+    names = parser.names | set(re.findall(r"\[sound:([^\]]+)\]", text))
+    if styles:
+        text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
+        names.update(match.group(2).strip() for match in
+                     re.finditer(r"url\(\s*(['\"]?)(.*?)\1\s*\)", text, re.IGNORECASE))
+        names.update(re.findall(r"@import\s+['\"]([^'\"]+)['\"]", text, re.IGNORECASE))
+        names = {name for name in names if name and not name.lower().startswith("data:")}
+    return names
+
+
 def load_source(note_type_dir):
     note_type = note_type_dir.name
     config = yaml.load(
@@ -81,7 +94,7 @@ def load_source(note_type_dir):
     actual_card_types = {path.name for path in (note_type_dir / "card-types").iterdir() if path.is_dir()}
     if not card_types or len(card_types) != len(set(card_types)) or set(card_types) != actual_card_types:
         raise ValueError("Documented Card Types must match Template directories in stable order")
-    templates = []
+    templates, media = [], set()
     for name in card_types:
         directory = note_type_dir / "card-types" / name
         template = {
@@ -95,8 +108,14 @@ def load_source(note_type_dir):
             unknown = referenced_fields - set(field_names) - {"FrontSide", "Tags", "Type", "Deck", "Subdeck", "Card", "CardFlag"}
             if unknown:
                 raise ValueError(f"{name}: undeclared Template Fields {sorted(unknown)}")
+            references = media_references(text, styles=True)
+            if any("{{" in reference or "}}" in reference for reference in references):
+                raise ValueError(f"{name}: Dynamic Template media references are unsupported")
+            media.update(references)
         templates.append(template)
-    entries, seen, media = [], set(), set()
+    css = (note_type_dir / "style.css").read_text(encoding="utf-8")
+    media.update(media_references(css, styles=True))
+    entries, seen = [], set()
     paths = sorted((note_type_dir / "entries").glob("*.yaml"))
     for path in paths:
         if path.name == "entries-config.yaml":
@@ -139,12 +158,9 @@ def load_source(note_type_dir):
                 raise ValueError(f"{path.name}, {custom_id}: Tags must be a string or null")
             values = [normalize(row.get(name)) for name in field_names]
             for text in values:
-                parser = MediaReferences()
-                parser.feed(text)
-                media.update(parser.names)
-                media.update(re.findall(r"\[sound:([^\]]+)\]", text))
+                media.update(media_references(text))
             entries.append({"id": custom_id, "fields": values, "tags": (tags or "").split(), "deck": deck})
-    return {"name": note_type, "fields": field_names, "templates": templates, "css": (note_type_dir / "style.css").read_text(encoding="utf-8"), "entries": entries, "media": media}
+    return {"name": note_type, "fields": field_names, "templates": templates, "css": css, "entries": entries, "media": media}
 
 
 @contextmanager

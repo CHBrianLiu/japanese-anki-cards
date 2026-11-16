@@ -66,7 +66,10 @@ no Decks are created. Repeat `--note-type` for more Note Types. Optional
 `--propose-decks` lists exact-name candidates without applying changes.
 
 The JSON report lists add/update/unchanged Notes, Field changes and tag additions
-and removals. New managed Cards include their requested and resolved Deck; existing
+and removals, plus Note Type creation or retained Front/Back Template and shared
+styling changes. Note Type effects include counts of managed and unrelated Notes
+and newly generated Cards: changes affect **every** Note sharing that Note Type,
+including Notes outside the selected YAML. New managed Cards include their requested and resolved Deck; existing
 Card placement is ignored. The command uses a temporary SQLite backup API copy,
 including committed WAL contents, opens Anki only on the copy, validates media
 in the sandbox, and removes the copy on exit. It neither writes CSV nor applies
@@ -74,7 +77,7 @@ changes, creates Decks, uploads media, or retains backups. Creating fixture Deck
 and media is a separate sandbox setup step. The selected Collection is independent
 of YAML's `deck`; Desktop Profiles are not inspected.
 
-## Apply YAML Notes (ticket 04)
+## Apply YAML Notes and Note Types
 
 Review the preview above, keep Anki Desktop closed, then explicitly approve the
 same selection:
@@ -83,8 +86,11 @@ same selection:
 tools/headless_import/.venv/bin/python tools/headless_import/apply_yaml.py --sandbox sandbox-2gs8b2z0 --note-type Japanese_Mined_Vocab --approve
 ```
 
-Repeat `--note-type` to select more Note Types. Application requires compatible
-**existing** Note Types and exact-name existing normal Decks. It shares preview's
+If preview proposes creating a Note Type or updating shared Templates or styling,
+also supply `--approve-note-types` to explicitly approve repository ownership and
+the Note Type-wide effects shown in preview. No such approval flag is needed for
+unchanged Note Types. Repeat `--note-type` to select more Note Types. Application
+requires exact-name existing normal Decks. It shares preview's
 YAML validation, normalization, matching, and per-Note Field/tag change reports.
 Field Unicode normalization follows the selected Collection's Anki setting;
 native tags use NFC. Stable IDs are matched in that same normalized representation,
@@ -95,13 +101,21 @@ application creates no pre-import backup, snapshot archive, or restore artifact.
 
 - Adds missing Notes with native identities; updates matches by exact Note Type
   and first-Field stable ID, retaining Note IDs/GUIDs and existing Card IDs.
+- Creates missing Note Types, or updates only retained Front/Back Templates and
+  shared styling of compatible Note Types. Structural Field/Card Type changes and
+  conversions are rejected. Existing metadata and Template Deck overrides are retained.
 - Replaces the complete managed Note tag set, including clearing personal tags.
   `REPO_DELETE` is only a tag; absent Notes and retained empty Cards are not deleted.
 - Places **new Cards only**, including newly generated conditional Cards, in the
   YAML Deck. Existing Cards retain their placement without mismatch reports or moves.
 - Rejects invalid sources, ambiguous identities, schema mismatches, missing media,
   filtered Cards/Decks, and conflicting Template Deck overrides before target writes.
-  Does not edit Templates/CSS, Deck options, unrelated Notes, or media.
+  Does not edit Deck options, unrelated Note content, or media. Anki may generate
+  Cards for unrelated Notes when a shared Front Template changes; their placement
+  is left to Anki and is not changed by the updater.
+- Static media references in Templates and shared styling must exist in the sandbox
+  media directory. Dynamic Template media references such as `<img src="{{Field}}">`
+  are rejected because their assets cannot be validated for every affected Note.
 - Reopens the target to verify Fields/tags, retained identities, Card placement,
   scheduling, and review-history rows. Reports new Card IDs and verified persistence
   on stdout; a second identical application reports only `unchanged` Notes.
@@ -112,6 +126,12 @@ application creates no pre-import backup, snapshot archive, or restore artifact.
 `--approve` is explicit run approval, not a Deck-links file or a persisted preview
 token. Durable approval/staleness guards remain ticket 07 work. This command is
 sandbox-only and does not retire the repository's CSV fallback workflow.
+
+For intended-client rendering checks, use only a tool-created sandbox and its
+synthetic Notes: inspect the updated Front and Back in Anki Desktop, including
+each changed Card Type's shared styling, then quit Desktop completely before
+running preview, application, or other headless operations. API rendering tests
+do not replace this visual check.
 
 ## Historical exploration: import Japanese_Mined_Vocab directly from YAML
 

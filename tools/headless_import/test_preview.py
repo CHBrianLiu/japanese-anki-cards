@@ -52,6 +52,12 @@ class PreviewCommandTests(unittest.TestCase):
             '  - CustomID: "001_0002"\n    Text: "New"\n', encoding="utf-8")
         self.sandbox = create_sandbox(self.tool / ".local", Path("/Applications/Anki.app"))
         self.collection = Path(self.sandbox["collection"])
+        col = Collection(str(self.collection))
+        try:
+            (self.source / "style.css").write_text(
+                col.models.by_name("Headless_Preview_Fixture")["css"], encoding="utf-8")
+        finally:
+            col.close()
 
     def run_preview(self):
         return subprocess.run(

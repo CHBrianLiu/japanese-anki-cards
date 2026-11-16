@@ -65,13 +65,17 @@ def resolve_decks(col, requested, proposals=False):
     return resolved
 
 
+def validate_model(model, source):
+    if (model["name"] != source["name"] or model["type"] != 0
+            or [field["name"] for field in model["flds"]] != source["fields"]
+            or [template["name"] for template in model["tmpls"]] != [t["name"] for t in source["templates"]]):
+        raise ValueError(f"Unsupported Note Type schema mismatch: {source['name']}")
+
+
 def model_for_source(col, source, existing_only=False):
     model = col.models.by_name(source["name"])
     if model:
-        if (model["name"] != source["name"] or model["type"] != 0
-                or [field["name"] for field in model["flds"]] != source["fields"]
-                or [template["name"] for template in model["tmpls"]] != [t["name"] for t in source["templates"]]):
-            raise ValueError(f"Unsupported Note Type schema mismatch: {source['name']}")
+        validate_model(model, source)
         return model
     if existing_only:
         raise ValueError(f"Missing compatible existing Note Type: {source['name']}")
@@ -84,6 +88,42 @@ def model_for_source(col, source, existing_only=False):
         col.models.add_template(model, native)
     model["css"] = source["css"]
     return col.models.get(col.models.add_dict(model).id)
+
+
+def plan_note_types(col, sources):
+    plan = []
+    for source in sorted(sources, key=lambda source: source["name"]):
+        model = col.models.by_name(source["name"])
+        if model:
+            validate_model(model, source)
+            changes = [{"name": template["name"], "front_changed": template["qfmt"] != desired["qfmt"],
+                        "back_changed": template["afmt"] != desired["afmt"]}
+                       for template, desired in zip(model["tmpls"], source["templates"])
+                       if template["qfmt"] != desired["qfmt"] or template["afmt"] != desired["afmt"]]
+            css_changed = model["css"] != source["css"]
+            action = "update" if changes or css_changed else "unchanged"
+            count = len(col.models.nids(model["id"]))
+        else:
+            changes = [{"name": template["name"], "front_changed": True, "back_changed": True}
+                       for template in source["templates"]]
+            css_changed, action, count = True, "create", 0
+        plan.append({"note_type": source["name"], "action": action,
+                     "templates_changed": [change["name"] for change in changes], "template_changes": changes,
+                     "styling_changed": css_changed, "existing_notes_affected": count})
+    return plan
+
+
+def execute_note_types(col, sources, plan, report):
+    for source, item in zip(sorted(sources, key=lambda source: source["name"]), plan):
+        if item["action"] == "create":
+            model_for_source(col, source)
+        elif item["action"] == "update":
+            model = col.models.by_name(source["name"])
+            for native, desired in zip(model["tmpls"], source["templates"]):
+                native["qfmt"], native["afmt"] = desired["qfmt"], desired["afmt"]
+            model["css"] = source["css"]
+            col.models.update_dict(model)
+        report.append(dict(item))
 
 
 def native_field_text(col, value):
@@ -158,28 +198,59 @@ def execute_plan(col, plan, report, committed=False):
             report.append(item)
             if committed:
                 item["note_id"] = note.id
-            new_cards = set(col.card_ids_of_note(note.id)) - operation["old_cards"]
-            for cid in new_cards:
-                template = model["tmpls"][col.get_card(cid).ord]
-                if template.get("did") and template["did"] != target["id"]:
-                    raise ValueError(f"Conflicting Template Deck override: {item['note_type']}, {entry['id']}")
-            if new_cards:
-                item["new_cards_deck"] = target
-                misplaced = [cid for cid in new_cards if col.get_card(cid).did != target["id"]]
-                if misplaced:
-                    col.set_deck(misplaced, target["id"])
-                if committed:
-                    item["new_card_ids"] = sorted(new_cards)
         else:
             report.append(item)
+        new_cards = set(col.card_ids_of_note(note.id)) - operation["old_cards"]
+        for cid in new_cards:
+            template = model["tmpls"][col.get_card(cid).ord]
+            if template.get("did") and template["did"] != target["id"]:
+                raise ValueError(f"Conflicting Template Deck override: {item['note_type']}, {entry['id']}")
+        if new_cards:
+            item["new_cards_deck"] = target
+            misplaced = [cid for cid in new_cards if col.get_card(cid).did != target["id"]]
+            if misplaced:
+                col.set_deck(misplaced, target["id"])
+            if committed:
+                item["new_card_ids"] = sorted(new_cards)
         if committed:
             item["note_id"] = note.id
 
 
-def preview_notes(col, sources, resolved_decks, existing_only=False):
-    report = []
-    execute_plan(col, plan_notes(col, sources, resolved_decks, existing_only), report)
-    return report
+def selection_plan(col, sources, decks):
+    types = plan_note_types(col, sources)
+    existing = [source for source in sources if col.models.by_name(source["name"])]
+    notes = plan_notes(col, existing, decks, existing_only=True)
+    managed = {operation["note"].id for operation in notes if operation["item"]["action"] != "add"}
+    cards = {nid: set(col.card_ids_of_note(nid)) for source in existing
+             for nid in col.models.nids(col.models.by_name(source["name"])["id"])}
+    for item in types:
+        model = col.models.by_name(item["note_type"])
+        nids = set(col.models.nids(model["id"])) if model else set()
+        item["existing_managed_notes"] = len(nids & managed)
+        item["existing_unrelated_notes"] = len(nids - managed)
+    return types, notes, managed, cards
+
+
+def execute_selection(col, sources, decks, selection, report, committed=False):
+    types, _, managed, cards = selection
+    execute_note_types(col, sources, types, report["note_types"])
+    for item in report["note_types"]:
+        model = col.models.by_name(item["note_type"])
+        new_managed = new_unrelated = 0
+        for nid in col.models.nids(model["id"]):
+            new = set(col.card_ids_of_note(nid)) - cards.get(nid, set())
+            if nid in managed:
+                new_managed += len(new)
+            else:
+                new_unrelated += len(new)
+        item["managed_new_cards"] = new_managed
+        item["unrelated_new_cards"] = new_unrelated
+    plan = plan_notes(col, sources, decks, existing_only=True)
+    for operation in plan:
+        if operation["note"].id:
+            operation["old_cards"] = cards.get(operation["note"].id, set())
+    execute_plan(col, plan, report["notes"], committed)
+    return plan
 
 
 def main():
@@ -209,7 +280,12 @@ def main():
                 col = Collection(str(copy))
                 try:
                     resolved_decks = resolve_decks(col, requested, args.propose_decks)
-                    result = {"proposals": resolved_decks} if args.propose_decks else {"notes": preview_notes(col, sources, resolved_decks)}
+                    if args.propose_decks:
+                        result = {"proposals": resolved_decks}
+                    else:
+                        selection = selection_plan(col, sources, resolved_decks)
+                        result = {"note_types": [], "notes": []}
+                        execute_selection(col, sources, resolved_decks, selection, result)
                 finally:
                     col.close()
         print(json.dumps(result, indent=2, ensure_ascii=False))
